@@ -9,6 +9,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <script src="/bundle.js" defer></script>
   <title>Votify</title>
   <style type="text/css">
     body {
@@ -64,6 +65,21 @@
     } else {
       console.log('service worker is not supported');
     }
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAiNZ3h1kehpU6AuNLmSFMaahslz20u0IA",
+      authDomain: "votify-b9360.firebaseapp.com",
+      databaseURL: "https://votify-b9360.firebaseio.com",
+      projectId: "votify-b9360",
+      storageBucket: "votify-b9360.appspot.com",
+      messagingSenderId: "662573508444"
+    };
+    firebase.initializeApp(config);
   </script>
 </body>
 
