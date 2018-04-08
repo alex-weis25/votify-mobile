@@ -24,20 +24,20 @@ const getCurrent = current => ({type: GET_CURRENT, current})
 /**
  * THUNK CREATORS
  */
-export const fetchVotify = () =>
+export const fetchVotify = (userId, playlistId, accessToken) =>
   dispatch => {
     axios({
       method: "GET",
-      url: `https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}`,
+      url: `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}`,
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          `Bearer ${bearer}`
+          `Bearer ${accessToken}`
       }
     })
       .then(res => {
         console.log('playlist specs', res);
-        // dispatch(getVotify(res.data))
+        dispatch(getVotify(res.data))
       })
       .catch(err => console.log(err))
   }

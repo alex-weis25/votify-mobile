@@ -43,7 +43,7 @@ const fetchPlaylist = () => {
     }
   })
   .then(res => {
-    console.log('query results from spotify: ', res)
+    // console.log('query results from spotify: ', res)
   })
 
 }

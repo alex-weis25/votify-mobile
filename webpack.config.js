@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: __dirname + '/public',
     filename: 'bundle.js'
@@ -16,9 +16,9 @@ module.exports = {
       {
         test: /jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
+        loaders: 'babel-loader',
         options: {
-          presets: ['react']
+          presets: ['react', 'es2015', 'stage-0', 'stage-2']
         }
       }
     ]

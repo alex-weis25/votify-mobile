@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.navbar {
+  background-color: #01c8e5;
+  text-align: center;
+}
+
+.navbar a {
+  display: inline-block;
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.page-info {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* .App {
+  text-align: left;
+} */
+
+.app-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 10vh;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 2em;
+  text-align: center;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.choose-button,
+.button:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 100px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.choose-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 10px 25px #0000003c;
+}
+
+.choose-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0px 5px 10px #0000003c;
+}
+
+.choose-button-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.choose-button::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* transition: all .4s; */
+}
+
+.choose-button-white::after {
+  background-color: #fff;
+}
+
+.choose-button:hover::after {
+  transform: scaleX(1.4);
+  opacity: 0;
+}
+
+.choose-button-animated {
+  animation: MoveInBottom 0.5s ease-out.75s;
+  animation-fill-mode: backwards;
+}
+
+img {
+  height: 100px;
+}

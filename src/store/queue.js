@@ -1,9 +1,10 @@
 import axios from 'axios'
+const db = firebase.firestore();
 
 /**
  * ACTION TYPES
  */
-const GET_QUEUE = 'GET_QUEUE'
+const SET_QUEUE = 'SET_QUEUE'
 // const ADD_QUEUE = 'ADD_QUEUE'
 
 
@@ -38,7 +39,7 @@ export const fetchQueue = () =>
  */
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_QUEUE:
+    case SET_QUEUE:
       return Object.assign({}, state, {queue: action.queue})
 
     default:
