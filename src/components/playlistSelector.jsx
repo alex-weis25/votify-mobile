@@ -33,7 +33,9 @@ export class PlaylistSelector extends Component {
         <button className="button-playlist" onClick={this.onClick}>
           Select
         </button>
-        <h4>{this.props.name}</h4>
+        <div className="playlist-name">
+          <h4>{this.props.name}</h4>
+        </div>
       </div>
     );
   }

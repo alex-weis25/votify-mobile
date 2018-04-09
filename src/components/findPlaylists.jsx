@@ -16,7 +16,7 @@ export default class FindPlaylists extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.findUserPlaylists();
   }
 
@@ -25,7 +25,6 @@ export default class FindPlaylists extends Component {
       .where("accessToken", "==", accessToken)
       .get()
       .then(user => {
-        // console.log("firebase query userId", user.docs[0].id);
         let user_id = user.docs[0].id;
         return user_id;
       })
@@ -56,13 +55,13 @@ export default class FindPlaylists extends Component {
   render() {
     const playlists = this.state.userPlaylists;
     return (
-      <div id="login-root">
+      <div id="playlist-root">
         <h2>Playlists</h2>
         <div id="user-playlists">
         {
           playlists.length > 0 && playlists.map(playlist => {
             return (
-              <div key={playlist.id}>
+              <div className='playlist-item' key={playlist.id}>
               <PlaylistSelector
                 id={playlist.id}
                 name={playlist.name}

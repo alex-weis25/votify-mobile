@@ -4,11 +4,12 @@ import { Route } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 import queryString from "query-string";
-import Votify from "./components/votify.jsx";
-import FindPlaylists from "./components/FindPlaylists.jsx";
-import SinglePlaylist from "./components/SinglePlaylist.jsx";
-import ChoosePlaylist from "./components/choosePlaylist.jsx";
-import SecondaryHeader from "./components/secondaryHeader.jsx";
+import { Votify, FindPlaylists, SinglePlaylist, ChoosePlaylist, SecondaryHeader } from './components/index.js'
+// import Votify from "./components/votify.jsx";
+// import FindPlaylists from "./components/FindPlaylists.jsx";
+// import SinglePlaylist from "./components/SinglePlaylist.jsx";
+// import ChoosePlaylist from "./components/choosePlaylist.jsx";
+// import SecondaryHeader from "./components/secondaryHeader.jsx";
 const db = firebase.firestore();
 
 import { fetchVotify } from "./store/votify.js";
@@ -23,11 +24,9 @@ class App extends Component {
       view: "choosePlaylist", //'choosePlaylist' as default
       previousViews: []
     };
-    this.setView = this.setView.bind(this);
-    this.goToPreviousView = this.goToPreviousView.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
     axios
@@ -57,7 +56,7 @@ class App extends Component {
       });
   }
 
-  setView(view) {
+  setView = view => {
     const lastView = this.state.view;
     const newPreviousViews = [...this.state.previousViews, lastView];
     this.setState({
@@ -66,7 +65,7 @@ class App extends Component {
     });
   }
 
-  goToPreviousView() {
+  goToPreviousView = () => {
     const lastView = this.state.previousViews[this.state.previousViews.length - 1];
     this.setState({
       view: lastView,
