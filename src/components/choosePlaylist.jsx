@@ -3,6 +3,7 @@ import axios from "axios";
 import queryString from "query-string";
 const db = firebase.firestore();
 import { PlaylistSelector } from "./playlistSelector.jsx";
+import SpotifyLogo from "svg-react-loader?name=Icon!../icons/spot.svg";
 
 const parsed = queryString.parse(window.location.search);
 const accessToken = parsed.access_token;
@@ -26,6 +27,9 @@ export default class ChoosePlaylist extends Component {
     const setView = this.props.setView;
     return (
       <div className="playlist-types">
+        <div className="spotify-logo">
+          <SpotifyLogo />
+        </div>
         <div className="choose-button-wrapper">
           <button
             className="choose-button"

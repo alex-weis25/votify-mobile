@@ -6,6 +6,21 @@ import queryString from "query-string";
 const db = firebase.firestore();
 import { Interactive } from "./index";
 
+//helperFunc
+const sortByVote = array => {
+  const updatedOrder = [];
+  array.forEach(entry => {
+    for (var i = 0; i < array.length; i++) {
+      if (!updatedOrder[i] || entry.score >= updatedOrder[i].score) {
+        updatedOrder.splice(i, 0, entry);
+        break;
+      }
+    }
+  });
+  return updatedOrder;
+};
+
+
 class PlaylistQueue extends Component {
   constructor(props) {
     super(props);
@@ -16,12 +31,12 @@ class PlaylistQueue extends Component {
 
   componentDidMount() {
     const { id } = this.props.Votify.votify;
-    let songQueue = [];
     this.unsubscribe = db
       .collection("Playlists")
       .doc(`${id}`)
       .collection("Queue")
       .onSnapshot(snapshot => {
+        let songQueue = [];
         snapshot.forEach(song => {
           songQueue.push(song.data().content);
         }),
@@ -29,7 +44,7 @@ class PlaylistQueue extends Component {
             console.log("error", error);
           };
         this.setState({
-          queue: songQueue
+          queue: sortByVote(songQueue)
         });
       });
   }
@@ -48,7 +63,7 @@ class PlaylistQueue extends Component {
           songList.map(song => {
             return (
               <div className="queue-item">
-                <Interactive song={song} />
+                <Interactive song={song} unsubscribe={this.unsubscribe} />
                 <div className="album-art">
                   <img src={song.albumImg} />
                 </div>

@@ -13,7 +13,7 @@ class SongList extends Component {
     const tracks = this.props.tracks;
     return (
       <div className="Single-playlist">
-        <h1>{this.props.Votify.votify.name}</h1>
+        <h2>Playlist - {this.props.Votify.votify.name}</h2>
         {tracks &&
           tracks.items.map(track => {
             return (

@@ -30,11 +30,15 @@ export class PlaylistSelector extends Component {
   render() {
     return (
       <div className="Playlist-selector">
-        <button className="button-playlist" onClick={this.onClick}>
-          Select
-        </button>
-        <div className="playlist-name">
-          <h4>{this.props.name}</h4>
+        <div className="Playlist-selector-left">
+          <button className="button-playlist" onClick={this.onClick}>
+            Select
+          </button>
+        </div>
+        <div className="Playlist-selector-right">
+          <div className="playlist-name">
+            <h4>{this.props.name}</h4>
+          </div>
         </div>
       </div>
     );

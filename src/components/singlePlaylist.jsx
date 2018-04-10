@@ -14,7 +14,7 @@ class SinglePlaylist extends Component {
     this.changePlaylistView = this.changePlaylistView.bind(this);
   }
 
-  //Fot buttons
+  //For buttons
   setPlaylistView(event) {
     event.preventDefault();
     const view = event.target.value;
@@ -43,17 +43,17 @@ class SinglePlaylist extends Component {
       <div className="Single-playlist">
         <div className="playlist-button-wrapper">
           <div className="playlist-button">
-            <button onClick={this.setPlaylistView} value="Playlist">
+            <button className='button-playlist' onClick={this.setPlaylistView} value="Playlist">
               Playlist
             </button>
           </div>
           <div className="playlist-button">
-            <button onClick={this.setPlaylistView} value="Queue">
+            <button className='button-playlist' onClick={this.setPlaylistView} value="Queue">
               Queue
             </button>
           </div>
           <div className="playlist-button">
-            <button onClick={this.setPlaylistView} value="Search">
+            <button className='button-playlist' onClick={this.setPlaylistView} value="Search">
               Search
             </button>
           </div>

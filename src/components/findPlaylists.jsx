@@ -56,7 +56,7 @@ export default class FindPlaylists extends Component {
     const playlists = this.state.userPlaylists;
     return (
       <div id="playlist-root">
-        <h2>Playlists</h2>
+        <h2>Select Existing Playlist</h2>
         <div id="user-playlists">
         {
           playlists.length > 0 && playlists.map(playlist => {

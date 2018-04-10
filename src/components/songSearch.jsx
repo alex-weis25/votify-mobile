@@ -171,9 +171,9 @@ export class SongSearch extends Component {
 
   render() {
     const currentSongs = this.state.tracks;
-    console.log('state on songSearch', this.state)
     return (
       <div id="search-bar">
+      <h2>Search</h2>
         <form id="search-bar-form" onSubmit={this.onSearchClick}>
           <input
             name="search"

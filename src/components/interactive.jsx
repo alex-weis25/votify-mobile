@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import queryString from "query-string";
 import ThumbsUp from "svg-react-loader?name=Icon!../icons/thumbs-up.svg";
 import ThumbsDown from "svg-react-loader?name=Icon!../icons/thumbs-down.svg";
-
 const db = firebase.firestore();
 
 class Interactive extends Component {
@@ -18,9 +17,69 @@ class Interactive extends Component {
 
   componentWillUnmount() {}
 
-  onClick = event => {
-    event.preventDefault();
-    console.log("clicked vote");
+  upVote = event => {
+    const playlistId = this.props.Votify.votify.id;
+    const Queue = db
+      .collection("Playlists")
+      .doc(playlistId)
+      .collection("Queue");
+    const songId = this.props.song.songId;
+
+    Queue.doc(songId)
+      .get()
+      .then(song => {
+        let newScore = +song.data().content.score + 1;
+        let newUpvote = +song.data().content.upVote + 1;
+        return { newScore, newUpvote };
+      })
+      .then(update => {
+        const { newScore, newUpvote } = update;
+        Queue.doc(songId).set(
+          {
+            content: {
+              upVote: newUpvote,
+              score: newScore
+            }
+          },
+          {
+            merge: true
+          }
+        );
+      })
+      .catch(error => console.log("error: ", error));
+      // this.props.unsubscribe();
+  };
+
+  downVote = event => {
+    const playlistId = this.props.Votify.votify.id;
+    const Queue = db
+      .collection("Playlists")
+      .doc(playlistId)
+      .collection("Queue");
+    const songId = this.props.song.songId;
+
+    Queue.doc(songId)
+      .get()
+      .then(song => {
+        let newScore = +song.data().content.score - 1;
+        let newUpvote = +song.data().content.upVote - 1;
+        return { newScore, newUpvote };
+      })
+      .then(update => {
+        const { newScore, newUpvote } = update;
+        Queue.doc(songId).set(
+          {
+            content: {
+              upVote: newUpvote,
+              score: newScore
+            }
+          },
+          {
+            merge: true
+          }
+        );
+      })
+      .catch(error => console.log("error: ", error));
   };
 
   render() {
@@ -32,8 +91,8 @@ class Interactive extends Component {
             disabled=""
             className="vote-button-up"
             name={song.name}
-            value="1"
-            onClick={this.onClick}
+            value={song.songId}
+            onClick={this.upVote}
           />
         </div>
         <div className="thumbs-down">
@@ -41,8 +100,8 @@ class Interactive extends Component {
             disabled=""
             className="vote-button-down"
             name={song.name}
-            value="-1"
-            onClick={this.onClick}
+            value={song.songId}
+            onClick={this.downVote}
           />
         </div>
       </div>

@@ -2,9 +2,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #d4d7d8;
 }
 
-.navbar {
+/* .navbar {
   background-color: #01c8e5;
   text-align: center;
 }
@@ -14,7 +15,7 @@ body {
   padding: 10px;
   color: #fff;
   text-decoration: none;
-}
+} */
 
 .page-info {
   text-align: center;
@@ -29,13 +30,20 @@ img {
   text-align: left;
 } */
 
-.app-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.secondary-main {
+
 }
 
+.top-navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+
+
 .App-header {
-  background-color: #222;
+  background-color: rgb(48, 51, 49);
   height: 10vh;
   padding: 20px;
   color: white;
@@ -50,14 +58,6 @@ img {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 /* Choose playlist */
 
@@ -67,12 +67,30 @@ img {
   height: 100vh;
 }
 
+@keyframes Spotify-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spotify-logo {
+  width: 100vw;
+  display: flex;
+  height: 40vh;
+  align-items: center;
+  justify-content: center;
+  animation: Spotify-logo-spin infinite 20s linear;
+}
+
 .choose-button-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
-  height: 80vh;
+  height: 40vh;
 }
 
 
@@ -116,16 +134,71 @@ img {
 }
 
 .playlist-item {
-  width: 80vw;
+  width: 100vw;
+  flex-direction: row;
   display: flex;
 }
+
 
 .Playlist-selector {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  width: 100vw;
+  justify-content: space-between;
 }
 
+.Playlist-selector-left {
+  width: 33vw;
+  height: 10vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.Playlist-selector-right {
+  width: 67vw;
+  height: 10vh;
+  align-items: center;
+  display: flex;
+  font-size: 1.5em;
+}
+
+.button-playlist{
+  background:rgb(26, 175, 63);
+  color:#fff;
+  border:none;
+  height:5vh;
+  font-size:1em;
+  padding:0 2em;
+  cursor:pointer;
+  border-radius: 15px;
+  transition:800ms ease all;
+  outline:none;
+}
+.button-playlist:hover{
+  background: #fff;
+  color:rgb(26, 175, 63);
+}
+.button-playlist:before,.button-playlist:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(26, 175, 63);
+  transition:400ms ease all;
+}
+.button-playlist:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.button-playlist:hover:before,.button-playlist:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
 /* Song list */
 
 .user-tracks {
@@ -167,14 +240,21 @@ img {
 
 .playlist-button-wrapper {
   display: flex;
-  height: 5vh;
+  height: 10vh;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
 }
 
+.button-play {
+  font-size: 1.5em;
+}
+
 .playlist-button {
   width: 30vw;
+  height: 5vh;
   display: flex;
   justify-content: space-around;
+
 }
+
