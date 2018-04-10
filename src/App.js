@@ -4,15 +4,17 @@ import { Route } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 import queryString from "query-string";
-import Votify from "./components/votify.jsx";
-import FindPlaylists from "./components/FindPlaylists.jsx";
-import SinglePlaylist from "./components/SinglePlaylist.jsx";
-import ChoosePlaylist from "./components/choosePlaylist.jsx";
-import SecondaryHeader from "./components/secondaryHeader.jsx";
+import {
+  Votify,
+  FindPlaylists,
+  SinglePlaylist,
+  ChoosePlaylist,
+  SecondaryHeader,
+  CreatePlaylist
+} from "./components/index.js";
 const db = firebase.firestore();
 
 import { fetchVotify } from "./store/votify.js";
-
 
 class App extends Component {
   constructor(props) {
@@ -23,11 +25,9 @@ class App extends Component {
       view: "choosePlaylist", //'choosePlaylist' as default
       previousViews: []
     };
-    this.setView = this.setView.bind(this);
-    this.goToPreviousView = this.goToPreviousView.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
     axios
@@ -55,19 +55,21 @@ class App extends Component {
           .then(() => console.log("updated user"))
           .catch(err => console.log("error: ", err));
       });
-  }
+  };
 
-  setView(view) {
+  setView = view => {
     const lastView = this.state.view;
     const newPreviousViews = [...this.state.previousViews, lastView];
     this.setState({
       view,
       previousViews: newPreviousViews
     });
-  }
+  };
 
-  goToPreviousView() {
-    const lastView = this.state.previousViews[this.state.previousViews.length - 1];
+  goToPreviousView = () => {
+    const lastView = this.state.previousViews[
+      this.state.previousViews.length - 1
+    ];
     this.setState({
       view: lastView,
       previousViews: this.state.previousViews.slice(0, -1)
@@ -76,37 +78,42 @@ class App extends Component {
 
   selectComponents() {
     switch (this.state.view) {
-      case 'choosePlaylist':
+      case "choosePlaylist":
+        return <ChoosePlaylist setView={this.setView} />;
+      case "existingPlaylists":
         return (
-          <ChoosePlaylist setView={this.setView} />
-        )
-      case 'existingPlaylists':
+          <FindPlaylists
+            setView={this.setView}
+            userObj={this.state.userObj}
+            fetchVotify={this.props.fetchVotify}
+          />
+        );
+      case "createPlaylist":
         return (
-          <FindPlaylists setView={this.setView} userObj={this.state.userObj} fetchVotify={this.props.fetchVotify} />
+          <CreatePlaylist userObj={this.state.userObj} setView={this.setView}/>
         )
-      case 'createPlaylist':
-        return (
-          <h2>Create new playlist</h2>
-        )
-      case 'friendsPlaylist':
-        return (
-          <h2>Join playlist</h2>
-        )
-      case 'SinglePlaylist':
+      case "friendsPlaylist":
+        return <h2>Join playlist</h2>;
+      case "SinglePlaylist":
         return (
           <SinglePlaylist userObj={this.state.userObj} setView={this.setView} />
-        )
-
+        );
     }
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Votify</h1>
-        </header>
-        <SecondaryHeader userObj={this.state.userObj} setView={this.setView} goToPreviousView={this.goToPreviousView} />
+
+          <header className="App-header">
+            <h1 className="App-title">Votify</h1>
+          </header>
+          <SecondaryHeader
+            userObj={this.state.userObj}
+            setView={this.setView}
+            goToPreviousView={this.goToPreviousView}
+          />
+
         {!this.state.accessToken ? (
           <Login />
         ) : (
@@ -114,9 +121,7 @@ class App extends Component {
             <p className="App-intro">
               Welcome {this.state.userObj.displayName}!
             </p>
-            <div className='votify-main'>
-            {this.selectComponents()}
-            </div>
+            <div className="votify-main">{this.selectComponents()}</div>
           </div>
         )}
       </div>

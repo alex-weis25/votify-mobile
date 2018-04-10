@@ -18,7 +18,7 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-const getVotify = votify => ({type: GET_VOTIFY, votify})
+export const getVotify = votify => ({type: GET_VOTIFY, votify})
 const getCurrent = current => ({type: GET_CURRENT, current})
 
 /**

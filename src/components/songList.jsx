@@ -9,12 +9,11 @@ class SongList extends Component {
     this.state = {};
   }
 
-
   render() {
-    const tracks = this.props.tracks
+    const tracks = this.props.tracks;
     return (
       <div className="Single-playlist">
-        <h1>{this.props.Votify.votify.name}</h1>
+        <h2>Playlist - {this.props.Votify.votify.name}</h2>
         {tracks &&
           tracks.items.map(track => {
             return (
@@ -22,8 +21,14 @@ class SongList extends Component {
                 <div className="album-art">
                   <img src={track.track.album.images[0].url} />
                 </div>
-                <h4>{track.track.name}</h4>
-                <h4>{track.track.artists[0].name}</h4>
+                <div className="song-details">
+                  <div className="song-title">
+                    <h4>{track.track.name}</h4>
+                  </div>
+                  <div className="song-artist">
+                    <h4>{track.track.artists[0].name}</h4>
+                  </div>
+                </div>
               </div>
             );
           })}
