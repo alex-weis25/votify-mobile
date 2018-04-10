@@ -30,17 +30,15 @@ img {
   text-align: left;
 } */
 
-.secondary-main {
+/* .secondary-main {
 
-}
+} */
 
 .top-navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between
 }
-
-
 
 .App-header {
   background-color: rgb(48, 51, 49);

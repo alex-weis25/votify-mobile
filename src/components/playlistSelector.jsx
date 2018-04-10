@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 const db = firebase.firestore();
-// import { fetchVotify } from "../store/votify.js";
+
 
 export class PlaylistSelector extends Component {
   constructor(props) {

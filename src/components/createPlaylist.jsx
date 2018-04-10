@@ -1,52 +1,112 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import queryString from 'query-string';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import axios from "axios";
+import { connect } from "react-redux";
+import queryString from "query-string";
+const db = firebase.firestore();
 
-export default class CreatePlaylist extends Component {
-  constructor(props){
-    super(props)
+import { getVotify } from "../store/votify";
+
+class CreatePlaylist extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      user: ''
-    }
+      name: "",
+      description: ""
+    };
   }
 
-  componentDidMount() {
-    createPlaylist();
-  }
+  componentDidMount() {}
 
+  componentWillUnmount() {}
+
+  newPlaylist = event => {
+    event.preventDefault();
+    console.log("event details: ", event.target);
+    let parsed = queryString.parse(window.location.search);
+    let accessToken = parsed.access_token;
+    const userId = this.props.userObj.id;
+    const getVotify = this.props.getVotify;
+    const { description, name } = this.state;
+    console.log("playlist data: ", userId, accessToken, description, name);
+    axios({
+      method: "POST",
+      url: `https://api.spotify.com/v1/users/${userId}/playlists`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      },
+      data: {
+        name: `${name}`,
+        description: `${description}`,
+        collaborative: true,
+        public: false
+      }
+    })
+      .then(res => {
+        console.log("newPlaylist", res);
+        getVotify(res.data);
+        return res.data;
+      })
+      .then(newPlay => {
+        console.log("new play: ", newPlay);
+        const playlistName = newPlay.name
+        const playlistId = newPlay.id
+        const ownerId = newPlay.owner.id;
+        console.log('info to firebase', playlistId, playlistName, ownerId)
+        db
+          .collection("Playlists")
+          .doc(`${playlistId}`)
+          .set({
+            owner: ownerId, //user ID === owner ID here. CAUTION!
+            name: playlistName
+          });
+      })
+      .then(_ => this.props.setView("SinglePlaylist"))
+      .catch(err => console.log(err));
+  };
+
+  handleChange = event => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   render() {
-
     return (
-      <div id="login-root">
-        <h2>Login</h2>
+      <div className="CreatePlaylist-root">
+        <form id="create-playlist-form" onSubmit={this.newPlaylist}>
+          <label>
+            Playlist Name:
+            <input
+              name="name"
+              className="form-control"
+              value={this.state.name}
+              onChange={this.handleChange}
+              placeholder="New Votify Playlist"
+            />
+          </label>
+          <br />
+          <label>
+            Description:
+            <input
+              name="description"
+              className="form-control"
+              value={this.state.description}
+              onChange={this.handleChange}
+              placeholder="My dope new collection of tracks"
+            />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
       </div>
-    )
+    );
   }
 }
 
-const user_id = "alex.weis25";
-const playlist_id = "0yo2PnRNNFGN4TM5vLSg7u"; //For 'votify' playlist
-const parsed = queryString.parse(window.location.search);
-const accessToken = parsed.access_token;
+const mapState = ({ Queue, Votify }) => ({ Queue, Votify });
+const mapDispatch = { getVotify };
 
-//Find all user playlist
-const findUserPlaylists = () => {
-  console.log('accessToken: ', accessToken);
-  axios({
-    method: "GET",
-    url: `https://api.spotify.com/v1/users/${user_id}/playlists`,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization:
-        `Bearer ${accessToken}`
-    }
-  })
-  .then(playlists => {
-    return playlists.data.items;
-  })
-  .catch(error => console.log('error: ', error));
-
-}
-
-
+export default connect(mapState, mapDispatch)(CreatePlaylist);

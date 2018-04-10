@@ -9,13 +9,9 @@ import {
   FindPlaylists,
   SinglePlaylist,
   ChoosePlaylist,
-  SecondaryHeader
+  SecondaryHeader,
+  CreatePlaylist
 } from "./components/index.js";
-// import Votify from "./components/votify.jsx";
-// import FindPlaylists from "./components/FindPlaylists.jsx";
-// import SinglePlaylist from "./components/SinglePlaylist.jsx";
-// import ChoosePlaylist from "./components/choosePlaylist.jsx";
-// import SecondaryHeader from "./components/secondaryHeader.jsx";
 const db = firebase.firestore();
 
 import { fetchVotify } from "./store/votify.js";
@@ -93,7 +89,9 @@ class App extends Component {
           />
         );
       case "createPlaylist":
-        return <h2>Create new playlist</h2>;
+        return (
+          <CreatePlaylist userObj={this.state.userObj} setView={this.setView}/>
+        )
       case "friendsPlaylist":
         return <h2>Join playlist</h2>;
       case "SinglePlaylist":
