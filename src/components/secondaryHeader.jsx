@@ -28,8 +28,12 @@ class SecondaryHeader extends Component {
         }
       }).then(current => {
         this.props.getCurrent(current.data);
-      });
-    }, 7000);
+        return current.data
+      })
+      .then(current => {
+        this.setState({ current })
+      })
+    }, 10000);
   }
 
 
@@ -55,7 +59,7 @@ class SecondaryHeader extends Component {
         </div>
         <div className="secondary-bottom" />
         {nowPlaying.is_playing ? (
-          <div>Now playing: {nowPlaying.item.name} by</div>
+          <div>Now playing: {nowPlaying.item.name} by {nowPlaying.item.artists[0].name} </div>
         ) : (
           ""
         )}

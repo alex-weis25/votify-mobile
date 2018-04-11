@@ -46,8 +46,8 @@ class Interactive extends Component {
           }
         );
       })
+      .then(_ => this.props.findHighest())
       .catch(error => console.log("error: ", error));
-      // this.props.unsubscribe();
   };
 
   downVote = event => {
@@ -79,6 +79,7 @@ class Interactive extends Component {
           }
         );
       })
+      .then(_ => this.props.findHighest())
       .catch(error => console.log("error: ", error));
   };
 

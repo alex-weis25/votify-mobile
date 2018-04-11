@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const GET_VOTIFY = 'GET_VOTIFY'
 const GET_CURRENT = 'GET_CURRENT'
+const SET_TOP = 'SET_TOP'
 
 
 /**
@@ -12,13 +13,15 @@ const GET_CURRENT = 'GET_CURRENT'
  */
 const initialState = {
   votify: [],
-  current: []
+  current: [],
+  topSong: {}
 };
 
 /**
  * ACTION CREATORS
  */
 export const getVotify = votify => ({type: GET_VOTIFY, votify})
+export const setTop = top => ({type: SET_TOP, top})
 export const getCurrent = current => ({type: GET_CURRENT, current})
 
 /**
@@ -41,17 +44,6 @@ export const fetchVotify = (userId, playlistId, accessToken) =>
       .catch(err => console.log(err))
   }
 
-  export const fetchCurrent = (current) =>
-  dispatch => {
-    axios.get('/api/playlist/currentTrack')
-      .then(res => {
-        dispatch(getCurrent(res.data))
-      })
-      .catch(err => console.log(err))
-  }
-
-
-
 /**
  * REDUCER
  */
@@ -60,8 +52,11 @@ export default function (state = initialState, action) {
     case GET_VOTIFY:
       return Object.assign({}, state, {votify: action.votify})
 
-      case GET_CURRENT:
+    case GET_CURRENT:
       return Object.assign({}, state, {current: action.current})
+
+    case SET_TOP:
+      return Object.assign({}, state, {topSong: action.top})
 
     default:
       return state

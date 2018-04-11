@@ -10,14 +10,13 @@ import {
   SinglePlaylist,
   ChoosePlaylist,
   SecondaryHeader,
-  CreatePlaylist
+  CreatePlaylist,
+  ShiftQueue
 } from "./components/index.js";
+
 const db = firebase.firestore();
-
-import { fetchVotify } from "./store/votify.js";
-
-
-
+import { sortByVote } from "./functions";
+import { fetchVotify, setTop } from "./store/votify.js";
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +27,12 @@ class App extends Component {
       view: "choosePlaylist", //'choosePlaylist' as default
       previousViews: []
     };
+
+    //Set top song
+
+    setInterval(() => {
+      if (this.props.Votify.votify.id) this.findHighestVote()
+    }, 10000);
   }
 
   componentDidMount = () => {
@@ -69,6 +74,30 @@ class App extends Component {
     });
   };
 
+  findHighestVote = () => {
+    console.log("finding highest vote");
+    const setTop = this.props.setTop;
+    const playlistId = this.props.Votify.votify.id;
+    db
+      .collection("Playlists")
+      .doc(playlistId)
+      .collection("Queue")
+      .get()
+      .then(songs => {
+        const songArray = [];
+        songs.forEach(item => {
+          songArray.push(item.data().content);
+        });
+        return songArray;
+      })
+      .then(unsorted => {
+        return sortByVote(unsorted);
+      })
+      .then(sorted => {
+        setTop(sorted[0]);
+      });
+  };
+
   goToPreviousView = () => {
     const lastView = this.state.previousViews[
       this.state.previousViews.length - 1
@@ -93,13 +122,17 @@ class App extends Component {
         );
       case "createPlaylist":
         return (
-          <CreatePlaylist userObj={this.state.userObj} setView={this.setView}/>
-        )
+          <CreatePlaylist userObj={this.state.userObj} setView={this.setView} />
+        );
       case "friendsPlaylist":
         return <h2>Join playlist</h2>;
       case "SinglePlaylist":
         return (
-          <SinglePlaylist userObj={this.state.userObj} setView={this.setView} />
+          <SinglePlaylist
+            userObj={this.state.userObj}
+            setView={this.setView}
+            findHighest={this.findHighestVote}
+          />
         );
     }
   }
@@ -107,19 +140,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Votify</h1>
-          </header>
-          <SecondaryHeader
-            userObj={this.state.userObj}
-            setView={this.setView}
-            goToPreviousView={this.goToPreviousView}
-          />
+        <ShiftQueue userObj={this.state.userObj} />
+        <header className="App-header">
+          <h1 className="App-title">Votify</h1>
+        </header>
+        <SecondaryHeader
+          userObj={this.state.userObj}
+          setView={this.setView}
+          goToPreviousView={this.goToPreviousView}
+        />
 
         {!this.state.accessToken ? (
           <Login />
         ) : (
-            <div className="votify-main">{this.selectComponents()}</div>
+          <div className="votify-main">{this.selectComponents()}</div>
         )}
       </div>
     );
@@ -127,6 +161,6 @@ class App extends Component {
 }
 
 const mapState = ({ Queue, Votify }) => ({ Queue, Votify });
-const mapDispatch = { fetchVotify };
+const mapDispatch = { fetchVotify, setTop };
 
 export default connect(mapState, mapDispatch)(App);

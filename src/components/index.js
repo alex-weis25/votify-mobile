@@ -10,4 +10,5 @@ export { default as SongList } from './songList';
 export { default as SongSearch } from './songSearch';
 export { default as Votify } from './votify';
 export { default as Interactive } from './interactive';
+export { default as ShiftQueue } from './shiftQueue';
 
