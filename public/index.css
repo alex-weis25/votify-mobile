@@ -30,9 +30,16 @@ img {
   text-align: left;
 } */
 
-/* .secondary-main {
+.votify-secondary-header {
+  display: flex;
+  flex-direction: column;
+}
 
-} */
+.secondary-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .top-navbar {
   display: flex;

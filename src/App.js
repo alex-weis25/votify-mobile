@@ -16,6 +16,9 @@ const db = firebase.firestore();
 
 import { fetchVotify } from "./store/votify.js";
 
+
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -104,7 +107,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
           <header className="App-header">
             <h1 className="App-title">Votify</h1>
           </header>
@@ -117,12 +119,7 @@ class App extends Component {
         {!this.state.accessToken ? (
           <Login />
         ) : (
-          <div>
-            <p className="App-intro">
-              Welcome {this.state.userObj.displayName}!
-            </p>
             <div className="votify-main">{this.selectComponents()}</div>
-          </div>
         )}
       </div>
     );

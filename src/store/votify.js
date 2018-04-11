@@ -12,14 +12,14 @@ const GET_CURRENT = 'GET_CURRENT'
  */
 const initialState = {
   votify: [],
-  currentTrack: []
+  current: []
 };
 
 /**
  * ACTION CREATORS
  */
 export const getVotify = votify => ({type: GET_VOTIFY, votify})
-const getCurrent = current => ({type: GET_CURRENT, current})
+export const getCurrent = current => ({type: GET_CURRENT, current})
 
 /**
  * THUNK CREATORS
@@ -36,13 +36,12 @@ export const fetchVotify = (userId, playlistId, accessToken) =>
       }
     })
       .then(res => {
-        console.log('playlist specs', res);
         dispatch(getVotify(res.data))
       })
       .catch(err => console.log(err))
   }
 
-  export const fetchCurrent = () =>
+  export const fetchCurrent = (current) =>
   dispatch => {
     axios.get('/api/playlist/currentTrack')
       .then(res => {
