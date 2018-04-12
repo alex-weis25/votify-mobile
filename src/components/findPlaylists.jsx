@@ -78,15 +78,3 @@ export default class FindPlaylists extends Component {
     );
   }
 }
-
-const playlist_id = "0yo2PnRNNFGN4TM5vLSg7u"; //For 'votify' playlist
-
-//Sending playlist to firebase
-// Users.
-// .doc(user_id)
-// .collection("playlists")
-// .doc(playlist.id)
-// .set({
-//   name: playlist.name,
-//   id: playlist.id
-// });

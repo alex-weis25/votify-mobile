@@ -5,13 +5,11 @@ import axios from "axios";
 import { connect } from "react-redux";
 import queryString from "query-string";
 import {
-  Votify,
   FindPlaylists,
   SinglePlaylist,
   ChoosePlaylist,
   SecondaryHeader,
-  CreatePlaylist,
-  ShiftQueue
+  CreatePlaylist
 } from "./components/index.js";
 
 const db = firebase.firestore();
@@ -140,7 +138,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ShiftQueue userObj={this.state.userObj} />
         <header className="App-header">
           <h1 className="App-title">Votify</h1>
         </header>
@@ -160,7 +157,7 @@ class App extends Component {
   }
 }
 
-const mapState = ({ Queue, Votify }) => ({ Queue, Votify });
+const mapState = ({ Votify }) => ({Votify });
 const mapDispatch = { fetchVotify, setTop };
 
 export default connect(mapState, mapDispatch)(App);

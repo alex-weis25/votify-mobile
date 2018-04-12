@@ -110,7 +110,7 @@ class Interactive extends Component {
   }
 }
 
-const mapState = ({ Queue, Votify }) => ({ Queue, Votify });
+const mapState = ({ Votify }) => ({ Votify });
 const mapDispatch = null;
 
 export default connect(mapState, mapDispatch)(Interactive);
