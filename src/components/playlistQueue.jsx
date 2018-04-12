@@ -5,21 +5,9 @@ import { connect } from "react-redux";
 import queryString from "query-string";
 const db = firebase.firestore();
 import { Interactive } from "./index";
+import { sortByVote } from "../functions";
 
-//helperFunc
-const sortByVote = array => {
-  const updatedOrder = [];
-  array.forEach(entry => {
-    for (var i = 0; i < array.length; i++) {
-      if (!updatedOrder[i] || entry.score >= updatedOrder[i].score) {
-        updatedOrder.splice(i, 0, entry);
-        break;
-      }
-    }
-  });
-  return updatedOrder;
-};
-
+import { setTop } from "../store/votify";
 
 class PlaylistQueue extends Component {
   constructor(props) {
@@ -43,11 +31,19 @@ class PlaylistQueue extends Component {
           function(error) {
             console.log("error", error);
           };
-        this.setState({
-          queue: sortByVote(songQueue)
-        });
+        this.setState(
+          {
+            queue: sortByVote(songQueue)
+          }
+        );
       });
   }
+
+  setTopSong = () => {
+    const topSong = this.state.queue[0];
+    const setTop = this.props.setTop;
+    setTop(topSong);
+  };
 
   componentWillUnmount() {
     console.log("unmounting");
@@ -63,7 +59,7 @@ class PlaylistQueue extends Component {
           songList.map(song => {
             return (
               <div className="queue-item">
-                <Interactive song={song} unsubscribe={this.unsubscribe} />
+                <Interactive song={song} unsubscribe={this.unsubscribe} findHighest={this.props.findHighest} />
                 <div className="album-art">
                   <img src={song.albumImg} />
                 </div>
@@ -81,6 +77,6 @@ class PlaylistQueue extends Component {
 }
 
 const mapState = ({ Queue, Votify }) => ({ Queue, Votify });
-const mapDispatch = null;
+const mapDispatch = { setTop };
 
 export default connect(mapState, mapDispatch)(PlaylistQueue);

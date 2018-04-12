@@ -106,7 +106,7 @@ class CreatePlaylist extends Component {
   }
 }
 
-const mapState = ({ Queue, Votify }) => ({ Queue, Votify });
+const mapState = ({ Votify }) => ({ Votify });
 const mapDispatch = { getVotify };
 
 export default connect(mapState, mapDispatch)(CreatePlaylist);

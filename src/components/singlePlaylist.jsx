@@ -10,29 +10,28 @@ class SinglePlaylist extends Component {
     this.state = {
       view: "Playlist"
     };
-    this.setPlaylistView = this.setPlaylistView.bind(this);
-    this.changePlaylistView = this.changePlaylistView.bind(this);
   }
 
   //For buttons
-  setPlaylistView(event) {
+  setPlaylistView = event => {
     event.preventDefault();
     const view = event.target.value;
     this.setState({ view });
   }
 
   //For props
-  changePlaylistView(view) {
+  changePlaylistView = view => {
     this.setState({ view });
   }
 
   selectComponents() {
     const trackHold = this.props.Votify.votify.tracks;
+    const findHighest = this.props.findHighest;
     switch (this.state.view) {
       case "Playlist":
         return <SongList tracks={trackHold} />;
       case "Queue":
-        return <PlaylistQueue />;
+        return <PlaylistQueue findHighest={findHighest} />;
       case "Search":
         return <SongSearch changeView={this.changePlaylistView} />;
     }
@@ -66,7 +65,7 @@ class SinglePlaylist extends Component {
   }
 }
 
-const mapState = ({ Queue, Votify }) => ({ Queue, Votify });
+const mapState = ({ Votify }) => ({ Votify });
 const mapDispatch = null;
 
 export default connect(mapState, mapDispatch)(SinglePlaylist);
