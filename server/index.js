@@ -38,13 +38,21 @@ process.env.REDIRECT_URI ||
 'http://localhost:3000/callback'
 
 app.get('/login', function(req, res) {
-res.redirect('https://accounts.spotify.com/authorize?' +
+const checkthis = 'https://accounts.spotify.com/authorize?' +
+querystring.stringify({
+  response_type: 'code',
+  client_id: process.env.SPOTIFY_CLIENT_ID,
+  scope: 'user-read-private user-read-email playlist-modify-public playlist-read-collaborative playlist-read-private playlist-modify-private user-read-currently-playing',
+  redirect_uri
+})
+  res.redirect('https://accounts.spotify.com/authorize?' +
   querystring.stringify({
     response_type: 'code',
     client_id: process.env.SPOTIFY_CLIENT_ID,
     scope: 'user-read-private user-read-email playlist-modify-public playlist-read-collaborative playlist-read-private playlist-modify-private user-read-currently-playing',
     redirect_uri
   }))
+  console.log('redirect', checkthis)
 })
 
 app.get('/callback', function(req, res) {

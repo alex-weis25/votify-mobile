@@ -1,12 +1,17 @@
 {
-  "database": {
-    "rules": "dev"
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "storage": {
-    "rules": "storage.rules"
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "secrets.js",
+      "node_modules"
+    ],
+    "redirects": [
+      {
+        "source": "/login",
+        "destination": " https://accounts.spotify.com/authorize?response_type=code&client_id=13d909bbbb7541a58bc125b5f4093f0b&scope=user-read-private%20user-read-email%20playlist-modify-public%20playlist-read-collaborative%20playlist-read-private%20playlist-modify-private%20user-read-currently-playing&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback",
+        "type": 404
+      }
+    ]
   }
 }
