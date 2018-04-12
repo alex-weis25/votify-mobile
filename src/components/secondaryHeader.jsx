@@ -119,7 +119,7 @@ class SecondaryHeader extends Component {
   }
 }
 
-const MapState = ({ Queue, Votify }) => ({ Queue, Votify });
+const MapState = ({ Votify }) => ({ Votify });
 const MapDispatch = { getCurrent, fetchVotify };
 
 export default connect(MapState, MapDispatch)(SecondaryHeader);
