@@ -13,7 +13,7 @@ export const Login = props => {
   return (
     <div id="login-root">
       <h3>Please login to continue</h3>
-      <button onClick={this.onClick}>Login</button>
+      <button onClick={this.onClick}>Login HI</button>
     </div>
   );
 };

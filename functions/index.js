@@ -14,21 +14,31 @@
  * limitations under the License.
  */
 'use strict';
-require("../secrets.js");
 const functions = require('firebase-functions');
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 
 // Firebase Setup
 const admin = require('firebase-admin');
+// var serviceAccount = require('../serviceAccounts.json');
+
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: 'https://votify-b9360.firebaseio.com'
+// });
+
 admin.initializeApp({
-  credential: admin.credential.cert({
-    projectId: "votify-b9360",
-    clientEmail: 'alex.weis25@gmail.com',
-    privateKey: 'AIzaSyAiNZ3h1kehpU6AuNLmSFMaahslz20u0IA'
-  }),
+  credential: admin.credential.cert(
+    {
+    projectId: 'votify-b9360',
+    clientEmail: 'firebase-adminsdk-i92aj@votify-b9360.iam.gserviceaccount.com',
+    privateKey: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDFmVkqg3yJMnsa\naeHDvDh5h322iD/ijMBDRzzGYGopJMpoAEIettKMskk//hOGa0cQxc31DK0FImd0\nVIbjt7HVC/6+Now68XCnT2Xbn+/iBplWLmlgDYaDAV1GL+s1fDG+PGUsYnAQdPPg\nirxND84K9HWZ4n7/SQyw6QwpXLcTdXAPlSQ7vboB9CEukjWJukcqhY7AMjIT6Zxc\nLZemztgZp8KXG9zTkmgV5w9nSsqtdKwJl/pfXQJfpvnMxIGOmJQkPTmAvNsTgbZF\nJVsphuAwfwDxtRSagSwtwdxBvhz9ksY2lqRG1048CyGaaFAgC+Y8VpDMVFKQmZCb\nETCmtbWNAgMBAAECggEAAhJlYsfl0+McHameN45Z1z208zzYJ/jK1p8WGOG6QJEw\nBXQkkqw0ZqDt71uremgrOBai3gln0lsgfjyZUiTtxT/uyAbMD0goeBCh5Ed33UUC\nxupjVMxU1zskmQ+ikI6ApQUpbb7gfEOwVO/ky+K5CdizV6LjgFYUlHxKZ4VJ2Xcy\ng0TUSkaXE4b3+yJP4en7N+BYkKM9GtMMhNuY8H6E9/539kR1MeqvRbjg6kaG75p7\nvsy1gZetuLhNsGsyJiya2XZBxMHHeYqwxCOluxOA0bNU+LpirH/tWgHg5ce8+EZS\nXBpBHEBclOcIVlDyVM/GTDPGB8/BPOQBYlR77PFhTwKBgQD+xkt/BZBaAvgTKtXV\nEgKXCWO7vDtzWChcfdevYdlf8ZF/j2Mgrw5r/QxnWlWF0gqvxJD/txJWKMV6v3Lq\nAQFmlQtWe3Hx68iB854SHKLcXrEztUo8g/caxaya05CGyYtYjcCVBy4+jZjnM2+c\nWRk2rDrnu2LU+Jr6rw3bzQx2ywKBgQDGjKchyd+hZVr9BouBWoYHO86lAyrvY5dF\nvWJWwbblTptGyrdiCJ6dAkJL+YuS6ycrihbSjwOWBhF21do6dySsgo0DHcz3cM4D\npARibJwHWExXLeEZ8m1QNGZhqI4LbPtVKXITh+Hf1dTNDgOTRQPIOLhKaIJUb3uY\nl07swFaiBwKBgQDMwRTfqtsOXCB/VwevS+Ak/njW4jptQsZ9Pu3el6cZgo1KlTQ3\nijju9NnJHkJpYBsSk8lsmfb0o6PCOKbkBZbYmKQaBu/WW4YzWlUJfVYuATQsuGBH\nLk+jhoZnj+wxRzzkGFhT7QdvYmEmPqJOZxTqaZSVtHWDb6EuIw3iPnLr7QKBgQCl\nCUbnPBEJ6+DMz0Loe6FKo/jpio+GusaD7p6uNIjdZBCHsHrsHvQQ2E7ZLg1JSvOd\nKkQ8Myos6tBbcfjafixaxI2H2J6F0xs7RXtrgJHVPRz/niAs3Cjm8Rdk96FSd/0V\n1cR/3YPv9aLT62EnacdyB0uQdfxXSO94b9Tn0BxywwKBgBX3dvEJrtTRxvocce9O\nFf4Duq0OOueX0FWJBO/dnLnZBFb/fMT5NS28peGjOCAruIMTcRnwpivlHzGRmJ1j\nn6lmCR/KIBcLMftfLoxs+7rUkzSVj1BJyaSNvVgn02We3RAhHVOU+Xcy5XA1qR+r\nkY7+bXS4TXnN4K/Z68FKP1iZ\n-----END PRIVATE KEY-----\n"
+  }
+),
   databaseURL: 'https://votify-b9360.firebaseio.com'
 });
+
+
 
 // Spotify OAuth 2 setup
 // TODO: Configure the `spotify.client_id` and `spotify.client_secret` Google Cloud environment variables.

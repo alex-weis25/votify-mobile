@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "votify-b9360"
+    "default": "votify-b9360",
+    "development": "votify-b9360"
   }
 }

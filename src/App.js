@@ -12,6 +12,10 @@ import {
   CreatePlaylist
 } from "./components/index.js";
 
+//Test new
+import SignInCard from '../src/testJS1.jsx'
+
+
 const db = firebase.firestore();
 import { sortByVote } from "./functions";
 import { fetchVotify, setTop } from "./store/votify.js";
@@ -29,7 +33,7 @@ class App extends Component {
     //Set top song
 
     setInterval(() => {
-      if (this.props.Votify.votify.id) this.findHighestVote()
+      if (this.props.Votify.votify.id) this.findHighestVote();
     }, 10000);
   }
 
@@ -148,7 +152,10 @@ class App extends Component {
         />
 
         {!this.state.accessToken ? (
-          <Login />
+          <div>
+            <Login />
+            <SignInCard />
+          </div>
         ) : (
           <div className="votify-main">{this.selectComponents()}</div>
         )}
@@ -157,7 +164,7 @@ class App extends Component {
   }
 }
 
-const mapState = ({ Votify }) => ({Votify });
+const mapState = ({ Votify }) => ({ Votify });
 const mapDispatch = { fetchVotify, setTop };
 
 export default connect(mapState, mapDispatch)(App);

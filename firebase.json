@@ -4,7 +4,8 @@
     "ignore": [
       "firebase.json",
       "secrets.js",
-      "node_modules"
+      "node_modules",
+      "serviceAccounts.json"
     ]
   },
   "functions": {
