@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 'use strict';
-
+require("../secrets.js");
 const functions = require('firebase-functions');
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 
 // Firebase Setup
 const admin = require('firebase-admin');
-const serviceAccount = require('./service-account.json');
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: `https://${process.env.GCLOUD_PROJECT}.firebaseio.com`,
+  credential: admin.credential.cert({
+    projectId: "votify-b9360",
+    clientEmail: 'alex.weis25@gmail.com',
+    privateKey: 'AIzaSyAiNZ3h1kehpU6AuNLmSFMaahslz20u0IA'
+  }),
+  databaseURL: 'https://votify-b9360.firebaseio.com'
 });
 
 // Spotify OAuth 2 setup
@@ -33,11 +36,11 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const Spotify = new SpotifyWebApi({
   clientId: functions.config().spotify.client_id,
   clientSecret: functions.config().spotify.client_secret,
-  redirectUri: `https://${process.env.GCLOUD_PROJECT}.firebaseapp.com/popup.html`,
+  redirectUri: `https://${process.env.GOOGLE_ID}.firebaseapp.com/popup.html`,
 });
 
 // Scopes to request.
-const OAUTH_SCOPES = ['user-read-email'];
+const OAUTH_SCOPES = ['user-read-private', 'user-read-email', 'playlist-modify-public', 'playlist-read-collaborative', 'playlist-read-private', 'playlist-modify-private', 'user-read-currently-playing'];
 
 /**
  * Redirects the User to the Spotify authentication consent screen. Also the 'state' cookie is set for later state
