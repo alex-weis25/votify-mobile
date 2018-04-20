@@ -51,7 +51,10 @@ class SecondaryHeader extends Component {
     {
       votify.topSong ? (topSongId = votify.topSong.songId) : "";
     }
-    const current = votify.current.item.id;
+    let current;
+    {
+      votify.current.item ? (current = votify.current.item.id) : ''
+    }
     const userId = this.props.userObj.id;
     const fetchVotify = this.props.fetchVotify;
 
