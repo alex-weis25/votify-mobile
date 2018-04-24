@@ -24,27 +24,39 @@ class Interactive extends Component {
       .doc(playlistId)
       .collection("Queue");
     const songId = this.props.song.songId;
+    const userId = this.props.userObj.id;
 
     Queue.doc(songId)
       .get()
       .then(song => {
-        let newScore = +song.data().content.score + 1;
-        let newUpvote = +song.data().content.upVote + 1;
-        return { newScore, newUpvote };
+        if(song.data().content.voted[userId]){
+          console.log('user has already voted for this song')
+        } else {
+          let newScore = +song.data().content.score + 1;
+          let newUpvote = +song.data().content.upVote + 1;
+          return { newScore, newUpvote };
+        }
       })
       .then(update => {
-        const { newScore, newUpvote } = update;
-        Queue.doc(songId).set(
-          {
-            content: {
-              upVote: newUpvote,
-              score: newScore
+        if(update){
+          const { newScore, newUpvote } = update;
+          Queue.doc(songId).set(
+            {
+              content: {
+                upVote: newUpvote,
+                score: newScore,
+                voted: {
+                  [userId]: true
+                }
+              }
+            },
+            {
+              merge: true
             }
-          },
-          {
-            merge: true
-          }
-        );
+          );
+        } else {
+          console.log('continuing.....')
+        }
       })
       .then(_ => this.props.findHighest())
       .catch(error => console.log("error: ", error));
@@ -57,27 +69,39 @@ class Interactive extends Component {
       .doc(playlistId)
       .collection("Queue");
     const songId = this.props.song.songId;
+    const userId = this.props.userObj.id;
 
     Queue.doc(songId)
       .get()
       .then(song => {
-        let newScore = +song.data().content.score - 1;
-        let newUpvote = +song.data().content.upVote - 1;
-        return { newScore, newUpvote };
+        if(song.data().content.voted[userId]){
+          console.log('user has already voted for this song')
+        } else {
+          let newScore = +song.data().content.score - 1;
+          let newUpvote = +song.data().content.upVote - 1;
+          return { newScore, newUpvote };
+        }
       })
       .then(update => {
-        const { newScore, newUpvote } = update;
-        Queue.doc(songId).set(
-          {
-            content: {
-              upVote: newUpvote,
-              score: newScore
+        if(update){
+          const { newScore, newUpvote } = update;
+          Queue.doc(songId).set(
+            {
+              content: {
+                upVote: newUpvote,
+                score: newScore,
+                voted: {
+                  [userId]: true
+                }
+              }
+            },
+            {
+              merge: true
             }
-          },
-          {
-            merge: true
-          }
-        );
+          );
+        } else {
+          console.log('continuing.....')
+        }
       })
       .then(_ => this.props.findHighest())
       .catch(error => console.log("error: ", error));

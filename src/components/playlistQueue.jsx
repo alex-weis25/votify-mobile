@@ -31,11 +31,9 @@ class PlaylistQueue extends Component {
           function(error) {
             console.log("error", error);
           };
-        this.setState(
-          {
-            queue: sortByVote(songQueue)
-          }
-        );
+        this.setState({
+          queue: sortByVote(songQueue)
+        });
       });
   }
 
@@ -59,7 +57,12 @@ class PlaylistQueue extends Component {
           songList.map(song => {
             return (
               <div className="queue-item">
-                <Interactive song={song} unsubscribe={this.unsubscribe} findHighest={this.props.findHighest} />
+                <Interactive
+                  song={song}
+                  unsubscribe={this.unsubscribe}
+                  userObj={this.props.userObj}
+                  findHighest={this.props.findHighest}
+                />
                 <div className="album-art">
                   <img src={song.albumImg} />
                 </div>

@@ -30,7 +30,8 @@ export class SongSearch extends Component {
       albumImg: addSong.albumImg,
       upVote: 0,
       downVote: 0,
-      score: 0
+      score: 0,
+      voted: {}
     };
 
     await db
@@ -197,9 +198,9 @@ export class SongSearch extends Component {
             currentSongs.map((song, index) => {
               return (
                 <div>
-                  <option key={song.name}>
+                  <div key={song.name}>
                     {song.name} by {song.artist}
-                  </option>
+                  </div>
                   <button name={index} onClick={this.onSongAdd}>
                     Add to playlist
                   </button>

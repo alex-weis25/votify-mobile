@@ -29,6 +29,7 @@ export const getCurrent = current => ({type: GET_CURRENT, current})
  */
 export const fetchVotify = (userId, playlistId, accessToken) =>
   dispatch => {
+    console.log('fetch votify: ')
     axios({
       method: "GET",
       url: `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}`,

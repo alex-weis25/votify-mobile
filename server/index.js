@@ -6,6 +6,8 @@ const morgan = require('morgan');
 let request = require('request')
 let querystring = require('querystring')
 const path = require('path');
+const location = require('location-href');
+
 // const db = require('./db/index.js');
 // const socketio = require('socket.io');
 require('../secrets.js')
@@ -30,14 +32,16 @@ path.extname(req.path).length > 0 ?
 );
 
 
-
 ///////
 
-let redirect_uri =
-process.env.REDIRECT_URI ||
-'http://localhost:3000/callback'
+var ngrok;
+var redirect_uri = 'http://localhost:3000/callback' //
+
 
 app.get('/login', function(req, res) {
+  ngrok = req.hostname;
+  redirect_uri = 'https://' + ngrok + '/callback'
+  console.log('location set', ngrok, redirect_uri)
 res.redirect('https://accounts.spotify.com/authorize?' +
   querystring.stringify({
     response_type: 'code',
@@ -49,6 +53,8 @@ res.redirect('https://accounts.spotify.com/authorize?' +
 
 app.get('/callback', function(req, res) {
 let code = req.query.code || null
+ngrok = req.hostname;
+redirect_uri = 'https://' + ngrok + '/callback'
 let authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   form: {
@@ -65,7 +71,11 @@ let authOptions = {
 }
 request.post(authOptions, function(error, response, body) {
   var access_token = body.access_token
-  let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
+  ngrok = req.hostname;
+  let ngrokUri;
+  ngrok ? ngrokUri = 'https://' + ngrok : ''
+  console.log('req body', ngrokUri)
+  let uri = ngrokUri || 'http://localhost:3000'
   res.redirect(uri + '?access_token=' + access_token)
 })
 })
