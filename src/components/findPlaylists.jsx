@@ -15,7 +15,7 @@ export class FindPlaylists extends Component {
     super(props);
     this.state = {
       userPlaylists: [],
-      friendId: "",
+      ownerId: "",
       playlistId: ""
     };
   }
@@ -65,19 +65,19 @@ export class FindPlaylists extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { friendId, playlistId } = this.state;
+    const { ownerId, playlistId } = this.state;
     axios({
       method: "GET",
-      url: `https://api.spotify.com/v1/users/${friendId}/playlists/${playlistId}`,
+      url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
       }
     }).then(playlist => {
-      const { friendId, playlistId } = this.state;
+      const { ownerId, playlistId } = this.state;
       const playlistName = playlist.data.name;
       const fetchVotify = this.props.fetchVotify;
-      fetchVotify(friendId, playlistId, accessToken);
+      fetchVotify(ownerId, playlistId, accessToken);
       db
         .collection("Playlists")
         .doc(`${playlistId}`)
@@ -116,9 +116,9 @@ export class FindPlaylists extends Component {
           <h3>Friend's playlist:</h3>
           <form id="friends-playlist" onSubmit={this.onSubmit}>
             <input
-              name="friendId"
+              name="ownerId"
               className="form-control"
-              value={this.state.friend}
+              value={this.state.ownerId}
               onChange={this.handleChange}
               placeholder="enter friends spotify ID"
             />

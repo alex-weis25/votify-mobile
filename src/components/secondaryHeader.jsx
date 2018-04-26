@@ -55,16 +55,15 @@ class SecondaryHeader extends Component {
     {
       votify.current.item ? (current = votify.current.item.id) : ''
     }
-    const userId = this.props.userObj.id;
+    const ownerId = this.props.Votify.votify.owner.id;
     const fetchVotify = this.props.fetchVotify;
-
     const playlistId = votify.votify.id;
     try {
       if (current === last && topSongId) {
         console.log("on last song shifting queue");
         axios({
           method: "POST",
-          url: `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks?uris=spotify%3Atrack%3A${topSongId}`,
+          url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}/tracks?uris=spotify%3Atrack%3A${topSongId}`,
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`
@@ -81,7 +80,7 @@ class SecondaryHeader extends Component {
           })
           .then(_ => {
             console.log("updating redux for addition");
-            fetchVotify(userId, playlistId, accessToken);
+            fetchVotify(ownerId, playlistId, accessToken);
           });
       }
     } catch (error) {
