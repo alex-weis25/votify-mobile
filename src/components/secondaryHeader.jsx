@@ -47,15 +47,18 @@ class SecondaryHeader extends Component {
               .track.id)
         : "";
     }
-    let topSongId = '';
+    let topSongId = "";
     {
       votify.topSong ? (topSongId = votify.topSong.songId) : "";
     }
     let current;
     {
-      votify.current.item ? (current = votify.current.item.id) : ''
+      votify.current.item ? (current = votify.current.item.id) : "";
     }
-    const ownerId = this.props.Votify.votify.owner.id;
+    let ownerId;
+    {
+      ownerId ? (ownerId = this.props.Votify.votify.owner.id) : "";
+    }
     const fetchVotify = this.props.fetchVotify;
     const playlistId = votify.votify.id;
     try {
