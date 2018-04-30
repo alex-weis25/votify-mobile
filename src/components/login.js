@@ -5,15 +5,12 @@ import axios from "axios";
 
 export const Login = props => {
 
-  onClick = event => {
-    event.preventDefault();
-    window.open('../../public/popup.html', 'name', 'height=585,width=400')
-  }
-
   return (
     <div id="login-root">
       <h3>Please login to continue</h3>
-      <button onClick={this.onClick}>Login HI</button>
+      <a id="login-btn" href="'https://us-central1-votify-b9360.cloudfunctions.net/redirect'">
+        Login
+      </a>
     </div>
   );
 };

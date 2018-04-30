@@ -4,10 +4,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 let request = require("request");
-let querystring = require("querystring");
 const path = require("path");
-// const db = require('./db/index.js');
-// const socketio = require('socket.io');
+const location = require("location-href");
+
 require("../secrets.js");
 
 module.exports = app;
@@ -20,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../public")));
 
-// app.use('/api', require('./api'));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // 404 middleware
 app.use(
@@ -30,19 +29,18 @@ app.use(
       : next()
 );
 
+///////
 
-//Old oauth
-let redirect_uri =
-  process.env.REDIRECT_URI || "https://votify-b9360.firebaseapp.com/callback";
+var ngrok;
+var redirect_uri = "https://localhost:3000/callback"; //
 
 app.get("/login", function(req, res) {
-  // const checkthis = 'https://accounts.spotify.com/authorize?' +
-  // querystring.stringify({
-  //   response_type: 'code',
-  //   client_id: process.env.SPOTIFY_CLIENT_ID,
-    // scope: 'user-read-private user-read-email playlist-modify-public playlist-read-collaborative playlist-read-private playlist-modify-private user-read-currently-playing',
-  //   redirect_uri
-  // })
+  ngrok = req.hostname + "/callback";
+  if (ngrok.slice(0, 5) !== "local") {
+    ngrok = "https://" + ngrok;
+    redirect_uri = ngrok;
+  }
+  console.log("location set", ngrok, redirect_uri);
   res.redirect(
     "https://accounts.spotify.com/authorize?" +
       querystring.stringify({
@@ -53,11 +51,12 @@ app.get("/login", function(req, res) {
         redirect_uri
       })
   );
-  // console.log('redirect', checkthis)
 });
 
 app.get("/callback", function(req, res) {
   let code = req.query.code || null;
+  ngrok = req.hostname;
+  redirect_uri = "https://" + ngrok + "/callback";
   let authOptions = {
     url: "https://accounts.spotify.com/api/token",
     form: {
@@ -78,8 +77,15 @@ app.get("/callback", function(req, res) {
   };
   request.post(authOptions, function(error, response, body) {
     var access_token = body.access_token;
-    let uri =
-      process.env.FRONTEND_URI || "https://votify-b9360.firebaseapp.com";
+    ngrok = req.hostname;
+    if (ngrok.slice(0, 5) !== "local") {
+      ngrok = "https://" + ngrok;
+      redirect_uri = ngrok;
+    } else {
+      redirect_uri = "https://localhost:3000";
+    }
+    console.log("req body", ngrok);
+    let uri = redirect_uri;
     res.redirect(uri + "?access_token=" + access_token);
   });
 });

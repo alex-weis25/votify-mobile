@@ -31,7 +31,7 @@ class SinglePlaylist extends Component {
       case "Playlist":
         return <SongList tracks={trackHold} />;
       case "Queue":
-        return <PlaylistQueue findHighest={findHighest} />;
+        return <PlaylistQueue userObj={this.props.userObj} findHighest={findHighest} />;
       case "Search":
         return <SongSearch changeView={this.changePlaylistView} />;
     }

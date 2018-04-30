@@ -77,7 +77,6 @@ class App extends Component {
   };
 
   findHighestVote = () => {
-    console.log("finding highest vote");
     const setTop = this.props.setTop;
     const playlistId = this.props.Votify.votify.id;
     db
@@ -119,7 +118,7 @@ class App extends Component {
           <FindPlaylists
             setView={this.setView}
             userObj={this.state.userObj}
-            fetchVotify={this.props.fetchVotify}
+            // fetchVotify={this.props.fetchVotify}
           />
         );
       case "createPlaylist":

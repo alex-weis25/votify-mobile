@@ -36,7 +36,7 @@ export default class ChoosePlaylist extends Component {
             onClick={this.handleClick}
             name="existingPlaylists"
           >
-            Use existing playlist
+            Use existing playlist or join a friend's
           </button>
           <button
             className="choose-button"
