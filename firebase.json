@@ -1,20 +1,16 @@
 {
-  "database": {
-    "rules": "dev"
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
   "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "secrets.js",
+      "node_modules"
+    ],
     "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
       }
     ]
-  },
-  "storage": {
-    "rules": "storage.rules"
   }
 }
