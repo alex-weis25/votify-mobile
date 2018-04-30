@@ -5,12 +5,6 @@
       "firebase.json",
       "secrets.js",
       "node_modules"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
   }
 }
