@@ -5,12 +5,21 @@ import axios from "axios";
 
 export const Login = props => {
 
+  onClick = event => {
+    event.preventDefault();
+    axios.get('https://us-central1-votify-b9360.cloudfunctions.net/redirect')
+    .then(data => {
+      console.log('ran cloud function, data: ', data)
+    })
+    .catch(error => console.log(error))
+  }
+
   return (
     <div id="login-root">
       <h3>Please login to continue</h3>
-      <a id="login-btn" href='https://us-central1-votify-b9360.cloudfunctions.net/redirect'>
+      <button id="login-btn" onClick={onClick}>
         Login
-      </a>
+      </button>
     </div>
   );
 };

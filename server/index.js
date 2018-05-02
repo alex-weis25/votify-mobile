@@ -31,27 +31,27 @@ app.use(
 
 ///////
 
-var ngrok;
-var redirect_uri = "https://localhost:3000/callback"; //
+// var ngrok;
+// var redirect_uri = "https://localhost:3000/callback"; //
 
-app.get("/login", function(req, res) {
-  ngrok = req.hostname + "/callback";
-  if (ngrok.slice(0, 5) !== "local") {
-    ngrok = "https://" + ngrok;
-    redirect_uri = ngrok;
-  }
-  console.log("location set", ngrok, redirect_uri);
-  res.redirect(
-    "https://accounts.spotify.com/authorize?" +
-      querystring.stringify({
-        response_type: "code",
-        client_id: process.env.SPOTIFY_CLIENT_ID,
-        scope:
-          "user-read-private user-read-email playlist-modify-public playlist-read-collaborative playlist-read-private playlist-modify-private user-read-currently-playing",
-        redirect_uri
-      })
-  );
-});
+// app.get("/login", function(req, res) {
+//   ngrok = req.hostname + "/callback";
+//   if (ngrok.slice(0, 5) !== "local") {
+//     ngrok = "https://" + ngrok;
+//     redirect_uri = ngrok;
+//   }
+//   console.log("location set", ngrok, redirect_uri);
+//   res.redirect(
+//     "https://accounts.spotify.com/authorize?" +
+//       querystring.stringify({
+//         response_type: "code",
+//         client_id: process.env.SPOTIFY_CLIENT_ID,
+//         scope:
+//           "user-read-private user-read-email playlist-modify-public playlist-read-collaborative playlist-read-private playlist-modify-private user-read-currently-playing",
+//         redirect_uri
+//       })
+//   );
+// });
 
 app.get("/callback", function(req, res) {
   let code = req.query.code || null;
