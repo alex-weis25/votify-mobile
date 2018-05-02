@@ -12,8 +12,6 @@ import {
   CreatePlaylist
 } from "./components/index.js";
 
-//Test new
-import SignInCard from '../src/testJS1.jsx'
 
 
 const db = firebase.firestore();
@@ -153,7 +151,6 @@ class App extends Component {
         {!this.state.accessToken ? (
           <div>
             <Login />
-            <SignInCard />
           </div>
         ) : (
           <div className="votify-main">{this.selectComponents()}</div>
