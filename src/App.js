@@ -141,7 +141,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('access token on app', accessToken)
     return (
       <div className="App">
         <header className="App-header">

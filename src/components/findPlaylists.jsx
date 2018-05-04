@@ -7,7 +7,7 @@ import { fetchVotify } from "../store/votify.js";
 
 const db = firebase.firestore();
 let parsed = queryString.parse(window.location.hash);
-const accessToken = parsed.access_token;
+let accessToken = parsed.access_token;
 const Users = db.collection("Users");
 
 export class FindPlaylists extends Component {
@@ -25,6 +25,7 @@ export class FindPlaylists extends Component {
   };
 
   findUserPlaylists() {
+    console.log('accessToken findPlay', accessToken)
     Users.where("accessToken", "==", accessToken)
       .get()
       .then(user => {
@@ -90,7 +91,7 @@ export class FindPlaylists extends Component {
   };
 
   render() {
-    console.log('props on find playlist', this.props)
+    console.log('props on find playlist', this.props, accessToken)
     const playlists = this.state.userPlaylists;
     return (
       <div id="playlist-root">
