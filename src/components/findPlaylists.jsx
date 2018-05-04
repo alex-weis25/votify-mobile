@@ -25,7 +25,6 @@ export class FindPlaylists extends Component {
   };
 
   findUserPlaylists() {
-    console.log('accessToken findPlay', accessToken)
     Users.where("accessToken", "==", accessToken)
       .get()
       .then(user => {
@@ -91,11 +90,10 @@ export class FindPlaylists extends Component {
   };
 
   render() {
-    console.log('props on find playlist', this.props, accessToken)
     const playlists = this.state.userPlaylists;
     return (
       <div id="playlist-root">
-        <h2>Select Existing Playlist or Join a Friend's!</h2>
+        <h2>Select Existing or Join Playlist!</h2>
         <div id="user-playlists">
           <h3>Existing playlists:</h3>
           {playlists.length > 0 &&

@@ -45,13 +45,6 @@ export default class ChoosePlaylist extends Component {
           >
             Create a new playlist
           </button>
-          <button
-            className="choose-button"
-            onClick={this.handleClick}
-            name="friendsPlaylist"
-          >
-            Join a friend's playlist
-          </button>
         </div>
       </div>
     );

@@ -1,8 +1,9 @@
 body {
   margin: 0;
   padding: 0;
+  color: rgb(241, 237, 237);
   font-family: sans-serif;
-  background: #d4d7d8;
+  background: #252829;
 }
 
 /* .navbar {
@@ -217,6 +218,22 @@ img {
   align-content: space-around;
   width: 60vw;
   flex-direction: column;
+}
+
+.album-art {
+  border-radius: 20px
+}
+
+.song-title {
+  font-size: 1.5rem;
+  color: rgb(196, 191, 191);
+  width: 80vw;
+}
+
+.song-artist {
+  font-size: 1rem;
+  color: rgb(26, 175, 63);;
+  width: 80vw;
 }
 
 /* Playlist Queue / interactive */

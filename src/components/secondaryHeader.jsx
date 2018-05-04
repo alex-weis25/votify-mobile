@@ -31,7 +31,11 @@ class SecondaryHeader extends Component {
         })
         .then(current => {
           this.setState({ current }, () => {
-            this.addToVotify();
+            if(this.props.Votify,votify.tracks.items.length === 0){
+              console.log('empty playlist(secondary header)')
+            } else {
+              this.addToVotify();
+            }
           });
         });
     }, 10000);
@@ -41,7 +45,7 @@ class SecondaryHeader extends Component {
     const votify = this.props.Votify;
     let last;
     {
-      votify.votify.tracks
+      votify.votify.tracks.items.length !== 0
         ? (last =
             votify.votify.tracks.items[votify.votify.tracks.items.length - 1]
               .track.id)

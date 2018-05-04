@@ -23,10 +23,10 @@ class SongList extends Component {
                 </div>
                 <div className="song-details">
                   <div className="song-title">
-                    <h4>{track.track.name}</h4>
+                    {track.track.name}
                   </div>
                   <div className="song-artist">
-                    <h4>{track.track.artists[0].name}</h4>
+                    {track.track.artists[0].name}
                   </div>
                 </div>
               </div>

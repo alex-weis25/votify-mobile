@@ -127,8 +127,6 @@ class App extends Component {
         return (
           <CreatePlaylist userObj={this.state.userObj} setView={this.setView} />
         );
-      case "friendsPlaylist":
-        return <h2>Join playlist</h2>;
       case "SinglePlaylist":
         return (
           <SinglePlaylist
