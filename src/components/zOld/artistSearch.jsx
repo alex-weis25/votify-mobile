@@ -44,7 +44,7 @@ export class ArtistSearch extends Component {
   onSearchClick(event) {
     event.preventDefault();
     const artist = this.state.search.split(" ").join("+");
-    const parsed = queryString.parse(window.location.search);
+    let parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     console.log('artist', artist);
     let uri = "https://api.spotify.com/v1/search?q=";
@@ -95,7 +95,7 @@ export class ArtistSearch extends Component {
   moreSongs(event) {
     event.preventDefault();
     const artist = this.state.search.split(" ").join("+");
-    const parsed = queryString.parse(window.location.search);
+    let parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     console.log('artist', artist);
     let uri = "https://api.spotify.com/v1/search?q=";

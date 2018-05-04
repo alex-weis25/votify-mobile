@@ -5,7 +5,7 @@ import axios from "axios";
 const db = firebase.firestore();
 
 //SetTimout
-let parsed = queryString.parse(window.location.search);
+let parsed = queryString.parse(window.location.hash);
 let accessToken = parsed.access_token;
 import { getCurrent, fetchVotify } from "../store/votify.js";
 

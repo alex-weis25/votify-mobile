@@ -4,14 +4,13 @@
     "ignore": [
       "firebase.json",
       "secrets.js",
-      "node_modules",
-      "serviceAccounts.json"
+      "node_modules"
     ],
-    "redirects": [
-      {
-        "source": ''
-      }
-    ]
+    "redirects": [ {
+      "source" : "/callbacks",
+      "destination" : "https://us-central1-votify-b9360.cloudfunctions.net/callback",
+      "type" : 301
+    }],
     "rewrites": [
       {
         "source": "**",

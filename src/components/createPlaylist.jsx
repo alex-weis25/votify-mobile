@@ -23,7 +23,7 @@ class CreatePlaylist extends Component {
   newPlaylist = event => {
     event.preventDefault();
     console.log("event details: ", event.target);
-    let parsed = queryString.parse(window.location.search);
+    let parsed = queryString.parse(window.location.hash);
     let accessToken = parsed.access_token;
     const userId = this.props.userObj.id;
     const getVotify = this.props.getVotify;

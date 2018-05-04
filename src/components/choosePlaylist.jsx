@@ -5,8 +5,8 @@ const db = firebase.firestore();
 import { PlaylistSelector } from "./playlistSelector.jsx";
 import SpotifyLogo from "svg-react-loader?name=Icon!../icons/spot.svg";
 
-const parsed = queryString.parse(window.location.search);
-const accessToken = parsed.access_token;
+let parsed = queryString.parse(window.location.hash);
+let accessToken = parsed.access_token;
 const Users = db.collection("Users");
 
 export default class ChoosePlaylist extends Component {

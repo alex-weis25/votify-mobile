@@ -66,7 +66,7 @@ export class SongSearch extends Component {
   onSearchClick(event) {
     event.preventDefault();
     const track = this.state.search.split(" ").join("+");
-    const parsed = queryString.parse(window.location.search);
+    let parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     let uri = "https://api.spotify.com/v1/search?q=";
     axios
@@ -115,7 +115,7 @@ export class SongSearch extends Component {
   moreSongs(event) {
     event.preventDefault();
     const track = this.state.search.split(" ").join("+");
-    const parsed = queryString.parse(window.location.search);
+    let parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     let uri = "https://api.spotify.com/v1/search?q=";
     axios

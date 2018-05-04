@@ -18,6 +18,9 @@ const db = firebase.firestore();
 import { sortByVote } from "./functions";
 import { fetchVotify, setTop } from "./store/votify.js";
 
+let parsed = queryString.parse(window.location.hash);
+let accessToken = parsed.access_token;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -36,8 +39,9 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    let parsed = queryString.parse(window.location.search);
+    let parsed = queryString.parse(window.location.hash);
     let accessToken = parsed.access_token;
+
     axios
       .get("https://api.spotify.com/v1/me", {
         headers: { Authorization: "Bearer " + accessToken }
@@ -137,6 +141,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('access token on app', accessToken)
     return (
       <div className="App">
         <header className="App-header">

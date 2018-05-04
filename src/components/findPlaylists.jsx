@@ -6,7 +6,7 @@ import { PlaylistSelector } from "./playlistSelector.jsx";
 import { fetchVotify } from "../store/votify.js";
 
 const db = firebase.firestore();
-const parsed = queryString.parse(window.location.search);
+let parsed = queryString.parse(window.location.hash);
 const accessToken = parsed.access_token;
 const Users = db.collection("Users");
 
