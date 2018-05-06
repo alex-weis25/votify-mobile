@@ -9,9 +9,9 @@ export const Login = props => {
   return (
     <div id="login-root">
       <h3>Please login to continue</h3>
-      <button id="login-btn" onClick={handleLogin}>
+      <a id="login-btn" href='/login'>
         Login
-      </button>
+      </a>
     </div>
   );
 };

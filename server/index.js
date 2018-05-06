@@ -6,6 +6,7 @@ const morgan = require("morgan");
 let request = require("request");
 const path = require("path");
 const location = require("location-href");
+let querystring = require('querystring')
 
 require("../secrets.js");
 
@@ -32,7 +33,7 @@ app.use(
 ///////
 
 var ngrok;
-var redirect_uri = "https://localhost:3000/callback"; //
+var redirect_uri = "http://localhost:3000/callback"; //
 
 app.get("/login", function(req, res) {
   ngrok = req.hostname + "/callback";
