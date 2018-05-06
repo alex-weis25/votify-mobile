@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import queryString from "query-string";
 const db = firebase.firestore();
+import AddButton from "svg-react-loader?name=Icon!../icons/add-button.svg";
 
 export class SongSearch extends Component {
   constructor(props) {
@@ -56,10 +57,10 @@ export class SongSearch extends Component {
         .doc(`${addSong.id}`)
         .set({ content })
         .catch(error => console.log(error));
-        this.setState({exists: false}, _ => {
+      this.setState({ exists: false }, _ => {
         const { changeView } = this.props;
         changeView("Queue");
-      })
+      });
     }
   }
 
@@ -163,7 +164,7 @@ export class SongSearch extends Component {
 
   handleChange(event) {
     event.preventDefault();
-    this.setState({exists: false});
+    this.setState({ exists: false });
     let { name, value } = event.target;
     this.setState({
       [name]: value
@@ -174,7 +175,7 @@ export class SongSearch extends Component {
     const currentSongs = this.state.tracks;
     return (
       <div id="search-bar">
-      <h2>Search</h2>
+        <h2>Search</h2>
         <form id="search-bar-form" onSubmit={this.onSearchClick}>
           <input
             name="search"
@@ -183,11 +184,15 @@ export class SongSearch extends Component {
             onChange={this.handleChange}
             placeholder="search song by title"
           />
-          <button type="submit">Submit</button>
+          <button className="send-it-btn" type="submit">
+            Send it
+          </button>
         </form>
-        {
-          this.state.exists === true ? (<div className='warning'>Song already in queue</div>) : ''
-        }
+        {this.state.exists === true ? (
+          <div className="warning">Song already in queue</div>
+        ) : (
+          ""
+        )}
         <div className="playlist">
           <div className="loader">
             <div className="inner-circle" />
@@ -198,12 +203,14 @@ export class SongSearch extends Component {
             currentSongs.map((song, index) => {
               return (
                 <div>
+                  <div className="add-button">
+                    <AddButton name={index} onClick={this.onSongAdd}>
+                      Add to playlist
+                    </AddButton>
+                  </div>
                   <div key={song.name}>
                     {song.name} by {song.artist}
                   </div>
-                  <button name={index} onClick={this.onSongAdd}>
-                    Add to playlist
-                  </button>
                 </div>
               );
             })}

@@ -225,13 +225,13 @@ img {
 }
 
 .song-title {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgb(196, 191, 191);
   width: 80vw;
 }
 
 .song-artist {
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: rgb(26, 175, 63);;
   width: 80vw;
 }
@@ -251,6 +251,11 @@ img {
   width: 25vw;
   align-items: center;
 }
+
+.add-button {
+  height: 50px;
+}
+
 
 /* Single Playlist */
 
@@ -278,5 +283,18 @@ img {
   display: flex;
   justify-content: space-around;
 
+}
+
+
+.search-items {
+  display: flex;
+}
+
+
+.send-it-btn {
+  border: 0 0 0 15px;
+  background: rgb(26, 175, 63);
+  border-radius: 5px;
+  color: rgb(196, 191, 191);
 }
 

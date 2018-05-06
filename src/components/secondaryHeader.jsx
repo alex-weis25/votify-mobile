@@ -31,8 +31,14 @@ class SecondaryHeader extends Component {
         })
         .then(current => {
           this.setState({ current }, () => {
-            if(this.props.Votify,votify.tracks.items.length === 0){
-              console.log('empty playlist(secondary header)')
+            let checkForEmpty;
+            {
+              this.props.Votify
+                ? (checkForEmpty = this.props.Votify.votify)
+                : "";
+            }
+            if (checkForEmpty.tracks.items.length === 0) {
+              console.log("empty playlist(secondary header)");
             } else {
               this.addToVotify();
             }

@@ -101,6 +101,16 @@ class App extends Component {
       });
   };
 
+  //Login route for dev purposes
+  handleLogin(event) {
+    event.preventDefault();
+    axios.get('/login')
+    .then(res =>  {
+      console.log('res: ', res.data)
+    })
+    .catch(error => console.log(error))
+  }
+
   goToPreviousView = () => {
     const lastView = this.state.previousViews[
       this.state.previousViews.length - 1
@@ -139,6 +149,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('checking for new deploy in app')
     return (
       <div className="App">
         <header className="App-header">
@@ -148,6 +159,7 @@ class App extends Component {
           userObj={this.state.userObj}
           setView={this.setView}
           goToPreviousView={this.goToPreviousView}
+          handleLogin={this.handleLogin} //dev purposes
         />
 
         {!this.state.accessToken ? (
