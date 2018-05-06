@@ -66,19 +66,25 @@ export class FindPlaylists extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { ownerId, playlistId, playlistName } = this.state;
+    const { ownerId, playlistName } = this.state;
+    const fetchVotify = this.props.fetchVotify;
     db
       .collection("Playlists")
       .where("owner", "==", `${ownerId}`)
       .get()
       .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          console.log(doc.id, " => ", doc.data());
-        });
+        querySnapshot
+          .forEach(function(doc) {
+            if (doc.data().name === playlistName) {
+              fetchVotify(ownerId, doc.id, accessToken);
+            }
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
       })
-      .catch(function(error) {
-        console.log("Error getting documents: ", error);
-      });
+
+      this.props.setView("SinglePlaylist")
   };
 
   // onSubmit = event => {
@@ -140,18 +146,11 @@ export class FindPlaylists extends Component {
               placeholder="enter friends spotify ID"
             />
             <input
-              name="playlistId"
-              className="form-control"
-              value={this.state.playlistId}
-              onChange={this.handleChange}
-              placeholder="enter spotify playlist ID"
-            />
-            <input
               name="playlistName"
               className="form-control"
               value={this.state.playlistName}
               onChange={this.handleChange}
-              placeholder="enter spotify playlist ID"
+              placeholder="enter votify playlist name"
             />
             <button type="submit">Submit</button>
           </form>
@@ -165,3 +164,11 @@ const mapState = ({ Votify }) => ({ Votify });
 const mapDispatch = { fetchVotify };
 
 export default connect(mapState, mapDispatch)(FindPlaylists);
+
+// <input
+//               name="playlistId"
+//               className="form-control"
+//               value={this.state.playlistId}
+//               onChange={this.handleChange}
+//               placeholder="enter spotify playlist ID"
+//             />
