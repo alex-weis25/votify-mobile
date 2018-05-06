@@ -37,7 +37,7 @@ class SecondaryHeader extends Component {
                 ? (checkForEmpty = this.props.Votify.votify)
                 : "";
             }
-            if (checkForEmpty) {
+            if (checkForEmpty.length !== 0) {
               if (checkForEmpty.tracks.items.length === 0) {
                 console.log("empty playlist(secondary header)");
               } else {
@@ -67,12 +67,13 @@ class SecondaryHeader extends Component {
     {
       votify.current.item ? (current = votify.current.item.id) : "";
     }
-    let ownerId;
-    {
-      ownerId ? (ownerId = this.props.Votify.votify.owner.id) : "";
-    }
+    let ownerId = this.props.Votify.votify.owner.id;
+    // {
+    //   ownerId ? (ownerId = this.props.Votify.votify.owner.id) : "";
+    // }
     const fetchVotify = this.props.fetchVotify;
     const playlistId = votify.votify.id;
+    // console.log("adding info", current, last, topSongId, ownerId, playlistId);
     try {
       if (current === last && topSongId) {
         console.log("on last song shifting queue");
