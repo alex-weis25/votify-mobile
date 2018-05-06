@@ -149,7 +149,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('checking for new deploy in app')
     return (
       <div className="App">
         <header className="App-header">

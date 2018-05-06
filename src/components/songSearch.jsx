@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import queryString from "query-string";
 const db = firebase.firestore();
-import AddButton from "svg-react-loader?name=Icon!../icons/add-button.svg";
+// import AddButton from "svg-react-loader?name=Icon!../icons/add-button.svg";
 
 export class SongSearch extends Component {
   constructor(props) {
@@ -204,9 +204,9 @@ export class SongSearch extends Component {
               return (
                 <div>
                   <div className="add-button">
-                    <AddButton name={index} onClick={this.onSongAdd}>
+                    <button name={index} onClick={this.onSongAdd}>
                       Add to playlist
-                    </AddButton>
+                    </button>
                   </div>
                   <div key={song.name}>
                     {song.name} by {song.artist}

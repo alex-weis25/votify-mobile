@@ -37,10 +37,12 @@ class SecondaryHeader extends Component {
                 ? (checkForEmpty = this.props.Votify.votify)
                 : "";
             }
-            if (checkForEmpty.tracks.items.length === 0) {
-              console.log("empty playlist(secondary header)");
-            } else {
-              this.addToVotify();
+            if (checkForEmpty) {
+              if (checkForEmpty.tracks.items.length === 0) {
+                console.log("empty playlist(secondary header)");
+              } else {
+                this.addToVotify();
+              }
             }
           });
         });

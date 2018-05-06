@@ -16,7 +16,8 @@ export class FindPlaylists extends Component {
     this.state = {
       userPlaylists: [],
       ownerId: "",
-      playlistId: ""
+      playlistId: "",
+      playlistName: ""
     };
   }
 
@@ -65,29 +66,46 @@ export class FindPlaylists extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { ownerId, playlistId } = this.state;
-    axios({
-      method: "GET",
-      url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}`,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`
-      }
-    }).then(playlist => {
-      const { ownerId, playlistId } = this.state;
-      const playlistName = playlist.data.name;
-      const fetchVotify = this.props.fetchVotify;
-      fetchVotify(ownerId, playlistId, accessToken);
-      db
-        .collection("Playlists")
-        .doc(`${playlistId}`)
-        .set({
-          owner: friendId, //user ID === owner ID here. CAUTION!
-          name: playlistName
-        })
-        .then(_ => this.props.setView("SinglePlaylist"));
-    });
+    const { ownerId, playlistId, playlistName } = this.state;
+    db
+      .collection("Playlists")
+      .where("owner", "==", `${ownerId}`)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          console.log(doc.id, " => ", doc.data());
+        });
+      })
+      .catch(function(error) {
+        console.log("Error getting documents: ", error);
+      });
   };
+
+  // onSubmit = event => {
+  //   event.preventDefault();
+  //   const { ownerId, playlistId } = this.state;
+  //   axios({
+  //     method: "GET",
+  //     url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}`,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${accessToken}`
+  //     }
+  //   }).then(playlist => {
+  //     // const { ownerId, playlistId } = this.state;
+  //     const playlistName = playlist.data.name;
+  //     const fetchVotify = this.props.fetchVotify;
+  //     fetchVotify(ownerId, playlistId, accessToken);
+  //     db
+  //       .collection("Playlists")
+  //       .doc(`${playlistId}`)
+  //       .set({
+  //         owner: friendId, //user ID === owner ID here. CAUTION!
+  //         name: playlistName
+  //       })
+  //       .then(_ => this.props.setView("SinglePlaylist"));
+  //   });
+  // };
 
   render() {
     const playlists = this.state.userPlaylists;
@@ -125,6 +143,13 @@ export class FindPlaylists extends Component {
               name="playlistId"
               className="form-control"
               value={this.state.playlistId}
+              onChange={this.handleChange}
+              placeholder="enter spotify playlist ID"
+            />
+            <input
+              name="playlistName"
+              className="form-control"
+              value={this.state.playlistName}
               onChange={this.handleChange}
               placeholder="enter spotify playlist ID"
             />
