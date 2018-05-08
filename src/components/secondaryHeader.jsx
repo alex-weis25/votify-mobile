@@ -113,16 +113,19 @@ class SecondaryHeader extends Component {
     const nowPlaying = this.state.current;
     return (
       <div className="votify-secondary-header">
-        <div className="secondary-top">
-          <p className="votify-back-btn" onClick={this.clickBack}>
-            Back
-          </p>
-          <div>
-            <p className="App-intro">
-              Welcome {this.props.userObj.displayName}!
+      {this.props.userObj.id ?
+        (
+          <div className="secondary-top">
+            <p className="votify-back-btn" onClick={this.clickBack}>
+              Back
             </p>
+            <div>
+              <p className="App-intro">
+              Welcome {this.props.userObj.id}!
+              </p>
+            </div>
           </div>
-        </div>
+          ) : '' }
         <div className="secondary-bottom" />
         {nowPlaying.is_playing ? (
           <div>

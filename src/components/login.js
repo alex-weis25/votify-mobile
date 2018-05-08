@@ -7,9 +7,9 @@ export const Login = props => {
   const { handleLogin } = props
 
   return (
-    <div id="login-root">
+    <div id="login">
       <h3>Please login to continue</h3>
-      <a id="login-btn" href="https://us-central1-votify-b9360.cloudfunctions.net/login">
+      <a id="login-btn" className="choose-button" href="https://us-central1-votify-b9360.cloudfunctions.net/login">
         Login
       </a>
     </div>
