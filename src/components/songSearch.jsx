@@ -202,20 +202,21 @@ export class SongSearch extends Component {
           {currentSongs &&
             currentSongs.map((song, index) => {
               return (
-                <div>
-                  <div className="add-button">
-                    <button name={index} onClick={this.onSongAdd}>
-                      Add to playlist
+                <div className='song-search-wrapper'>
+                  <div className="add-button-wrapper">
+                    <button  className='add-button' name={index} onClick={this.onSongAdd}>
+                      Add
                     </button>
                   </div>
-                  <div key={song.name}>
-                    {song.name} by {song.artist}
+                  <div className="song-details" key={song.id}>
+                    <div className='queue-song-name'>{song.name} </div>
+                    <div className='queue-song-artist'>{song.artist} </div>
                   </div>
                 </div>
               );
             })}
         </div>
-        <button onClick={this.moreSongs}>More</button>
+        <button className='add-button' onClick={this.moreSongs}>More</button>
       </div>
     );
   }

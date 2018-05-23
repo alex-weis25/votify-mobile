@@ -51,29 +51,34 @@ class PlaylistQueue extends Component {
   render() {
     const songList = this.state.queue;
     return (
-      <div className="Playlist-Queue">
+      <div className="queue-wrapper">
         <h2>Queue</h2>
-        {songList &&
-          songList.map(song => {
-            return (
-              <div className="queue-item">
-                <Interactive
-                  song={song}
-                  unsubscribe={this.unsubscribe}
-                  userObj={this.props.userObj}
-                  findHighest={this.props.findHighest}
-                />
-                <div className="album-art">
-                  <img src={song.albumImg} />
+        <h5>Votes</h5>
+        <div className='playlist-queue'>
+          {songList &&
+            songList.map(song => {
+              return (
+                <div className="queue-item">
+                  <div className='song-score'>
+                    <h3>{song.score}</h3>
+                  </div>
+                  <Interactive
+                    song={song}
+                    unsubscribe={this.unsubscribe}
+                    userObj={this.props.userObj}
+                    findHighest={this.props.findHighest}
+                  />
+                  <div className="album-art">
+                    <img src={song.albumImg} />
+                  </div>
+                  <div className="song-details" key={song.id} name={song.name}>
+                    <div className='queue-song-name'>{song.name} </div>
+                    <div className='queue-song-artist'>{song.artist} </div>
+                  </div>
                 </div>
-                <div className="song-details" key={song.id} name={song.name}>
-                  <div>{song.name} </div>
-                  <div>{song.artist} </div>
-                  <div> votes: {song.score} </div>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </div>
       </div>
     );
   }

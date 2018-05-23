@@ -12,26 +12,28 @@ class SongList extends Component {
   render() {
     const tracks = this.props.tracks;
     return (
-      <div className="Single-playlist">
+      <div className="Single-playlist-tracks">
         <h2>Playlist - {this.props.Votify.votify.name}</h2>
-        {tracks &&
-          tracks.items.map(track => {
-            return (
-              <div className="user-tracks" key={track.id}>
-                <div className="album-art">
-                  <img src={track.track.album.images[0].url} />
-                </div>
-                <div className="song-details">
-                  <div className="song-title">
-                    {track.track.name}
+        <div className='playlist-tracks-wrapper'>
+          {tracks &&
+            tracks.items.map(track => {
+              return (
+                <div className="user-tracks" key={track.id}>
+                  <div className="album-art">
+                    <img src={track.track.album.images[0].url} />
                   </div>
-                  <div className="song-artist">
-                    {track.track.artists[0].name}
+                  <div className="song-details">
+                    <div className="song-title">
+                      {track.track.name}
+                    </div>
+                    <div className="song-artist">
+                      {track.track.artists[0].name}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </div>
       </div>
     );
   }

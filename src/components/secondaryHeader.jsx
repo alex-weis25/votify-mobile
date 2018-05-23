@@ -13,7 +13,8 @@ class SecondaryHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: {}
+      current: {},
+      last: {}
     };
 
     setInterval(() => {
@@ -98,6 +99,8 @@ class SecondaryHeader extends Component {
             console.log("updating redux for addition");
             fetchVotify(ownerId, playlistId, accessToken);
           });
+      } else {
+        this.setState({ last })
       }
     } catch (error) {
       console.log("error: ", error);
@@ -111,6 +114,7 @@ class SecondaryHeader extends Component {
 
   render() {
     const nowPlaying = this.state.current;
+    const lastSong = this.state.last;
     return (
       <div className="votify-secondary-header">
       {this.props.userObj.id ?
@@ -128,9 +132,9 @@ class SecondaryHeader extends Component {
           ) : '' }
         <div className="secondary-bottom" />
         {nowPlaying.is_playing ? (
-          <div>
-            Now playing: {nowPlaying.item.name} by{" "}
-            {nowPlaying.item.artists[0].name}{" "}
+          <div id='secondary-playing'>
+            <h4>Playing: {nowPlaying.item.name} by{" "}
+            {nowPlaying.item.artists[0].name}{" "}</h4>
           </div>
         ) : (
           ""

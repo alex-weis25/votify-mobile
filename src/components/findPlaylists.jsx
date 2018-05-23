@@ -83,35 +83,13 @@ export class FindPlaylists extends Component {
             console.log("Error getting documents: ", error);
           });
       })
+      // .then(_ => {
+      //   db.collection('Users')
+      //   .
+      // }) //// set playlists recently used to FB
 
       this.props.setView("SinglePlaylist")
   };
-
-  // onSubmit = event => {
-  //   event.preventDefault();
-  //   const { ownerId, playlistId } = this.state;
-  //   axios({
-  //     method: "GET",
-  //     url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}`,
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${accessToken}`
-  //     }
-  //   }).then(playlist => {
-  //     // const { ownerId, playlistId } = this.state;
-  //     const playlistName = playlist.data.name;
-  //     const fetchVotify = this.props.fetchVotify;
-  //     fetchVotify(ownerId, playlistId, accessToken);
-  //     db
-  //       .collection("Playlists")
-  //       .doc(`${playlistId}`)
-  //       .set({
-  //         owner: friendId, //user ID === owner ID here. CAUTION!
-  //         name: playlistName
-  //       })
-  //       .then(_ => this.props.setView("SinglePlaylist"));
-  //   });
-  // };
 
   render() {
     const playlists = this.state.userPlaylists;
