@@ -25,10 +25,12 @@ img {
 }
 
 .form-control {
-  width: 30vw;
-  height: 2vh;
-  margin-left: 10px;
-  margin-right: 10px;
+  width: 75vw;
+  border-radius: 10px;
+  margin: 10px 0px 10px 10px;
+  height: 4vh;
+  font-size: 1rem;
+  text-align: center;
 }
 
 
@@ -44,10 +46,20 @@ img {
   justify-content: space-between;
 }
 
+#App-intro {
+  margin: 10px 10px 0px 0px;
+}
+
+#votify-back-btn {
+  margin: 10px 0px 0px 10px;
+}
+
 #secondary-playing {
   height: 5vh;
   display: flex;
-
+  justify-content: center;
+  margin: 30px 0px 0px 0px;
+  font-size: 1.25rem;
 }
 
 .top-navbar {
@@ -83,13 +95,15 @@ img {
 
 
 #login-btn {
-  height: 50px;
-  width: 100px;
+  height: 3vh;
+  width: 60vw;
   display: flex;
-  padding-left: 70px;
-  align-items: center;
+  color: $spotify-grey-text-light;
+  background-color: $spotify-green;
+  justify-content: center;
   align-self: center;
-  border-radius: 10px;
+  border-radius: 30px;
+  margin-top: 200px;
 }
 
 
@@ -125,18 +139,18 @@ img {
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
-  height: 40vh;
+  height: 20vh;
 }
 
-
 .choose-button {
-  background: $spotify-grey-text-light;
-  color: $spotify-grey-text-dark;
+  background-color: $spotify-green;
+  color: $spotify-grey-text-light;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   margin: 5px 10px 5px 10px;
   text-decoration: none;
   width: 80vw;
+  border-radius: 30px;
 }
 
 /* Find playlist */
@@ -150,6 +164,12 @@ img {
   width: 100vw;
   flex-direction: row;
   display: flex;
+}
+
+#FindPlaylist-btn-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
 }
 
 
@@ -218,13 +238,14 @@ img {
   display: flex;
   flex-direction: row;
   align-content: space-around;
-  margin-top: 5px;
+  margin: 5px 0px 0px 10px;
 }
 
 .song-details {
   display: flex;
   align-content: space-around;
   margin-left: 10px;
+  margin-right: 10px;
   flex-direction: column;
   justify-content: space-evenly;
   width: 50vw;
@@ -252,6 +273,11 @@ img {
   display: flex;
   flex-direction: row;
   align-content: space-between;
+  margin-top: 1px;
+}
+
+.queue-detail {
+  margin: 5px 0px 5px 10px
 }
 
 .Interactive-root {
@@ -276,7 +302,6 @@ img {
   margin-left: 10px;
   border-radius: 5px;
 }
-
 
 /* Single Playlist */
 
@@ -322,7 +347,10 @@ img {
   border: 0 0 0 15px;
   background: $spotify-green;
   border-radius: 5px;
+  width:15vw;
+  height: 2.5vh;
   color: $spotify-grey-text-light;
+  margin-left: 10px;
 }
 
 // Playlist queue
@@ -354,3 +382,22 @@ img {
   display: flex;
 
 }
+
+#friends-playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+#playlist-root {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+ #user-playlists {
+   margin-top: 5vh;
+ }
+
+ .indent {
+   margin-left: 10px;
+ }

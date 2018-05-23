@@ -52,8 +52,8 @@ class PlaylistQueue extends Component {
     const songList = this.state.queue;
     return (
       <div className="queue-wrapper">
-        <h2>Queue</h2>
-        <h5>Votes</h5>
+        <h2 className='queue-detail' >Queue</h2>
+        <div className='queue-detail' >Votes</div>
         <div className='playlist-queue'>
           {songList &&
             songList.map(song => {

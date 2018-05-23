@@ -13,7 +13,7 @@ class SongList extends Component {
     const tracks = this.props.tracks;
     return (
       <div className="Single-playlist-tracks">
-        <h2>Playlist - {this.props.Votify.votify.name}</h2>
+        <h2 className='indent' >Playlist - {this.props.Votify.votify.name}</h2>
         <div className='playlist-tracks-wrapper'>
           {tracks &&
             tracks.items.map(track => {

@@ -13,12 +13,10 @@ img {
   height: 10vh; }
 
 .form-control {
-  width: 75vw;
-  border-radius: 10px;
-  margin: 10px 0px 10px 10px;
-  height: 4vh;
-  font-size: 1rem;
-  text-align: center; }
+  width: 30vw;
+  height: 2vh;
+  margin-left: 10px;
+  margin-right: 10px; }
 
 .votify-secondary-header {
   display: flex;
@@ -30,18 +28,9 @@ img {
   flex-direction: row;
   justify-content: space-between; }
 
-#App-intro {
-  margin: 10px 10px 0px 0px; }
-
-#votify-back-btn {
-  margin: 10px 0px 0px 10px; }
-
 #secondary-playing {
   height: 5vh;
-  display: flex;
-  justify-content: center;
-  margin: 30px 0px 0px 0px;
-  font-size: 1.25rem; }
+  display: flex; }
 
 .top-navbar {
   display: flex;
@@ -77,8 +66,7 @@ img {
   background-color: #6cbd70;
   justify-content: center;
   align-self: center;
-  border-radius: 30px;
-  margin-top: 200px; }
+  border-radius: 30px; }
 
 /* Choose playlist */
 .playlist-types {
@@ -105,17 +93,16 @@ img {
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
-  height: 20vh; }
+  height: 40vh; }
 
 .choose-button {
-  background-color: #6cbd70;
-  color: white;
+  background: white;
+  color: #808082;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   margin: 5px 10px 5px 10px;
   text-decoration: none;
-  width: 80vw;
-  border-radius: 30px; }
+  width: 80vw; }
 
 /* Find playlist */
 #user-playlists {
@@ -126,11 +113,6 @@ img {
   width: 100vw;
   flex-direction: row;
   display: flex; }
-
-#FindPlaylist-btn-wrapper {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 30px; }
 
 .Playlist-selector {
   display: flex;
@@ -193,13 +175,12 @@ img {
   display: flex;
   flex-direction: row;
   align-content: space-around;
-  margin: 5px 0px 0px 10px; }
+  margin-top: 5px; }
 
 .song-details {
   display: flex;
   align-content: space-around;
   margin-left: 10px;
-  margin-right: 10px;
   flex-direction: column;
   justify-content: space-evenly;
   width: 50vw; }
@@ -221,11 +202,7 @@ img {
 .queue-item {
   display: flex;
   flex-direction: row;
-  align-content: space-between;
-  margin-top: 1px; }
-
-.queue-detail {
-  margin: 5px 0px 5px 10px; }
+  align-content: space-between; }
 
 .Interactive-root {
   display: flex;
@@ -281,10 +258,7 @@ img {
   border: 0 0 0 15px;
   background: #6cbd70;
   border-radius: 5px;
-  width: 15vw;
-  height: 2.5vh;
-  color: white;
-  margin-left: 10px; }
+  color: white; }
 
 .playlist-queue {
   display: flex;
@@ -307,19 +281,3 @@ img {
 
 .song-search-wrapper {
   display: flex; }
-
-#friends-playlist {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px; }
-
-#playlist-root {
-  margin-top: 5vh;
-  margin-bottom: 5vh; }
-
-#user-playlists {
-  margin-top: 5vh; }
-
-.indent {
-  margin-left: 10px; }
