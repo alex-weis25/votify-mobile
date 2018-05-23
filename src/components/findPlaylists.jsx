@@ -23,7 +23,7 @@ export class FindPlaylists extends Component {
   selectPlaylistView() {
     switch (this.state.view) {
       case "Select":
-        return <div>Choose existing Playlist or Select Friend's</div>;
+        return <div></div>;
       case "Existing":
         return <ExistingPlaylists userObj={this.props.userObj} setView={this.props.setView} />;
       case "Friends":
@@ -45,7 +45,7 @@ export class FindPlaylists extends Component {
             Existing Playlist
           </button>
           <button className='button-playlist' value="Friends" onClick={this.setPlaylistView}>
-            Friends Playlist
+            Friend's Playlist
           </button>
         </div>
         {this.selectPlaylistView()}

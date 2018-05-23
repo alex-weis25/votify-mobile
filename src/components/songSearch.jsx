@@ -175,7 +175,9 @@ export class SongSearch extends Component {
     const currentSongs = this.state.tracks;
     return (
       <div id="search-bar">
-        <h2>Search</h2>
+        <div className="indent">
+          <h2>Search</h2>
+        </div>
         <form id="search-bar-form" onSubmit={this.onSearchClick}>
           <input
             name="search"
@@ -202,21 +204,27 @@ export class SongSearch extends Component {
           {currentSongs &&
             currentSongs.map((song, index) => {
               return (
-                <div className='song-search-wrapper'>
+                <div className="song-search-wrapper">
                   <div className="add-button-wrapper">
-                    <button  className='add-button' name={index} onClick={this.onSongAdd}>
+                    <button
+                      className="add-button"
+                      name={index}
+                      onClick={this.onSongAdd}
+                    >
                       Add
                     </button>
                   </div>
                   <div className="song-details" key={song.id}>
-                    <div className='queue-song-name'>{song.name} </div>
-                    <div className='queue-song-artist'>{song.artist} </div>
+                    <div className="queue-song-name">{song.name} </div>
+                    <div className="queue-song-artist">{song.artist} </div>
                   </div>
                 </div>
               );
             })}
         </div>
-        <button className='add-button' onClick={this.moreSongs}>More</button>
+        <button className="send-it-btn" onClick={this.moreSongs}>
+          More
+        </button>
       </div>
     );
   }

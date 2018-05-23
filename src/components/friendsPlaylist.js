@@ -54,7 +54,6 @@ export class FriendsPlaylist extends Component {
     return (
       <div id="playlist-root">
         <div id="user-playlists">
-          <h3>Friend's playlist:</h3>
           <form id="friends-playlist" onSubmit={this.onSubmit}>
             <input
               name="ownerId"
@@ -70,7 +69,7 @@ export class FriendsPlaylist extends Component {
               onChange={this.handleChange}
               placeholder="enter votify playlist name"
             />
-            <button className='sent-it-btn' type="submit">Submit</button>
+            <button className='send-it-btn' type="submit">Submit</button>
           </form>
         </div>
       </div>
