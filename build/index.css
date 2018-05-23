@@ -1,127 +1,84 @@
-$spotify-green: rgb(108, 189, 112);
-$spotify-grey-dark: rgb(35, 35, 38);
-$spotify-grey-medium: rgb(40, 40, 40);
-$spotify-grey-text-light: rgb(255, 255, 255);
-$spotify-grey-text-dark: rgb(128, 128, 130);
-$spotify-black: rgb(27, 27, 30);
-
-
-
 body {
   margin: 0;
   padding: 0;
-  color: $spotify-grey-text-light;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
-  background: $spotify-grey-medium;
-}
+  background: #282828; }
 
 .page-info {
   text-align: center;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 img {
-  height: 10vh;
-}
+  height: 10vh; }
 
 .form-control {
   width: 30vw;
   height: 2vh;
   margin-left: 10px;
-  margin-right: 10px;
-}
-
+  margin-right: 10px; }
 
 .votify-secondary-header {
   display: flex;
   flex-direction: column;
-  height: 10vh;
-}
+  height: 10vh; }
 
 .secondary-top {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-}
-
-#App-intro {
-  margin: 10px 10px 0px 0px;
-}
-
-#votify-back-btn {
-  margin: 10px 0px 0px 10px;
-}
+  justify-content: space-between; }
 
 #secondary-playing {
   height: 5vh;
-  display: flex;
-  justify-content: center;
-  margin: 10px 0px 0px 0px;
-  size: 1.25rem;
-}
+  display: flex; }
 
 .top-navbar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between
-}
+  justify-content: space-between; }
 
 .App-header {
-  background-color: $spotify-black;
+  background-color: #1b1b1e;
   height: 10vh;
   padding: 20px;
-  color: $spotify-grey-text-light;
-}
+  color: white; }
 
 .App-title {
   font-size: 2em;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif
-}
+  font-family: Arial, Helvetica, sans-serif; }
 
 .App-intro {
-  font-size: large;
-}
+  font-size: large; }
 
 /* Login */
 #login {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
+  align-items: center; }
 
 #login-btn {
   height: 3vh;
   width: 60vw;
   display: flex;
-  color: $spotify-grey-text-light;
-  background-color: $spotify-green;
+  color: white;
+  background-color: #6cbd70;
   justify-content: center;
   align-self: center;
-  border-radius: 30px;
-  margin-top: 200px;
-}
-
-
+  border-radius: 30px; }
 
 /* Choose playlist */
-
 .playlist-types {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-}
+  height: 100vh; }
 
 @keyframes Spotify-logo-spin {
   from {
-    transform: rotate(0deg);
-  }
+    transform: rotate(0deg); }
   to {
-    transform: rotate(360deg);
-  }
-}
+    transform: rotate(360deg); } }
 
 .spotify-logo {
   width: 100vw;
@@ -129,109 +86,96 @@ img {
   height: 40vh;
   align-items: center;
   justify-content: center;
-  animation: Spotify-logo-spin infinite 20s linear;
-}
+  animation: Spotify-logo-spin infinite 20s linear; }
 
 .choose-button-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
-  height: 40vh;
-}
+  height: 40vh; }
 
 .choose-button {
-  background-color: $spotify-green;
-  color: $spotify-grey-text-light;
+  background: white;
+  color: #808082;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   margin: 5px 10px 5px 10px;
   text-decoration: none;
-  width: 80vw;
-  border-radius: 30px;
-}
+  width: 80vw; }
 
 /* Find playlist */
-
 #user-playlists {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .playlist-item {
   width: 100vw;
   flex-direction: row;
-  display: flex;
-}
-
+  display: flex; }
 
 .Playlist-selector {
   display: flex;
   flex-direction: row;
   width: 100vw;
-  justify-content: space-between;
-}
+  justify-content: space-between; }
 
 .Playlist-selector-left {
   width: 33vw;
   height: 10vh;
   align-items: center;
   display: flex;
-  justify-content: center;
-}
+  justify-content: center; }
 
 .Playlist-selector-right {
   width: 67vw;
   height: 10vh;
   align-items: center;
   display: flex;
-  font-size: 1.5em;
-}
+  font-size: 1.5em; }
 
-.button-playlist{
-  background: $spotify-green;
-  color: $spotify-grey-text-light;
-  border:none;
-  height:5vh;
-  font-size:1em;
-  padding:0 2em;
-  cursor:pointer;
+.button-playlist {
+  background: #6cbd70;
+  color: white;
+  border: none;
+  height: 5vh;
+  font-size: 1em;
+  padding: 0 2em;
+  cursor: pointer;
   border-radius: 15px;
-  transition:800ms ease all;
-  outline:none;
-}
-.button-playlist:hover{
-  background: $spotify-grey-text-light;
-  color: $spotify-green;
-}
-.button-playlist:before,.button-playlist:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: $spotify-green;
-  transition:400ms ease all;
-}
-.button-playlist:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.button-playlist:hover:before,.button-playlist:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
-/* Song list */
+  transition: 800ms ease all;
+  outline: none; }
 
+.button-playlist:hover {
+  background: white;
+  color: #6cbd70; }
+
+.button-playlist:before, .button-playlist:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #6cbd70;
+  transition: 400ms ease all; }
+
+.button-playlist:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0; }
+
+.button-playlist:hover:before, .button-playlist:hover:after {
+  width: 100%;
+  transition: 800ms ease all; }
+
+/* Song list */
 .user-tracks {
   display: flex;
   flex-direction: row;
   align-content: space-around;
-  margin-top: 5px;
-}
+  margin-top: 5px; }
 
 .song-details {
   display: flex;
@@ -239,130 +183,101 @@ img {
   margin-left: 10px;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 50vw;
-}
+  width: 50vw; }
 
 .album-art {
-  border-radius: 20px
-}
+  border-radius: 20px; }
 
 .song-title {
   font-size: 1.25rem;
-  color: $spotify-grey-text-light;
-  width: 80vw;
-}
+  color: white;
+  width: 80vw; }
 
 .song-artist {
   font-size: 1rem;
-  color: $spotify-green;
-  width: 80vw;
-}
+  color: #6cbd70;
+  width: 80vw; }
 
 /* Playlist Queue / interactive */
-
 .queue-item {
   display: flex;
   flex-direction: row;
-  align-content: space-between;
-}
+  align-content: space-between; }
 
 .Interactive-root {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   width: 20vw;
-  align-items: center;
-}
+  align-items: center; }
 
 .add-button-wrapper {
   display: flex;
   flex-direction: row;
   height: 50px;
-  align-items: center;
-}
+  align-items: center; }
 
 .add-button {
-  background: $spotify-grey-text-light;
-  color: $spotify-black;
+  background: white;
+  color: #1b1b1e;
   width: 50px;
   margin-left: 10px;
-  border-radius: 5px;
-}
-
+  border-radius: 5px; }
 
 /* Single Playlist */
-
 /* .Single-playlist {
   display: flex;
   height: 100vh;
   flex-direction: row;
 } */
-
-
 .playlist-tracks-wrapper {
   display: flex;
-  flex-direction: column-reverse;
-}
+  flex-direction: column-reverse; }
 
 .playlist-button-wrapper {
   display: flex;
   height: 10vh;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-}
+  justify-content: space-evenly; }
 
 .button-play {
-  font-size: 1.5em;
-}
+  font-size: 1.5em; }
 
 .playlist-button {
   width: 30vw;
   height: 5vh;
   display: flex;
-  justify-content: space-around;
-
-}
+  justify-content: space-around; }
 
 .search-items {
   display: flex;
-  flex-direction: column
-}
-
+  flex-direction: column; }
 
 .send-it-btn {
   border: 0 0 0 15px;
-  background: $spotify-green;
+  background: #6cbd70;
   border-radius: 5px;
-  color: $spotify-grey-text-light;
-}
+  color: white; }
 
-// Playlist queue
 .playlist-queue {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .song-score {
   size: 3rem;
-  color: $spotify-grey-text-light;
+  color: white;
   text-align: center;
   align-self: center;
-  width: 15vw;
-}
+  width: 15vw; }
 
 .queue-song-name {
   size: 1.5rem;
-  color: $spotify-grey-text-light
-}
+  color: white; }
 
 .queue-song-artist {
   size: 1rem;
-  color: $spotify-green;
-}
-
+  color: #6cbd70; }
 
 .song-search-wrapper {
-  display: flex;
-
-}
+  display: flex; }

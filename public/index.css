@@ -20,16 +20,26 @@ img {
 
 .votify-secondary-header {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  height: 10vh; }
 
 .secondary-top {
   display: flex;
   flex-direction: row;
   justify-content: space-between; }
 
+#App-intro {
+  margin: 10px 10px 0px 0px; }
+
+#votify-back-btn {
+  margin: 10px 0px 0px 10px; }
+
 #secondary-playing {
   height: 5vh;
-  display: flex; }
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+  size: 1.25rem; }
 
 .top-navbar {
   display: flex;
@@ -58,13 +68,15 @@ img {
   align-items: center; }
 
 #login-btn {
-  height: 50px;
-  width: 100px;
+  height: 3vh;
+  width: 60vw;
   display: flex;
-  padding-left: 70px;
-  align-items: center;
+  color: white;
+  background-color: #6cbd70;
+  justify-content: center;
   align-self: center;
-  border-radius: 10px; }
+  border-radius: 30px;
+  margin-top: 200px; }
 
 /* Choose playlist */
 .playlist-types {
@@ -93,9 +105,20 @@ img {
   flex-direction: column;
   height: 40vh; }
 
+/*
+  height: 3vh;
+  width: 60vw;
+  display: flex;
+  color: $spotify-grey-text-light;
+  background-color: $spotify-green;
+  justify-content: center;
+  align-self: center;
+  border-radius: 30px;
+  margin-top: 200px;
+*/
 .choose-button {
-  background: white;
-  color: #808082;
+  background-color: #6cbd70;
+  color: white;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   margin: 5px 10px 5px 10px;

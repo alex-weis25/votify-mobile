@@ -10,7 +10,7 @@ export const Login = props => {
     <div id="login">
       <h3>Please login to continue</h3>
       <a id="login-btn" className="choose-button" href="https://us-central1-votify-b9360.cloudfunctions.net/login">
-        Login
+        LOGIN
       </a>
     </div>
   );

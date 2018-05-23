@@ -100,7 +100,7 @@ class SecondaryHeader extends Component {
             fetchVotify(ownerId, playlistId, accessToken);
           });
       } else {
-        this.setState({ last })
+        this.setState({ last });
       }
     } catch (error) {
       console.log("error: ", error);
@@ -117,24 +117,21 @@ class SecondaryHeader extends Component {
     const lastSong = this.state.last;
     return (
       <div className="votify-secondary-header">
-      {this.props.userObj.id ?
-        (
+        {this.props.userObj.id ? (
           <div className="secondary-top">
-            <p className="votify-back-btn" onClick={this.clickBack}>
+            <p id="votify-back-btn" onClick={this.clickBack}>
               Back
             </p>
-            <div>
-              <p className="App-intro">
-              Welcome {this.props.userObj.id}!
-              </p>
-            </div>
+            <p id="App-intro">Welcome {this.props.userObj.id}!</p>
           </div>
-          ) : '' }
+        ) : (
+          ""
+        )}
         <div className="secondary-bottom" />
         {nowPlaying.is_playing ? (
-          <div id='secondary-playing'>
-            <h4>Playing: {nowPlaying.item.name} by{" "}
-            {nowPlaying.item.artists[0].name}{" "}</h4>
+          <div id="secondary-playing">
+            Now playing: {nowPlaying.item.name} by{" "}
+            {nowPlaying.item.artists[0].name}{" "}
           </div>
         ) : (
           ""

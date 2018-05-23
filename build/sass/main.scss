@@ -44,20 +44,10 @@ img {
   justify-content: space-between;
 }
 
-#App-intro {
-  margin: 10px 10px 0px 0px;
-}
-
-#votify-back-btn {
-  margin: 10px 0px 0px 10px;
-}
-
 #secondary-playing {
   height: 5vh;
   display: flex;
-  justify-content: center;
-  margin: 10px 0px 0px 0px;
-  size: 1.25rem;
+
 }
 
 .top-navbar {
@@ -101,7 +91,6 @@ img {
   justify-content: center;
   align-self: center;
   border-radius: 30px;
-  margin-top: 200px;
 }
 
 
@@ -140,15 +129,15 @@ img {
   height: 40vh;
 }
 
+
 .choose-button {
-  background-color: $spotify-green;
-  color: $spotify-grey-text-light;
+  background: $spotify-grey-text-light;
+  color: $spotify-grey-text-dark;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   margin: 5px 10px 5px 10px;
   text-decoration: none;
   width: 80vw;
-  border-radius: 30px;
 }
 
 /* Find playlist */
