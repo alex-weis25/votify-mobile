@@ -23,7 +23,7 @@ export class FindPlaylists extends Component {
   selectPlaylistView() {
     switch (this.state.view) {
       case "Select":
-        return <div>Choose existing Playlist or Select Friends</div>;
+        return <div>Choose existing Playlist or Select Friend's</div>;
       case "Existing":
         return <ExistingPlaylists />;
       case "Friends":
@@ -33,11 +33,8 @@ export class FindPlaylists extends Component {
 
   setPlaylistView = event => {
     event.preventDefault();
-    const { name } = event.target;
-    console.log("name on setPlaylist", name);
-    this.setState({
-      view: name
-    });
+    const view = event.target.value;
+    this.setState({ view });
   };
 
   render() {
@@ -45,10 +42,10 @@ export class FindPlaylists extends Component {
     return (
       <div id="playlist-root">
         <div>
-          <button name="Existing" onSubmit={this.setPlaylistView}>
+          <button className="playlist-button" value="Existing" onSubmit={this.setPlaylistView}>
             Existing Playlist
           </button>
-          <button name="Friends" onSubmit={this.setPlaylistView}>
+          <button className="playlist-button" value="Friends" onSubmit={this.setPlaylistView}>
             Friends Playlist
           </button>
         </div>
