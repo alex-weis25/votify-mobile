@@ -25,10 +25,11 @@ img {
 }
 
 .form-control {
-  width: 30vw;
-  height: 2vh;
-  margin-left: 10px;
-  margin-right: 10px;
+  width: 75vw;
+  border-radius: 10px;
+  margin: 10px 10px 10px 10px;
+  height: 4vh;
+  text-align: center;
 }
 
 
@@ -162,6 +163,12 @@ img {
   width: 100vw;
   flex-direction: row;
   display: flex;
+}
+
+#FindPlaylist-btn-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
 }
 
 
@@ -366,3 +373,18 @@ img {
   display: flex;
 
 }
+
+#friends-playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+#playlist-root {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+ #user-playlists {
+   margin-top: 5vh;
+ }

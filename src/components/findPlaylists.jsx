@@ -25,9 +25,9 @@ export class FindPlaylists extends Component {
       case "Select":
         return <div>Choose existing Playlist or Select Friend's</div>;
       case "Existing":
-        return <ExistingPlaylists />;
+        return <ExistingPlaylists userObj={this.props.userObj} setView={this.props.setView} />;
       case "Friends":
-        return <FriendsPlaylist />;
+        return <FriendsPlaylist setView={this.props.setView} />;
     }
   }
 
@@ -38,14 +38,13 @@ export class FindPlaylists extends Component {
   };
 
   render() {
-    const playlists = this.state.userPlaylists;
     return (
       <div id="playlist-root">
-        <div>
-          <button className="playlist-button" value="Existing" onSubmit={this.setPlaylistView}>
+        <div id='FindPlaylist-btn-wrapper'>
+          <button className='button-playlist' value="Existing" onClick={this.setPlaylistView}>
             Existing Playlist
           </button>
-          <button className="playlist-button" value="Friends" onSubmit={this.setPlaylistView}>
+          <button className='button-playlist' value="Friends" onClick={this.setPlaylistView}>
             Friends Playlist
           </button>
         </div>

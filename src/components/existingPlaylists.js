@@ -13,7 +13,9 @@ const Users = db.collection("Users");
 export class ExistingPlaylists extends Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {
+      userPlaylists: [],
+    };
   }
 
   componentDidMount = () => {
@@ -21,6 +23,7 @@ export class ExistingPlaylists extends Component {
   };
 
   findUserPlaylists() {
+    console.log('running findUserPlayslists')
     Users.where("accessToken", "==", accessToken)
       .get()
       .then(user => {
@@ -37,6 +40,7 @@ export class ExistingPlaylists extends Component {
           }
         })
           .then(playlists => {
+            console.log('found playlists: ', playlists);
             return playlists.data.items.filter(playlist => {
               const userId = this.props.userObj.id;
               if (playlist.collaborative && playlist.owner.id === userId) {
@@ -45,6 +49,7 @@ export class ExistingPlaylists extends Component {
             });
           })
           .then(userPlaylists => {
+            console.log('setting state on UserPlaylists: ', userPlaylists)
             this.setState({ userPlaylists });
           });
       })
@@ -53,6 +58,7 @@ export class ExistingPlaylists extends Component {
 
   render() {
     const playlists = this.state.userPlaylists;
+    console.log('playslists on EP: ', this.state)
     return (
       <div id="playlist-root">
         <div id="user-playlists">

@@ -14,7 +14,6 @@ export class FriendsPlaylist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userPlaylists: [],
       ownerId: "",
       playlistId: "",
       playlistName: ""
@@ -47,12 +46,11 @@ export class FriendsPlaylist extends Component {
           .catch(function(error) {
             console.log("Error getting documents: ", error);
           });
-      })
-      this.props.setView("SinglePlaylist")
+      });
+    this.props.setView("SinglePlaylist");
   };
 
   render() {
-    const playlists = this.state.userPlaylists;
     return (
       <div id="playlist-root">
         <div id="user-playlists">
@@ -72,7 +70,7 @@ export class FriendsPlaylist extends Component {
               onChange={this.handleChange}
               placeholder="enter votify playlist name"
             />
-            <button type="submit">Submit</button>
+            <button className='sent-it-btn' type="submit">Submit</button>
           </form>
         </div>
       </div>
