@@ -58,11 +58,3 @@ const mapState = ({ Votify }) => ({ Votify });
 const mapDispatch = { fetchVotify };
 
 export default connect(mapState, mapDispatch)(FindPlaylists);
-
-// <input
-//               name="playlistId"
-//               className="form-control"
-//               value={this.state.playlistId}
-//               onChange={this.handleChange}
-//               placeholder="enter spotify playlist ID"
-//             />

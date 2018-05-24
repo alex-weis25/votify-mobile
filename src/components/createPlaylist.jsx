@@ -49,10 +49,10 @@ class CreatePlaylist extends Component {
       })
       .then(newPlay => {
         console.log("new play: ", newPlay);
-        const playlistName = newPlay.name
-        const playlistId = newPlay.id
+        const playlistName = newPlay.name;
+        const playlistId = newPlay.id;
         const ownerId = newPlay.owner.id;
-        console.log('info to firebase', playlistId, playlistName, ownerId)
+        console.log("info to firebase", playlistId, playlistName, ownerId);
         db
           .collection("Playlists")
           .doc(`${playlistId}`)
@@ -76,29 +76,24 @@ class CreatePlaylist extends Component {
   render() {
     return (
       <div className="CreatePlaylist-root">
-        <form id="create-playlist-form" onSubmit={this.newPlaylist}>
-          <label>
-            Playlist Name:
-            <input
-              name="name"
-              className="form-control"
-              value={this.state.name}
-              onChange={this.handleChange}
-              placeholder="New Votify Playlist"
-            />
-          </label>
-          <br />
-          <label>
-            Description:
-            <input
-              name="description"
-              className="form-control"
-              value={this.state.description}
-              onChange={this.handleChange}
-              placeholder="My dope new collection of tracks"
-            />
-          </label>
-          <button type="submit">Submit</button>
+        <form className="form-playlist" onSubmit={this.newPlaylist}>
+          <input
+            name="name"
+            className="form-control"
+            value={this.state.name}
+            onChange={this.handleChange}
+            placeholder="Votify Playlist Name"
+          />
+          <input
+            name="description"
+            className="form-control"
+            value={this.state.description}
+            onChange={this.handleChange}
+            placeholder="Playlist Description"
+          />
+          <button className="send-it-btn" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );

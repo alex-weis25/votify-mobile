@@ -184,10 +184,10 @@ export class SongSearch extends Component {
             className="form-control"
             value={this.state.search}
             onChange={this.handleChange}
-            placeholder="search song by title"
+            placeholder="Search Song"
           />
           <button className="send-it-btn" type="submit">
-            Send it
+            Search
           </button>
         </form>
         {this.state.exists === true ? (

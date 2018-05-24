@@ -203,7 +203,6 @@ img {
   height:5vh;
   font-size:1em;
   padding:0 2em;
-  cursor:pointer;
   border-radius: 15px;
   transition:800ms ease all;
   outline:none;
@@ -228,11 +227,11 @@ img {
   left:0;
   bottom:0;
 }
-.button-playlist:hover:before,.button-playlist:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
-/* Song list */
+// .button-playlist:hover:before,.button-playlist:hover:after{
+//   width:100%;
+//   transition:800ms ease all;
+// }
+// /* Song list */
 
 .user-tracks {
   display: flex;
@@ -380,10 +379,9 @@ img {
 
 .song-search-wrapper {
   display: flex;
-
 }
 
-#friends-playlist {
+.form-playlist {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -394,10 +392,16 @@ img {
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
+
  #user-playlists {
    margin-top: 5vh;
  }
 
  .indent {
    margin-left: 10px;
+ }
+
+ #create-playlist-from {
+   margin-top: 10vh;
+   display: flex;
  }

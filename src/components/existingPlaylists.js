@@ -62,7 +62,6 @@ export class ExistingPlaylists extends Component {
     return (
       <div id="playlist-root">
         <div id="user-playlists">
-          <h3>Existing playlists:</h3>
           {playlists.length > 0 &&
             playlists.map(playlist => {
               return (

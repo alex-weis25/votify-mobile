@@ -54,20 +54,20 @@ export class FriendsPlaylist extends Component {
     return (
       <div id="playlist-root">
         <div id="user-playlists">
-          <form id="friends-playlist" onSubmit={this.onSubmit}>
+          <form className="form-playlist" onSubmit={this.onSubmit}>
             <input
               name="ownerId"
               className="form-control"
               value={this.state.ownerId}
               onChange={this.handleChange}
-              placeholder="enter friends spotify ID"
+              placeholder="Enter Friend's Spotify ID"
             />
             <input
               name="playlistName"
               className="form-control"
               value={this.state.playlistName}
               onChange={this.handleChange}
-              placeholder="enter votify playlist name"
+              placeholder="Enter Votify Playlist Name"
             />
             <button className='send-it-btn' type="submit">Submit</button>
           </form>
