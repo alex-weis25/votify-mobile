@@ -16,10 +16,6 @@ class CreatePlaylist extends Component {
     };
   }
 
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
   newPlaylist = event => {
     event.preventDefault();
     let parsed = queryString.parse(window.location.hash);
