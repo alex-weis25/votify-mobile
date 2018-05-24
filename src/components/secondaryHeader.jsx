@@ -33,14 +33,17 @@ class SecondaryHeader extends Component {
         .then(current => {
           this.setState({ current }, () => {
             let checkForEmpty;
+            let votifyName;
             {
               this.props.Votify
                 ? (checkForEmpty = this.props.Votify.votify)
                 : "";
             }
             if (checkForEmpty.length !== 0) {
+              votifyName = this.props.Votify.votify.name;
               if (checkForEmpty.tracks.items.length === 0) {
-                console.log("empty playlist(secondary header)");
+                console.log("signed in & empty playlist...adding first song");
+                this.addSong();
               } else {
                 this.addToVotify();
               }
@@ -68,43 +71,50 @@ class SecondaryHeader extends Component {
     {
       votify.current.item ? (current = votify.current.item.id) : "";
     }
-    let ownerId = this.props.Votify.votify.owner.id;
-    // {
-    //   ownerId ? (ownerId = this.props.Votify.votify.owner.id) : "";
-    // }
-    const fetchVotify = this.props.fetchVotify;
-    const playlistId = votify.votify.id;
-    // console.log("adding info", current, last, topSongId, ownerId, playlistId);
     try {
       if (current === last && topSongId) {
-        console.log("on last song shifting queue");
-        axios({
-          method: "POST",
-          url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}/tracks?uris=spotify%3Atrack%3A${topSongId}`,
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`
-          }
-        })
-          .then(_ => {
-            db
-              .collection("Playlists")
-              .doc(playlistId)
-              .collection("Queue")
-              .doc(topSongId)
-              .delete()
-              .then(_ => console.log("deleted"));
-          })
-          .then(_ => {
-            console.log("updating redux for addition");
-            fetchVotify(ownerId, playlistId, accessToken);
-          });
+        console.log("calling add song");
+        this.addSong();
       } else {
         this.setState({ last });
       }
     } catch (error) {
       console.log("error: ", error);
     }
+  };
+
+  addSong = () => {
+    const votify = this.props.Votify;
+    let topSongId = "";
+    {
+      votify.topSong ? (topSongId = votify.topSong.songId) : "";
+    }
+    let ownerId = this.props.Votify.votify.owner.id;
+    const fetchVotify = this.props.fetchVotify;
+    const playlistId = votify.votify.id;
+
+    console.log("on last song shifting queue");
+    axios({
+      method: "POST",
+      url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}/tracks?uris=spotify%3Atrack%3A${topSongId}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+      .then(_ => {
+        db
+          .collection("Playlists")
+          .doc(playlistId)
+          .collection("Queue")
+          .doc(topSongId)
+          .delete()
+          .then(_ => console.log("deleted"));
+      })
+      .then(_ => {
+        console.log("updating redux for addition");
+        fetchVotify(ownerId, playlistId, accessToken);
+      });
   };
 
   clickBack = () => {
