@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   color: white;
-  font-family: garamond;
+  font-family: Lato;
   background: #282828; }
 
 .page-info {
@@ -63,7 +63,7 @@ img {
   font-size: 2.5rem;
   text-align: center;
   margin-top: 20px;
-  font-family: garamond;
+  font-family: Lato;
   color: white; }
 
 .App-intro {

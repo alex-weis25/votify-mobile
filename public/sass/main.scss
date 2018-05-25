@@ -4,14 +4,14 @@ $spotify-grey-medium: rgb(40, 40, 40);
 $spotify-grey-text-light: rgb(255, 255, 255);
 $spotify-grey-text-dark: rgb(128, 128, 130);
 $spotify-black: rgb(27, 27, 30);
-
+$font-family: Lato;
 
 
 body {
   margin: 0;
   padding: 0;
   color: $spotify-grey-text-light;
-  font-family: garamond;
+  font-family: $font-family;
   background: $spotify-grey-medium;
 }
 
@@ -84,7 +84,7 @@ img {
   font-size: 2.5rem;
   text-align: center;
   margin-top: 20px;
-  font-family: garamond;
+  font-family: $font-family;
   color: $spotify-grey-text-light
 }
 
