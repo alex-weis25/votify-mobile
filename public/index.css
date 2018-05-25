@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: garamond;
   background: #282828; }
 
 .page-info {
@@ -20,6 +20,9 @@ img {
   font-size: 1rem;
   text-align: center; }
 
+.search {
+  width: 60vw; }
+
 .votify-secondary-header {
   display: flex;
   flex-direction: column;
@@ -31,17 +34,19 @@ img {
   justify-content: space-between; }
 
 #App-intro {
-  margin: 10px 10px 0px 0px; }
+  margin: 10px 10px 0px 0px;
+  font-size: 1.3rem; }
 
 #votify-back-btn {
-  margin: 10px 0px 0px 10px; }
+  margin: 10px 0px 0px 10px;
+  font-size: 1.3rem; }
 
 #secondary-playing {
   height: 5vh;
   display: flex;
   justify-content: center;
   margin: 30px 0px 0px 0px;
-  font-size: 1.25rem; }
+  font-size: 1.5rem; }
 
 .top-navbar {
   display: flex;
@@ -55,9 +60,11 @@ img {
   color: white; }
 
 .App-title {
-  font-size: 2em;
+  font-size: 2.5rem;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif; }
+  margin-top: 20px;
+  font-family: garamond;
+  color: white; }
 
 .App-intro {
   font-size: large; }
@@ -207,7 +214,7 @@ img {
   width: 80vw; }
 
 .song-artist {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #6cbd70;
   width: 80vw; }
 
@@ -219,7 +226,8 @@ img {
   margin-top: 1px; }
 
 .queue-detail {
-  margin: 5px 0px 5px 10px; }
+  margin: 5px 0px 5px 10px;
+  font-size: 2rem; }
 
 .Interactive-root {
   display: flex;
@@ -231,7 +239,7 @@ img {
 .add-button-wrapper {
   display: flex;
   flex-direction: row;
-  height: 50px;
+  height: 75px;
   align-items: center; }
 
 .add-button {
@@ -275,10 +283,10 @@ img {
   border: 0 0 0 15px;
   background: #6cbd70;
   border-radius: 5px;
-  width: 15vw;
+  width: 25vw;
   height: 2.5vh;
   color: white;
-  margin-left: 10px; }
+  margin: 10px 0px 10px 10px; }
 
 .playlist-queue {
   display: flex;
@@ -292,11 +300,12 @@ img {
   width: 15vw; }
 
 .queue-song-name {
-  size: 1.5rem;
-  color: white; }
+  font-size: 1.25rem;
+  color: white;
+  width: 60vw; }
 
 .queue-song-artist {
-  size: 1rem;
+  font-size: 1.25rem;
   color: #6cbd70; }
 
 .song-search-wrapper {

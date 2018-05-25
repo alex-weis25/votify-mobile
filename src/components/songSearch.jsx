@@ -181,7 +181,7 @@ export class SongSearch extends Component {
         <form id="search-bar-form" onSubmit={this.onSearchClick}>
           <input
             name="search"
-            className="form-control"
+            className="form-control search"
             value={this.state.search}
             onChange={this.handleChange}
             placeholder="Search Song"
@@ -222,9 +222,13 @@ export class SongSearch extends Component {
               );
             })}
         </div>
-        <button className="send-it-btn" onClick={this.moreSongs}>
-          More
-        </button>
+        {this.state.tracks.length === 0 ? (
+          ""
+        ) : (
+          <button className="send-it-btn" onClick={this.moreSongs}>
+            More
+          </button>
+        )}
       </div>
     );
   }
