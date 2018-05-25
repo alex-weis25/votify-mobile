@@ -52,7 +52,7 @@ class PlaylistQueue extends Component {
     const songList = this.state.queue;
     return (
       <div className="queue-wrapper">
-        <h2 className='queue-detail' >Queue</h2>
+        <h2 className='indent'>Queue</h2>
         <div className='queue-detail' >Votes</div>
         <div className='playlist-queue'>
           {songList &&
