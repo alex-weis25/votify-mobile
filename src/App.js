@@ -157,6 +157,7 @@ class App extends Component {
         <SecondaryHeader
           userObj={this.state.userObj}
           setView={this.setView}
+          currentView={this.state.view}
           goToPreviousView={this.goToPreviousView}
           handleLogin={this.handleLogin} //dev purposes
         />

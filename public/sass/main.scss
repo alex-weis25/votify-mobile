@@ -35,6 +35,7 @@ img {
 
 .search {
   width: 60vw;
+  height: 3vh;
 }
 
 .votify-secondary-header {
@@ -47,6 +48,11 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.secondary-top-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 #App-intro {
@@ -63,8 +69,9 @@ img {
   height: 5vh;
   display: flex;
   justify-content: center;
-  margin: 30px 0px 0px 0px;
+  margin: 30px 15px 30px 15px;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .top-navbar {
@@ -410,7 +417,19 @@ img {
    margin-left: 10px;
  }
 
- #create-playlist-from {
-   margin-top: 10vh;
-   display: flex;
- }
+#create-playlist-from {
+  margin-top: 10vh;
+  display: flex;
+}
+
+#playlist-loading {
+  margin: 150px 0px 0px 0px;
+  align-self: center;
+}
+
+.search-error {
+  display: flex;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-top: 20px
+}

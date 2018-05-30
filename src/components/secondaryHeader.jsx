@@ -73,7 +73,6 @@ class SecondaryHeader extends Component {
     }
     try {
       if (current === last && topSongId) {
-        console.log("calling add song");
         this.addSong();
       } else {
         this.setState({ last });
@@ -93,7 +92,6 @@ class SecondaryHeader extends Component {
     const fetchVotify = this.props.fetchVotify;
     const playlistId = votify.votify.id;
 
-    console.log("on last song shifting queue");
     axios({
       method: "POST",
       url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}/tracks?uris=spotify%3Atrack%3A${topSongId}`,
@@ -125,14 +123,23 @@ class SecondaryHeader extends Component {
   render() {
     const nowPlaying = this.state.current;
     const lastSong = this.state.last;
+    const currentView = this.props.currentView;
     return (
       <div className="votify-secondary-header">
-        {this.props.userObj.id ? (
+        {this.props.userObj.displayName ? (
           <div className="secondary-top">
-            <p id="votify-back-btn" onClick={this.clickBack}>
-              Back
-            </p>
-            <p id="App-intro">Welcome {this.props.userObj.id}!</p>
+            <div className="secondary-top-wrapper">
+              {currentView !== "choosePlaylist" ? (
+                <p id="votify-back-btn" onClick={this.clickBack}>
+                  Back
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="secondary-top-wrapper">
+              <p id="App-intro">Welcome {this.props.userObj.displayName}!</p>
+            </div>
           </div>
         ) : (
           ""

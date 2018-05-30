@@ -16,7 +16,8 @@ export class FriendsPlaylist extends Component {
     this.state = {
       ownerId: "",
       playlistId: "",
-      playlistName: ""
+      playlistName: "",
+      error: false
     };
   }
 
@@ -31,23 +32,29 @@ export class FriendsPlaylist extends Component {
   onSubmit = event => {
     event.preventDefault();
     const { ownerId, playlistName } = this.state;
-    const fetchVotify = this.props.fetchVotify;
+    const { fetchVotify, setView } = this.props;
     db
       .collection("Playlists")
       .where("owner", "==", `${ownerId}`)
       .get()
       .then(function(querySnapshot) {
-        querySnapshot
-          .forEach(function(doc) {
-            if (doc.data().name === playlistName) {
-              fetchVotify(ownerId, doc.id, accessToken);
-            }
-          })
-          .catch(function(error) {
-            console.log("Error getting documents: ", error);
-          });
+        querySnapshot.forEach(function(doc) {
+          if (doc.data().name === playlistName) {
+            fetchVotify(ownerId, doc.id, accessToken);
+            setView('SinglePlaylist');
+          } else {
+            this.setState({
+              error: true
+            });
+          }
+        });
+      })
+      .catch(error => {
+        console.log("error getting docs: ", error);
+        this.setState({
+          error: true
+        });
       });
-    this.props.setView("SinglePlaylist");
   };
 
   render() {
@@ -69,8 +76,13 @@ export class FriendsPlaylist extends Component {
               onChange={this.handleChange}
               placeholder="Enter Votify Playlist Name"
             />
-            <button className='send-it-btn' type="submit">Submit</button>
+            <button className="send-it-btn" type="submit">
+              Submit
+            </button>
           </form>
+        </div>
+        <div className="search-error">
+          {this.state.error ? <div> incorrect playlist info </div> : ""}
         </div>
       </div>
     );

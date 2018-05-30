@@ -15,6 +15,7 @@ export class ExistingPlaylists extends Component {
     super(props);
     this.state = {
       userPlaylists: [],
+      loading: false
     };
   }
 
@@ -23,6 +24,7 @@ export class ExistingPlaylists extends Component {
   };
 
   findUserPlaylists() {
+    this.setState({ loading: true });
     Users.where("accessToken", "==", accessToken)
       .get()
       .then(user => {
@@ -47,7 +49,10 @@ export class ExistingPlaylists extends Component {
             });
           })
           .then(userPlaylists => {
-            this.setState({ userPlaylists });
+            this.setState({
+              userPlaylists: userPlaylists,
+              loading: false
+            });
           });
       })
       .catch(error => console.log("error: ", error));
@@ -55,6 +60,7 @@ export class ExistingPlaylists extends Component {
 
   render() {
     const playlists = this.state.userPlaylists;
+    const isLoading = this.state.loading;
     return (
       <div id="playlist-root">
         <div id="user-playlists">
@@ -72,6 +78,9 @@ export class ExistingPlaylists extends Component {
                 </div>
               );
             })}
+          <div id="playlist-loading">
+            {isLoading ? <h3>...loading playlists...</h3> : ""}
+          </div>
         </div>
       </div>
     );

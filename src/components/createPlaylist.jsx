@@ -16,6 +16,15 @@ class CreatePlaylist extends Component {
     };
   }
 
+  componentDidMount(){
+    this.clearRedux();
+  }
+
+  clearRedux = () => {
+    const getVotify = this.props.getVotify;
+    getVotify([]);
+  }
+
   newPlaylist = event => {
     event.preventDefault();
     let parsed = queryString.parse(window.location.hash);
@@ -23,7 +32,7 @@ class CreatePlaylist extends Component {
     const userId = this.props.userObj.id;
     const getVotify = this.props.getVotify;
     const { description, name } = this.state;
-    console.log("playlist data: ", userId, accessToken, description, name);
+
     axios({
       method: "POST",
       url: `https://api.spotify.com/v1/users/${userId}/playlists`,
@@ -39,16 +48,13 @@ class CreatePlaylist extends Component {
       }
     })
       .then(res => {
-        console.log("newPlaylist", res);
         getVotify(res.data);
         return res.data;
       })
       .then(newPlay => {
-        console.log("new play: ", newPlay);
         const playlistName = newPlay.name;
         const playlistId = newPlay.id;
         const ownerId = newPlay.owner.id;
-        console.log("info to firebase", playlistId, playlistName, ownerId);
         db
           .collection("Playlists")
           .doc(`${playlistId}`)
