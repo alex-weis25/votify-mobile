@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import axios from "axios";
 import queryString from "query-string";
 const db = firebase.firestore();
-// import AddButton from "svg-react-loader?name=Icon!../icons/add-button.svg";
 
 export class SongSearch extends Component {
   constructor(props) {
@@ -13,10 +12,7 @@ export class SongSearch extends Component {
       tracks: [],
       exists: false
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.onSearchClick = this.onSearchClick.bind(this);
     this.onSongAdd = this.onSongAdd.bind(this);
-    this.moreSongs = this.moreSongs.bind(this);
   }
 
   async onSongAdd(event) {
@@ -64,7 +60,7 @@ export class SongSearch extends Component {
     }
   }
 
-  onSearchClick(event) {
+  onSearchClick = event => {
     event.preventDefault();
     const track = this.state.search.split(" ").join("+");
     let parsed = queryString.parse(window.location.hash);
@@ -113,7 +109,7 @@ export class SongSearch extends Component {
       });
   }
 
-  moreSongs(event) {
+  moreSongs = event => {
     event.preventDefault();
     const track = this.state.search.split(" ").join("+");
     let parsed = queryString.parse(window.location.hash);
@@ -162,7 +158,7 @@ export class SongSearch extends Component {
       });
   }
 
-  handleChange(event) {
+  handleChange = event => {
     event.preventDefault();
     this.setState({ exists: false });
     let { name, value } = event.target;

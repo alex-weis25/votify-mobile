@@ -6,6 +6,7 @@ import axios from 'axios'
 const GET_VOTIFY = 'GET_VOTIFY'
 const GET_CURRENT = 'GET_CURRENT'
 const SET_TOP = 'SET_TOP'
+const SET_OWNER = 'SET_OWNER'
 
 
 /**
@@ -14,7 +15,8 @@ const SET_TOP = 'SET_TOP'
 const initialState = {
   votify: [],
   current: [],
-  topSong: {}
+  topSong: {},
+  owner: {}
 };
 
 /**
@@ -23,13 +25,14 @@ const initialState = {
 export const getVotify = votify => ({type: GET_VOTIFY, votify})
 export const setTop = top => ({type: SET_TOP, top})
 export const getCurrent = current => ({type: GET_CURRENT, current})
+export const setOwner = owner => ({type: SET_OWNER, owner})
 
 /**
  * THUNK CREATORS
  */
 export const fetchVotify = (userId, playlistId, accessToken) =>
   dispatch => {
-    console.log('fetch votify: ')
+    console.log('fetch votify thunk: ')
     axios({
       method: "GET",
       url: `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}`,
@@ -40,6 +43,7 @@ export const fetchVotify = (userId, playlistId, accessToken) =>
       }
     })
       .then(res => {
+        console.log('res in thunk', res.data)
         dispatch(getVotify(res.data))
       })
       .catch(err => console.log(err))
@@ -58,6 +62,9 @@ export default function (state = initialState, action) {
 
     case SET_TOP:
       return Object.assign({}, state, {topSong: action.top})
+
+    case SET_OWNER:
+      return Object.assign({}, state, {owner: action.owner})
 
     default:
       return state

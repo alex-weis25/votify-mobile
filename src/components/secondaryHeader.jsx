@@ -4,7 +4,7 @@ import queryString from "query-string";
 import axios from "axios";
 const db = firebase.firestore();
 
-//SetTimout
+//SetTimeout
 let parsed = queryString.parse(window.location.hash);
 let accessToken = parsed.access_token;
 import { getCurrent, fetchVotify } from "../store/votify.js";
@@ -17,16 +17,24 @@ class SecondaryHeader extends Component {
       last: {}
     };
 
+    //Get top rated song in queue
+      //Check to see if playlist is empty, if so, add first song
+      //If not empty, call function to check current vs lastSong
     setInterval(() => {
+      let ownerAccessToken = this.props.Votify.owner.accessToken;
+
+      // console.log('accessToken new', ownerAccessToken)
+
       axios({
         method: "GET",
         url: "https://api.spotify.com/v1/me/player/currently-playing",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`
+          Authorization: `Bearer ${ownerAccessToken}`
         }
       })
         .then(current => {
+          console.log("checking current: ", current);
           this.props.getCurrent(current.data);
           return current.data;
         })
@@ -45,7 +53,7 @@ class SecondaryHeader extends Component {
                 console.log("signed in & empty playlist...adding first song");
                 this.addSong();
               } else {
-                this.addToVotify();
+                this.addToVotify(ownerAccessToken);
               }
             }
           });
@@ -53,7 +61,8 @@ class SecondaryHeader extends Component {
     }, 10000);
   }
 
-  addToVotify = () => {
+  addToVotify = (ownerAccessToken) => {
+
     const votify = this.props.Votify;
     let last;
     {
@@ -71,11 +80,15 @@ class SecondaryHeader extends Component {
     {
       votify.current.item ? (current = votify.current.item.id) : "";
     }
+    // console.log("in addToVotify", topSongId, current, last, ownerAccessToken, accessToken);
     try {
-      if (current === last && topSongId) {
+      if (current === last && ownerAccessToken === accessToken && topSongId) {
+        console.log('true statement')
         this.addSong();
       } else {
-        this.setState({ last });
+        this.setState({ last }, ()  => {
+          this.updatePlaylist()
+        });
       }
     } catch (error) {
       console.log("error: ", error);
@@ -83,6 +96,7 @@ class SecondaryHeader extends Component {
   };
 
   addSong = () => {
+    console.log("in addSong");
     const votify = this.props.Votify;
     let topSongId = "";
     {
@@ -90,8 +104,8 @@ class SecondaryHeader extends Component {
     }
     let ownerId = this.props.Votify.votify.owner.id;
     const fetchVotify = this.props.fetchVotify;
-    const playlistId = votify.votify.id;
-
+    let playlistId = votify.votify.id;
+    const playlistAccessToken = votify.votify.accessToken;
     axios({
       method: "POST",
       url: `https://api.spotify.com/v1/users/${ownerId}/playlists/${playlistId}/tracks?uris=spotify%3Atrack%3A${topSongId}`,
@@ -99,20 +113,24 @@ class SecondaryHeader extends Component {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
       }
+    }).then(_ => {
+      db
+        .collection("Playlists")
+        .doc(playlistId)
+        .collection("Queue")
+        .doc(topSongId)
+        .delete()
+        .then(_ => console.log("deleted"));
     })
-      .then(_ => {
-        db
-          .collection("Playlists")
-          .doc(playlistId)
-          .collection("Queue")
-          .doc(topSongId)
-          .delete()
-          .then(_ => console.log("deleted"));
-      })
-      .then(_ => {
-        console.log("updating redux for addition");
-        fetchVotify(ownerId, playlistId, accessToken);
-      });
+    .then(_ => this.updatePlaylist())
+  };
+
+  updatePlaylist = () => {
+    console.log('updating playlist', playlistId, ownerId, accessToken)
+    let ownerId = this.props.Votify.votify.owner.id;
+    let playlistId = this.props.Votify.votify.id;
+    const fetchVotify = this.props.fetchVotify;
+    fetchVotify(ownerId, playlistId, accessToken);
   };
 
   clickBack = () => {

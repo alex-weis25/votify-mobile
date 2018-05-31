@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 const db = firebase.firestore();
-
+//connection to store limited
 
 export class PlaylistSelector extends Component {
   constructor(props) {
@@ -22,7 +22,13 @@ export class PlaylistSelector extends Component {
       .doc(`${playlistId}`)
       .set({
         owner: id, //user ID === owner ID here. CAUTION!
-        name: playlistName
+        name: playlistName,
+        accessToken: accessToken
+      })
+      .then(_ => {
+        this.props.setOwner({
+          accessToken: accessToken
+        })
       })
       .then(_ => this.props.setView("SinglePlaylist"));
   }

@@ -3,7 +3,7 @@ import axios from "axios";
 import queryString from "query-string";
 import { connect } from "react-redux";
 import { PlaylistSelector } from "./playlistSelector.jsx";
-import { fetchVotify } from "../store/votify.js";
+import { fetchVotify, setOwner } from "../store/votify.js";
 
 const db = firebase.firestore();
 let parsed = queryString.parse(window.location.hash);
@@ -32,7 +32,8 @@ export class FriendsPlaylist extends Component {
   onSubmit = event => {
     event.preventDefault();
     const { ownerId, playlistName } = this.state;
-    const { fetchVotify, setView } = this.props;
+    const { fetchVotify, setView, setOwner } = this.props;
+
     db
       .collection("Playlists")
       .where("owner", "==", `${ownerId}`)
@@ -40,6 +41,10 @@ export class FriendsPlaylist extends Component {
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           if (doc.data().name === playlistName) {
+            console.log('doc id.log..access token?', doc.data())
+            setOwner({
+              accessToken: doc.data().accessToken
+            })
             fetchVotify(ownerId, doc.id, accessToken);
             setView('SinglePlaylist');
           } else {
@@ -90,6 +95,6 @@ export class FriendsPlaylist extends Component {
 }
 
 const mapState = ({ Votify }) => ({ Votify });
-const mapDispatch = { fetchVotify };
+const mapDispatch = { fetchVotify, setOwner };
 
 export default connect(mapState, mapDispatch)(FriendsPlaylist);

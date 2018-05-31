@@ -3,7 +3,7 @@ import axios from "axios";
 import queryString from "query-string";
 import { connect } from "react-redux";
 import { PlaylistSelector } from "./playlistSelector.jsx";
-import { fetchVotify } from "../store/votify.js";
+import { fetchVotify, setOwner } from "../store/votify.js";
 
 const db = firebase.firestore();
 let parsed = queryString.parse(window.location.hash);
@@ -74,6 +74,7 @@ export class ExistingPlaylists extends Component {
                     userObj={this.props.userObj}
                     fetchVotify={this.props.fetchVotify}
                     setView={this.props.setView}
+                    setOwner = {this.props.setOwner}
                   />
                 </div>
               );
@@ -88,6 +89,6 @@ export class ExistingPlaylists extends Component {
 }
 
 const mapState = ({ Votify }) => ({ Votify });
-const mapDispatch = { fetchVotify };
+const mapDispatch = { fetchVotify, setOwner };
 
 export default connect(mapState, mapDispatch)(ExistingPlaylists);
