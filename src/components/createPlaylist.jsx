@@ -32,6 +32,7 @@ class CreatePlaylist extends Component {
     const userId = this.props.userObj.id;
     const getVotify = this.props.getVotify;
     const { description, name } = this.state;
+    console.log('name on submit', name, userId)
 
     axios({
       method: "POST",
@@ -48,18 +49,20 @@ class CreatePlaylist extends Component {
       }
     })
       .then(res => {
+        console.log('in chain', res.data);
         getVotify(res.data);
         return res.data;
       })
       .then(newPlay => {
-        const playlistName = newPlay.name;
+        console.log('newPlay', newPlay)
+        const playlistName = name;
         const playlistId = newPlay.id;
-        const ownerId = newPlay.owner.id;
+        const ownerId = userId;
         db
           .collection("Playlists")
           .doc(`${playlistId}`)
           .set({
-            owner: ownerId, //user ID === owner ID here. CAUTION!
+            owner: ownerId,
             name: playlistName
           });
       })
@@ -73,6 +76,7 @@ class CreatePlaylist extends Component {
     this.setState({
       [name]: value
     });
+    console.log('state on create Playlist', this.state);
   };
 
   render() {

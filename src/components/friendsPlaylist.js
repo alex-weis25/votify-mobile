@@ -33,26 +33,31 @@ export class FriendsPlaylist extends Component {
     event.preventDefault();
     const { ownerId, playlistName } = this.state;
     const { fetchVotify, setView, setOwner } = this.props;
-
+    let foundItem = false;
+    console.log('playlistName', playlistName)
     db
       .collection("Playlists")
-      .where("owner", "==", `${ownerId}`)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
+          console.log('all dox', doc.data())
           if (doc.data().name === playlistName) {
-            console.log('doc id.log..access token?', doc.data())
+            foundItem = true;
             setOwner({
               accessToken: doc.data().accessToken
             })
             fetchVotify(ownerId, doc.id, accessToken);
             setView('SinglePlaylist');
-          } else {
+          }
+        });
+      })
+      .then(_ => {
+        if(!foundItem){
+            console.log('throw error')
             this.setState({
               error: true
             });
-          }
-        });
+        }
       })
       .catch(error => {
         console.log("error getting docs: ", error);
@@ -67,13 +72,6 @@ export class FriendsPlaylist extends Component {
       <div id="playlist-root">
         <div id="user-playlists">
           <form className="form-playlist" onSubmit={this.onSubmit}>
-            <input
-              name="ownerId"
-              className="form-control"
-              value={this.state.ownerId}
-              onChange={this.handleChange}
-              placeholder="Enter Friend's Spotify ID"
-            />
             <input
               name="playlistName"
               className="form-control"
@@ -98,3 +96,11 @@ const mapState = ({ Votify }) => ({ Votify });
 const mapDispatch = { fetchVotify, setOwner };
 
 export default connect(mapState, mapDispatch)(FriendsPlaylist);
+
+// <input
+//               name="ownerId"
+//               className="form-control"
+//               value={this.state.ownerId}
+//               onChange={this.handleChange}
+//               placeholder="Enter Friend's Spotify ID"
+//             />

@@ -32,7 +32,6 @@ export const setOwner = owner => ({type: SET_OWNER, owner})
  */
 export const fetchVotify = (userId, playlistId, accessToken) =>
   dispatch => {
-    console.log('fetch votify thunk: ')
     axios({
       method: "GET",
       url: `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}`,
@@ -43,7 +42,7 @@ export const fetchVotify = (userId, playlistId, accessToken) =>
       }
     })
       .then(res => {
-        console.log('res in thunk', res.data)
+        console.log('dispatching thunk')
         dispatch(getVotify(res.data))
       })
       .catch(err => console.log(err))

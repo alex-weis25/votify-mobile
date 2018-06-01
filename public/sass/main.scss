@@ -34,14 +34,14 @@ img {
 }
 
 .search {
-  width: 60vw;
+  width: 66vw;
   height: 3vh;
 }
 
 .votify-secondary-header {
   display: flex;
   flex-direction: column;
-  height: 10vh;
+  height: 17vh;
 }
 
 .secondary-top {
@@ -69,9 +69,13 @@ img {
   height: 5vh;
   display: flex;
   justify-content: center;
-  margin: 50px 15px 50px 15px;
+  margin: 10px 15px 10px 15px;
   font-size: 1.5rem;
   text-align: center;
+}
+
+#secondary-bottom {
+
 }
 
 .top-navbar {
@@ -195,15 +199,16 @@ img {
 }
 
 .Playlist-selector-left {
-  width: 33vw;
+  width: 40vw;
   height: 10vh;
+  margin-left: 10px;
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
 .Playlist-selector-right {
-  width: 67vw;
+  width: 55vw;
   height: 10vh;
   align-items: center;
   display: flex;
@@ -215,6 +220,7 @@ img {
   color: $spotify-grey-text-light;
   border:none;
   height:5vh;
+  width: 48vw;
   font-size:1em;
   padding:0 2em;
   border-radius: 15px;
@@ -312,7 +318,8 @@ img {
 .add-button {
   background: $spotify-grey-text-light;
   color: $spotify-black;
-  width: 50px;
+  width: 10vw;
+  height: 2vh;
   margin-left: 10px;
   border-radius: 5px;
 }
@@ -361,8 +368,9 @@ img {
   border: 0 0 0 15px;
   background: $spotify-green;
   border-radius: 5px;
+  font-size: .9rem;
   width:25vw;
-  height: 2.5vh;
+  height: 4vh;
   color: $spotify-grey-text-light;
   margin: 10px 0px 10px 10px;
 }

@@ -34,7 +34,6 @@ class SecondaryHeader extends Component {
         }
       })
         .then(current => {
-          console.log("checking current: ", current);
           this.props.getCurrent(current.data);
           return current.data;
         })
@@ -83,7 +82,6 @@ class SecondaryHeader extends Component {
     // console.log("in addToVotify", topSongId, current, last, ownerAccessToken, accessToken);
     try {
       if (current === last && ownerAccessToken === accessToken && topSongId) {
-        console.log('true statement')
         this.addSong();
       } else {
         this.setState({ last }, ()  => {
@@ -96,7 +94,6 @@ class SecondaryHeader extends Component {
   };
 
   addSong = () => {
-    console.log("in addSong");
     const votify = this.props.Votify;
     let topSongId = "";
     {
@@ -126,7 +123,6 @@ class SecondaryHeader extends Component {
   };
 
   updatePlaylist = () => {
-    console.log('updating playlist', playlistId, ownerId, accessToken)
     let ownerId = this.props.Votify.votify.owner.id;
     let playlistId = this.props.Votify.votify.id;
     const fetchVotify = this.props.fetchVotify;
