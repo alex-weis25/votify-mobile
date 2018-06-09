@@ -180,6 +180,30 @@ if (false) {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(105);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
+/* unused harmony reexport createProvider */
+/* unused harmony reexport connectAdvanced */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
+
+
+
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(126);
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -233,30 +257,6 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(105);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
-/* unused harmony reexport createProvider */
-/* unused harmony reexport connectAdvanced */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
-
-
-
-
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(126);
 
 /***/ }),
 /* 6 */
@@ -795,22 +795,23 @@ exports.parseUrl = (input, options) => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getVotify; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return setTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return setTop; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getCurrent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return setOwner; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchVotify; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /**
  * ACTION TYPES
- */var GET_VOTIFY='GET_VOTIFY';var GET_CURRENT='GET_CURRENT';var SET_TOP='SET_TOP';/**
+ */var GET_VOTIFY='GET_VOTIFY';var GET_CURRENT='GET_CURRENT';var SET_TOP='SET_TOP';var SET_OWNER='SET_OWNER';/**
  * INITIAL STATE
- */var initialState={votify:[],current:[],topSong:{}};/**
+ */var initialState={votify:[],current:[],topSong:{},owner:{}};/**
  * ACTION CREATORS
- */var getVotify=function getVotify(votify){return{type:GET_VOTIFY,votify:votify};};var setTop=function setTop(top){return{type:SET_TOP,top:top};};var getCurrent=function getCurrent(current){return{type:GET_CURRENT,current:current};};/**
+ */var getVotify=function getVotify(votify){return{type:GET_VOTIFY,votify:votify};};var setTop=function setTop(top){return{type:SET_TOP,top:top};};var getCurrent=function getCurrent(current){return{type:GET_CURRENT,current:current};};var setOwner=function setOwner(owner){return{type:SET_OWNER,owner:owner};};/**
  * THUNK CREATORS
- */var fetchVotify=function fetchVotify(userId,playlistId,accessToken){return function(dispatch){console.log('fetch votify: ');__WEBPACK_IMPORTED_MODULE_0_axios___default()({method:"GET",url:'https://api.spotify.com/v1/users/'+userId+'/playlists/'+playlistId,headers:{"Content-Type":"application/json",Authorization:'Bearer '+accessToken}}).then(function(res){dispatch(getVotify(res.data));}).catch(function(err){return console.log(err);});};};/**
+ */var fetchVotify=function fetchVotify(userId,playlistId,accessToken){return function(dispatch){__WEBPACK_IMPORTED_MODULE_0_axios___default()({method:"GET",url:'https://api.spotify.com/v1/users/'+userId+'/playlists/'+playlistId,headers:{"Content-Type":"application/json",Authorization:'Bearer '+accessToken}}).then(function(res){console.log('dispatching thunk');dispatch(getVotify(res.data));}).catch(function(err){return console.log(err);});};};/**
  * REDUCER
- *//* harmony default export */ __webpack_exports__["a"] = (function(){var state=arguments.length>0&&arguments[0]!==undefined?arguments[0]:initialState;var action=arguments[1];switch(action.type){case GET_VOTIFY:return Object.assign({},state,{votify:action.votify});case GET_CURRENT:return Object.assign({},state,{current:action.current});case SET_TOP:return Object.assign({},state,{topSong:action.top});default:return state;}});
+ *//* harmony default export */ __webpack_exports__["a"] = (function(){var state=arguments.length>0&&arguments[0]!==undefined?arguments[0]:initialState;var action=arguments[1];switch(action.type){case GET_VOTIFY:return Object.assign({},state,{votify:action.votify});case GET_CURRENT:return Object.assign({},state,{current:action.current});case SET_TOP:return Object.assign({},state,{topSong:action.top});case SET_OWNER:return Object.assign({},state,{owner:action.owner});default:return state;}});
 
 /***/ }),
 /* 9 */
@@ -833,7 +834,7 @@ exports.parseUrl = (input, options) => {
 /* unused harmony reexport Redirect */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(34);
 /* unused harmony reexport Route */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(19);
 /* unused harmony reexport Router */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(96);
 /* unused harmony reexport StaticRouter */
@@ -1010,6 +1011,19 @@ var createPath = function createPath(location) {
 
 /***/ }),
 /* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlaylistSelector; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(3);
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();//connection to store limited
+var PlaylistSelector=function(_Component){_inherits(PlaylistSelector,_Component);function PlaylistSelector(props){_classCallCheck(this,PlaylistSelector);var _this=_possibleConstructorReturn(this,(PlaylistSelector.__proto__||Object.getPrototypeOf(PlaylistSelector)).call(this,props));_this.state={};_this.onClick=_this.onClick.bind(_this);return _this;}_createClass(PlaylistSelector,[{key:"onClick",value:function onClick(event){var _this2=this;event.preventDefault();var _props$userObj=this.props.userObj,id=_props$userObj.id,accessToken=_props$userObj.accessToken;var playlistId=this.props.id;var playlistName=this.props.name;var fetchVotify=this.props.fetchVotify;fetchVotify(id,playlistId,accessToken);db.collection("Playlists").doc(""+playlistId).set({owner:id,//user ID === owner ID here. CAUTION!
+name:playlistName,accessToken:accessToken}).then(function(_){_this2.props.setOwner({accessToken:accessToken});}).then(function(_){return _this2.props.setView("SinglePlaylist");});}},{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Playlist-selector"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Playlist-selector-left"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"button-playlist",onClick:this.onClick},"Select")),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Playlist-selector-right"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-name"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4",null,this.props.name))));}}]);return PlaylistSelector;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch=null;/* unused harmony default export */ var _unused_webpack_default_export = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapState,mapDispatch)(PlaylistSelector));
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1036,7 +1050,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1078,7 +1092,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1154,7 +1168,7 @@ var locationsAreEqual = function locationsAreEqual(a, b) {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1251,7 +1265,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1335,7 +1349,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1426,24 +1440,24 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Router__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Router__ = __webpack_require__(20);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Router__["a" /* default */]);
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -1556,7 +1570,7 @@ Router.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Router);
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1633,7 +1647,7 @@ var matchPath = function matchPath(pathname) {
 /* harmony default export */ __webpack_exports__["a"] = (matchPath);
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1718,7 +1732,7 @@ var createTransitionManager = function createTransitionManager() {
 /* harmony default export */ __webpack_exports__["a"] = (createTransitionManager);
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1746,7 +1760,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1782,7 +1796,7 @@ if (false) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1854,7 +1868,7 @@ function isPlainObject(value) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1956,18 +1970,6 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(129)))
-
-/***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlaylistSelector; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(4);
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var PlaylistSelector=function(_Component){_inherits(PlaylistSelector,_Component);function PlaylistSelector(props){_classCallCheck(this,PlaylistSelector);var _this=_possibleConstructorReturn(this,(PlaylistSelector.__proto__||Object.getPrototypeOf(PlaylistSelector)).call(this,props));_this.state={};_this.onClick=_this.onClick.bind(_this);return _this;}_createClass(PlaylistSelector,[{key:"onClick",value:function onClick(event){var _this2=this;event.preventDefault();var _props$userObj=this.props.userObj,id=_props$userObj.id,accessToken=_props$userObj.accessToken;var playlistId=this.props.id;var playlistName=this.props.name;var fetchVotify=this.props.fetchVotify;fetchVotify(id,playlistId,accessToken);db.collection("Playlists").doc(""+playlistId).set({owner:id,//user ID === owner ID here. CAUTION!
-name:playlistName}).then(function(_){return _this2.props.setView("SinglePlaylist");});}},{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Playlist-selector"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Playlist-selector-left"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"button-playlist",onClick:this.onClick},"Select")),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Playlist-selector-right"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-name"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4",null,this.props.name))));}}]);return PlaylistSelector;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch=null;/* unused harmony default export */ var _unused_webpack_default_export = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapState,mapDispatch)(PlaylistSelector));
 
 /***/ }),
 /* 27 */
@@ -2221,8 +2223,8 @@ module.exports = emptyObject;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
 var Login=function Login(props){var handleLogin=props.handleLogin;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"login"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3",null,"Please login to continue"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a",{id:"login-btn",className:"choose-button",href:"https://us-central1-votify-b9360.cloudfunctions.net/login"},"Login"));};var mapState=null;var mapDispatch=null;/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* withRouter */])(Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapState,mapDispatch)(Login)));
 
@@ -2418,7 +2420,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -2537,13 +2539,13 @@ Link.contextTypes = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(21);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2855,7 +2857,7 @@ var storeShape = __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
 /* harmony export (immutable) */ __webpack_exports__["a"] = connectAdvanced;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -3158,7 +3160,7 @@ selectorFactory) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(116);
 
 
@@ -3573,8 +3575,8 @@ function wrapMapToPropsFunc(mapToProps, methodName) {
 
 "use strict";
 /* unused harmony export default */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(23);
 
 
 
@@ -3867,17 +3869,17 @@ module.exports = Cancel;
 /* unused harmony reexport Login */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__playlistQueue__ = __webpack_require__(52);
 /* unused harmony reexport PlaylistQueue */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__playlistSelector__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__playlistSelector__ = __webpack_require__(12);
 /* unused harmony reexport PlaylistSelector */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__secondaryHeader__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__secondaryHeader__ = __webpack_require__(153);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_6__secondaryHeader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__singlePlaylist__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__singlePlaylist__ = __webpack_require__(154);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_7__singlePlaylist__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__songList__ = __webpack_require__(54);
 /* unused harmony reexport SongList */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__songSearch__ = __webpack_require__(55);
 /* unused harmony reexport SongSearch */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__interactive__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__interactive__ = __webpack_require__(158);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_10__interactive__["a"]; });
 
 
@@ -3889,15 +3891,15 @@ module.exports = Cancel;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_query_string__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__index__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__functions__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__store_votify__ = __webpack_require__(8);
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var PlaylistQueue=function(_Component){_inherits(PlaylistQueue,_Component);function PlaylistQueue(props){_classCallCheck(this,PlaylistQueue);var _this=_possibleConstructorReturn(this,(PlaylistQueue.__proto__||Object.getPrototypeOf(PlaylistQueue)).call(this,props));_this.setTopSong=function(){var topSong=_this.state.queue[0];var setTop=_this.props.setTop;setTop(topSong);};_this.state={queue:[]};return _this;}_createClass(PlaylistQueue,[{key:"componentDidMount",value:function componentDidMount(){var _this2=this;var id=this.props.Votify.votify.id;this.unsubscribe=db.collection("Playlists").doc(""+id).collection("Queue").onSnapshot(function(snapshot){var songQueue=[];snapshot.forEach(function(song){songQueue.push(song.data().content);}),function(error){console.log("error",error);};_this2.setState({queue:Object(__WEBPACK_IMPORTED_MODULE_6__functions__["a" /* sortByVote */])(songQueue)});});}},{key:"componentWillUnmount",value:function componentWillUnmount(){console.log("unmounting");this.unsubscribe();}},{key:"render",value:function render(){var _this3=this;var songList=this.state.queue;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-wrapper"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2",null,"Queue"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h5",null,"Votes"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-queue"},songList&&songList.map(function(song){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-item"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-score"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3",null,song.score)),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__index__["d" /* Interactive */],{song:song,unsubscribe:_this3.unsubscribe,userObj:_this3.props.userObj,findHighest:_this3.props.findHighest}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"album-art"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img",{src:song.albumImg})),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-details",key:song.id,name:song.name},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-song-name"},song.name," "),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-song-artist"},song.artist," ")));})));}}]);return PlaylistQueue;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Queue=_ref.Queue,Votify=_ref.Votify;return{Queue:Queue,Votify:Votify};};var mapDispatch={setTop:__WEBPACK_IMPORTED_MODULE_7__store_votify__["e" /* setTop */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(PlaylistQueue));
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var PlaylistQueue=function(_Component){_inherits(PlaylistQueue,_Component);function PlaylistQueue(props){_classCallCheck(this,PlaylistQueue);var _this=_possibleConstructorReturn(this,(PlaylistQueue.__proto__||Object.getPrototypeOf(PlaylistQueue)).call(this,props));_this.setTopSong=function(){var topSong=_this.state.queue[0];var setTop=_this.props.setTop;setTop(topSong);};_this.state={queue:[]};return _this;}_createClass(PlaylistQueue,[{key:"componentDidMount",value:function componentDidMount(){var _this2=this;var id=this.props.Votify.votify.id;this.unsubscribe=db.collection("Playlists").doc(""+id).collection("Queue").onSnapshot(function(snapshot){var songQueue=[];snapshot.forEach(function(song){songQueue.push(song.data().content);}),function(error){console.log("error",error);};_this2.setState({queue:Object(__WEBPACK_IMPORTED_MODULE_6__functions__["a" /* sortByVote */])(songQueue)});});}},{key:"componentWillUnmount",value:function componentWillUnmount(){console.log("unmounting");this.unsubscribe();}},{key:"render",value:function render(){var _this3=this;var songList=this.state.queue;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-wrapper"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2",{className:"indent"},"Queue"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-detail"},"Votes"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-queue"},songList&&songList.map(function(song){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-item"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-score"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3",null,song.score)),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__index__["d" /* Interactive */],{song:song,unsubscribe:_this3.unsubscribe,userObj:_this3.props.userObj,findHighest:_this3.props.findHighest}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"album-art"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img",{src:song.albumImg})),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-details",key:song.id,name:song.name},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-song-name"},song.name," "),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"queue-song-artist"},song.artist," ")));})));}}]);return PlaylistQueue;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Queue=_ref.Queue,Votify=_ref.Votify;return{Queue:Queue,Votify:Votify};};var mapDispatch={setTop:__WEBPACK_IMPORTED_MODULE_7__store_votify__["f" /* setTop */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(PlaylistQueue));
 
 /***/ }),
 /* 53 */
@@ -3905,7 +3907,7 @@ var _createClass=function(){function defineProperties(target,props){for(var i=0;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sortByVote; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_query_string__);
@@ -3939,12 +3941,12 @@ var sortByVote=function sortByVote(array){var updatedOrder=[];array.forEach(func
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_query_string__);
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var SongList=function(_Component){_inherits(SongList,_Component);function SongList(props){_classCallCheck(this,SongList);var _this=_possibleConstructorReturn(this,(SongList.__proto__||Object.getPrototypeOf(SongList)).call(this,props));_this.state={};return _this;}_createClass(SongList,[{key:"render",value:function render(){var tracks=this.props.tracks;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Single-playlist-tracks"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2",null,"Playlist - ",this.props.Votify.votify.name),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-tracks-wrapper"},tracks&&tracks.items.map(function(track){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"user-tracks",key:track.id},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"album-art"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img",{src:track.track.album.images[0].url})),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-details"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-title"},track.track.name),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-artist"},track.track.artists[0].name)));})));}}]);return SongList;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch=null;/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapState,mapDispatch)(SongList));
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var SongList=function(_Component){_inherits(SongList,_Component);function SongList(props){_classCallCheck(this,SongList);var _this=_possibleConstructorReturn(this,(SongList.__proto__||Object.getPrototypeOf(SongList)).call(this,props));_this.state={};return _this;}_createClass(SongList,[{key:"render",value:function render(){var tracks=this.props.tracks;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Single-playlist-tracks"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2",{className:"indent"},"Playlist - ",this.props.Votify.votify.name),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-tracks-wrapper"},tracks&&tracks.items.map(function(track){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"user-tracks",key:track.id},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"album-art"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img",{src:track.track.album.images[0].url})),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-details"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-title"},track.track.name),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"song-artist"},track.track.artists[0].name)));})));}}]);return SongList;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch=null;/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapState,mapDispatch)(SongList));
 
 /***/ }),
 /* 55 */
@@ -3952,17 +3954,16 @@ var _createClass=function(){function defineProperties(target,props){for(var i=0;
 
 "use strict";
 /* unused harmony export SongSearch */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_query_string__);
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _asyncToGenerator(fn){return function(){var gen=fn.apply(this,arguments);return new Promise(function(resolve,reject){function step(key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{return Promise.resolve(value).then(function(value){step("next",value);},function(err){step("throw",err);});}}return step("next");});};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();// import AddButton from "svg-react-loader?name=Icon!../icons/add-button.svg";
-var SongSearch=function(_Component){_inherits(SongSearch,_Component);function SongSearch(props){_classCallCheck(this,SongSearch);var _this=_possibleConstructorReturn(this,(SongSearch.__proto__||Object.getPrototypeOf(SongSearch)).call(this,props));_this.state={search:"",tracks:[],exists:false};_this.handleChange=_this.handleChange.bind(_this);_this.onSearchClick=_this.onSearchClick.bind(_this);_this.onSongAdd=_this.onSongAdd.bind(_this);_this.moreSongs=_this.moreSongs.bind(_this);return _this;}_createClass(SongSearch,[{key:"onSongAdd",value:function(){var _ref=_asyncToGenerator(/*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(event){var _this2=this;var playlist,name,addSong,content;return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:event.preventDefault();playlist=this.props.Votify.votify;name=event.target.name;addSong=this.state.tracks[name];content={name:addSong.name,artist:addSong.artist,songId:addSong.id,albumImg:addSong.albumImg,upVote:0,downVote:0,score:0,voted:{}};_context.next=7;return db.collection("Playlists").doc(""+playlist.id).collection("Queue").doc(""+addSong.id).get().then(function(doc){if(doc.exists){_this2.setState({exists:true});}});case 7:if(!this.state.exists){_context.next=11;break;}console.log("song already in queue");_context.next=14;break;case 11:_context.next=13;return db.collection("Playlists").doc(""+playlist.id).collection("Queue").doc(""+addSong.id).set({content:content}).catch(function(error){return console.log(error);});case 13:this.setState({exists:false},function(_){var changeView=_this2.props.changeView;changeView("Queue");});case 14:case"end":return _context.stop();}}},_callee,this);}));function onSongAdd(_x){return _ref.apply(this,arguments);}return onSongAdd;}()},{key:"onSearchClick",value:function onSearchClick(event){var _this3=this;event.preventDefault();var track=this.state.search.split(" ").join("+");var parsed=__WEBPACK_IMPORTED_MODULE_4_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var uri="https://api.spotify.com/v1/search?q=";__WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(""+uri+track+"&type=track",{headers:{Authorization:"Bearer "+accessToken}}).then(function(response){var tracks=response.data.tracks.items;_this3.setState({tracks:[{name:tracks[0].name,artist:tracks[0].artists[0].name,albumImg:tracks[0].album.images[0].url,id:tracks[0].id},{name:tracks[1].name,artist:tracks[1].artists[0].name,albumImg:tracks[1].album.images[0].url,id:tracks[1].id},{name:tracks[2].name,artist:tracks[2].artists[0].name,albumImg:tracks[2].album.images[0].url,id:tracks[2].id},{name:tracks[3].name,artist:tracks[3].artists[0].name,albumImg:tracks[3].album.images[0].url,id:tracks[3].id},{name:tracks[4].name,artist:tracks[4].artists[0].name,albumImg:tracks[4].album.images[0].url,id:tracks[4].id}]});});}},{key:"moreSongs",value:function moreSongs(event){var _this4=this;event.preventDefault();var track=this.state.search.split(" ").join("+");var parsed=__WEBPACK_IMPORTED_MODULE_4_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var uri="https://api.spotify.com/v1/search?q=";__WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(""+uri+track+"&type=track",{headers:{Authorization:"Bearer "+accessToken}}).then(function(response){var tracks=response.data.tracks.items;_this4.setState({tracks:[{name:tracks[5].name,artist:tracks[5].artists[0].name,albumImg:tracks[5].album.images[0].url,id:tracks[5].id},{name:tracks[6].name,artist:tracks[6].artists[0].name,albumImg:tracks[6].album.images[0].url,id:tracks[6].id},{name:tracks[7].name,artist:tracks[7].artists[0].name,albumImg:tracks[7].album.images[0].url,id:tracks[7].id},{name:tracks[8].name,artist:tracks[8].artists[0].name,albumImg:tracks[8].album.images[0].url,id:tracks[8].id},{name:tracks[9].name,artist:tracks[9].artists[0].name,albumImg:tracks[9].album.images[0].url,id:tracks[9].id}]});});}},{key:"handleChange",value:function handleChange(event){event.preventDefault();this.setState({exists:false});var _event$target=event.target,name=_event$target.name,value=_event$target.value;this.setState(_defineProperty({},name,value));}},{key:"render",value:function render(){var _this5=this;var currentSongs=this.state.tracks;return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{id:"search-bar"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h2",null,"Search"),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form",{id:"search-bar-form",onSubmit:this.onSearchClick},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input",{name:"search",className:"form-control",value:this.state.search,onChange:this.handleChange,placeholder:"search song by title"}),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button",{className:"send-it-btn",type:"submit"},"Send it")),this.state.exists===true?__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"warning"},"Song already in queue"):"",__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"playlist"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"loader"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"inner-circle"}))),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{id:"search-items"},currentSongs&&currentSongs.map(function(song,index){return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"song-search-wrapper"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"add-button-wrapper"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button",{className:"add-button",name:index,onClick:_this5.onSongAdd},"Add")),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"song-details",key:song.id},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"queue-song-name"},song.name," "),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"queue-song-artist"},song.artist," ")));})),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button",{className:"add-button",onClick:this.moreSongs},"More"));}}]);return SongSearch;}(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);var mapState=function mapState(_ref2){var Votify=_ref2.Votify;return{Votify:Votify};};var mapDispatch=null;/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapState,mapDispatch)(SongSearch));
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _asyncToGenerator(fn){return function(){var gen=fn.apply(this,arguments);return new Promise(function(resolve,reject){function step(key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{return Promise.resolve(value).then(function(value){step("next",value);},function(err){step("throw",err);});}}return step("next");});};}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var SongSearch=function(_Component){_inherits(SongSearch,_Component);function SongSearch(props){_classCallCheck(this,SongSearch);var _this=_possibleConstructorReturn(this,(SongSearch.__proto__||Object.getPrototypeOf(SongSearch)).call(this,props));_this.onSearchClick=function(event){event.preventDefault();var track=_this.state.search.split(" ").join("+");var parsed=__WEBPACK_IMPORTED_MODULE_4_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var uri="https://api.spotify.com/v1/search?q=";__WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(""+uri+track+"&type=track",{headers:{Authorization:"Bearer "+accessToken}}).then(function(response){var tracks=response.data.tracks.items;_this.setState({tracks:[{name:tracks[0].name,artist:tracks[0].artists[0].name,albumImg:tracks[0].album.images[0].url,id:tracks[0].id},{name:tracks[1].name,artist:tracks[1].artists[0].name,albumImg:tracks[1].album.images[0].url,id:tracks[1].id},{name:tracks[2].name,artist:tracks[2].artists[0].name,albumImg:tracks[2].album.images[0].url,id:tracks[2].id},{name:tracks[3].name,artist:tracks[3].artists[0].name,albumImg:tracks[3].album.images[0].url,id:tracks[3].id},{name:tracks[4].name,artist:tracks[4].artists[0].name,albumImg:tracks[4].album.images[0].url,id:tracks[4].id}]});});};_this.moreSongs=function(event){event.preventDefault();var track=_this.state.search.split(" ").join("+");var parsed=__WEBPACK_IMPORTED_MODULE_4_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var uri="https://api.spotify.com/v1/search?q=";__WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(""+uri+track+"&type=track",{headers:{Authorization:"Bearer "+accessToken}}).then(function(response){var tracks=response.data.tracks.items;_this.setState({tracks:[{name:tracks[5].name,artist:tracks[5].artists[0].name,albumImg:tracks[5].album.images[0].url,id:tracks[5].id},{name:tracks[6].name,artist:tracks[6].artists[0].name,albumImg:tracks[6].album.images[0].url,id:tracks[6].id},{name:tracks[7].name,artist:tracks[7].artists[0].name,albumImg:tracks[7].album.images[0].url,id:tracks[7].id},{name:tracks[8].name,artist:tracks[8].artists[0].name,albumImg:tracks[8].album.images[0].url,id:tracks[8].id},{name:tracks[9].name,artist:tracks[9].artists[0].name,albumImg:tracks[9].album.images[0].url,id:tracks[9].id}]});});};_this.handleChange=function(event){event.preventDefault();_this.setState({exists:false});var _event$target=event.target,name=_event$target.name,value=_event$target.value;_this.setState(_defineProperty({},name,value));};_this.state={search:"",tracks:[],exists:false};_this.onSongAdd=_this.onSongAdd.bind(_this);return _this;}_createClass(SongSearch,[{key:"onSongAdd",value:function(){var _ref=_asyncToGenerator(/*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(event){var _this2=this;var playlist,name,addSong,content;return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:event.preventDefault();playlist=this.props.Votify.votify;name=event.target.name;addSong=this.state.tracks[name];content={name:addSong.name,artist:addSong.artist,songId:addSong.id,albumImg:addSong.albumImg,upVote:0,downVote:0,score:0,voted:{}};_context.next=7;return db.collection("Playlists").doc(""+playlist.id).collection("Queue").doc(""+addSong.id).get().then(function(doc){if(doc.exists){_this2.setState({exists:true});}});case 7:if(!this.state.exists){_context.next=11;break;}console.log("song already in queue");_context.next=14;break;case 11:_context.next=13;return db.collection("Playlists").doc(""+playlist.id).collection("Queue").doc(""+addSong.id).set({content:content}).catch(function(error){return console.log(error);});case 13:this.setState({exists:false},function(_){var changeView=_this2.props.changeView;changeView("Queue");});case 14:case"end":return _context.stop();}}},_callee,this);}));function onSongAdd(_x){return _ref.apply(this,arguments);}return onSongAdd;}()},{key:"render",value:function render(){var _this3=this;var currentSongs=this.state.tracks;return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{id:"search-bar"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"indent"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h2",null,"Search")),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form",{id:"search-bar-form",onSubmit:this.onSearchClick},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input",{name:"search",className:"form-control search",value:this.state.search,onChange:this.handleChange,placeholder:"Search Song"}),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button",{className:"send-it-btn",type:"submit"},"Search")),this.state.exists===true?__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"warning"},"Song already in queue"):"",__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"playlist"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"loader"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"inner-circle"}))),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{id:"search-items"},currentSongs&&currentSongs.map(function(song,index){return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"song-search-wrapper"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"add-button-wrapper"},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button",{className:"add-button",name:index,onClick:_this3.onSongAdd},"Add")),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"song-details",key:song.id},__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"queue-song-name"},song.name," "),__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div",{className:"queue-song-artist"},song.artist," ")));})),this.state.tracks.length===0?"":__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button",{className:"send-it-btn",onClick:this.moreSongs},"More"));}}]);return SongSearch;}(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);var mapState=function mapState(_ref2){var Votify=_ref2.Votify;return{Votify:Votify};};var mapDispatch=null;/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapState,mapDispatch)(SongSearch));
 
 /***/ }),
 /* 56 */
@@ -4000,7 +4001,7 @@ __webpack_require__(61);
 
 // Object.assign() is commonly used with React.
 // It will use the native implementation if it's present and isn't buggy.
-Object.assign = __webpack_require__(15);
+Object.assign = __webpack_require__(16);
 
 // In tests, polyfill requestAnimationFrame since jsdom doesn't provide it yet.
 // We don't polyfill it in the browser--this is user's responsibility.
@@ -4357,7 +4358,7 @@ rawAsap.makeRequestCallFromTimer = makeRequestCallFromTimer;
 // back into ASAP proper.
 // https://github.com/tildeio/rsvp.js/blob/cddf7232546a9cf858524b75cde6f9edf72620a7/lib/rsvp/asap.js
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
 
 /***/ }),
 /* 60 */
@@ -4951,10 +4952,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_redux__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_redux__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_router_dom__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__registerServiceWorker__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__registerServiceWorker__ = __webpack_require__(165);
 // import "./css/index.css";
 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_redux__["a" /* Provider */],{store:__WEBPACK_IMPORTED_MODULE_3__store__["a" /* default */]},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_router_dom__["a" /* BrowserRouter */],null,__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__App__["a" /* default */],null))),document.getElementById("root"));Object(__WEBPACK_IMPORTED_MODULE_6__registerServiceWorker__["a" /* default */])();
 
@@ -4972,7 +4973,7 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
  * LICENSE file in the root directory of this source tree.
  */
 
-var m=__webpack_require__(15),n=__webpack_require__(28),p=__webpack_require__(13),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
+var m=__webpack_require__(16),n=__webpack_require__(28),p=__webpack_require__(14),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var z={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function A(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}A.prototype.isReactComponent={};A.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?y("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};A.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function B(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}function C(){}C.prototype=A.prototype;var D=B.prototype=new C;D.constructor=B;m(D,A.prototype);D.isPureReactComponent=!0;function E(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}var F=E.prototype=new C;F.constructor=E;m(F,A.prototype);F.unstable_isAsyncReactComponent=!0;F.render=function(){return this.props.children};var G={current:null},H=Object.prototype.hasOwnProperty,I={key:!0,ref:!0,__self:!0,__source:!0};
@@ -5048,7 +5049,7 @@ if (true) {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),l=__webpack_require__(66),B=__webpack_require__(15),C=__webpack_require__(13),ba=__webpack_require__(67),da=__webpack_require__(68),ea=__webpack_require__(69),fa=__webpack_require__(70),ia=__webpack_require__(73),D=__webpack_require__(28);
+var aa=__webpack_require__(0),l=__webpack_require__(66),B=__webpack_require__(16),C=__webpack_require__(14),ba=__webpack_require__(67),da=__webpack_require__(68),ea=__webpack_require__(69),fa=__webpack_require__(70),ia=__webpack_require__(73),D=__webpack_require__(28);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -5322,7 +5323,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -5637,9 +5638,9 @@ module.exports = focusNode;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_login__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_redux__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_redux__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_query_string__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_index_js__ = __webpack_require__(51);
@@ -5649,8 +5650,8 @@ var _createClass=function(){function defineProperties(target,props){for(var i=0;
 previousViews:[]};//Set top song
 setInterval(function(){if(_this.props.Votify.votify.id)_this.findHighestVote();},10000);return _this;}_createClass(App,[{key:"handleLogin",//Login route for dev purposes
 value:function handleLogin(event){event.preventDefault();__WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/login').then(function(res){console.log('res: ',res.data);}).catch(function(error){return console.log(error);});}},{key:"selectComponents",value:function selectComponents(){switch(this.state.view){case"choosePlaylist":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index_js__["a" /* ChoosePlaylist */],{setView:this.setView});case"existingPlaylists":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index_js__["c" /* FindPlaylists */],{setView:this.setView,userObj:this.state.userObj// fetchVotify={this.props.fetchVotify}
-});case"createPlaylist":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index_js__["b" /* CreatePlaylist */],{userObj:this.state.userObj,setView:this.setView});case"SinglePlaylist":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index_js__["f" /* SinglePlaylist */],{userObj:this.state.userObj,setView:this.setView,findHighest:this.findHighestVote});}}},{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"App"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("header",{className:"App-header"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1",{className:"App-title"},"Votify")),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index_js__["e" /* SecondaryHeader */],{userObj:this.state.userObj,setView:this.setView,goToPreviousView:this.goToPreviousView,handleLogin:this.handleLogin//dev purposes
-}),!this.state.accessToken?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",null,__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_login__["a" /* default */],null)):__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"votify-main"},this.selectComponents()));}}]);return App;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch={fetchVotify:__WEBPACK_IMPORTED_MODULE_8__store_votify_js__["b" /* fetchVotify */],setTop:__WEBPACK_IMPORTED_MODULE_8__store_votify_js__["e" /* setTop */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_4_react_redux__["b" /* connect */])(mapState,mapDispatch)(App));
+});case"createPlaylist":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index_js__["b" /* CreatePlaylist */],{userObj:this.state.userObj,setView:this.setView});case"SinglePlaylist":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index_js__["f" /* SinglePlaylist */],{userObj:this.state.userObj,setView:this.setView,findHighest:this.findHighestVote});}}},{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"App"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("header",{className:"App-header"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1",{className:"App-title"},"Votify")),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index_js__["e" /* SecondaryHeader */],{userObj:this.state.userObj,setView:this.setView,currentView:this.state.view,goToPreviousView:this.goToPreviousView,handleLogin:this.handleLogin//dev purposes
+}),!this.state.accessToken?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",null,__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_login__["a" /* default */],null)):__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"votify-main"},this.selectComponents()));}}]);return App;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch={fetchVotify:__WEBPACK_IMPORTED_MODULE_8__store_votify_js__["b" /* fetchVotify */],setTop:__WEBPACK_IMPORTED_MODULE_8__store_votify_js__["f" /* setTop */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_4_react_redux__["b" /* connect */])(mapState,mapDispatch)(App));
 
 /***/ }),
 /* 75 */
@@ -5665,7 +5666,7 @@ value:function handleLogin(event){event.preventDefault();__WEBPACK_IMPORTED_MODU
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createBrowserHistory__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createBrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_history_createBrowserHistory__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(19);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -5733,7 +5734,7 @@ BrowserRouter.propTypes = {
 
 
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var invariant = __webpack_require__(77);
 var ReactPropTypesSecret = __webpack_require__(78);
 
@@ -5879,15 +5880,15 @@ var _warning = __webpack_require__(1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(3);
+var _invariant = __webpack_require__(5);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(16);
+var _LocationUtils = __webpack_require__(17);
 
 var _PathUtils = __webpack_require__(10);
 
-var _createTransitionManager = __webpack_require__(17);
+var _createTransitionManager = __webpack_require__(18);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -6188,7 +6189,7 @@ exports.default = createBrowserHistory;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createHashHistory__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createHashHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_history_createHashHistory__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(19);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -6256,15 +6257,15 @@ var _warning = __webpack_require__(1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(3);
+var _invariant = __webpack_require__(5);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(16);
+var _LocationUtils = __webpack_require__(17);
 
 var _PathUtils = __webpack_require__(10);
 
-var _createTransitionManager = __webpack_require__(17);
+var _createTransitionManager = __webpack_require__(18);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -6595,7 +6596,7 @@ exports.default = createHashHistory;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createMemoryHistory__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createMemoryHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_history_createMemoryHistory__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(20);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -6668,9 +6669,9 @@ var _warning2 = _interopRequireDefault(_warning);
 
 var _PathUtils = __webpack_require__(10);
 
-var _LocationUtils = __webpack_require__(16);
+var _LocationUtils = __webpack_require__(17);
 
-var _createTransitionManager = __webpack_require__(17);
+var _createTransitionManager = __webpack_require__(18);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -7367,7 +7368,7 @@ module.exports = Array.isArray || function (arr) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7471,7 +7472,7 @@ Prompt.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(92);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7579,7 +7580,7 @@ Redirect.contextTypes = {
 /* unused harmony reexport createHashHistory */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(95);
 /* unused harmony reexport createMemoryHistory */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(15);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["b"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(11);
@@ -7602,11 +7603,11 @@ Redirect.contextTypes = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(36);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -7906,11 +7907,11 @@ var createBrowserHistory = function createBrowserHistory() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(36);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -8228,8 +8229,8 @@ var createHashHistory = function createHashHistory() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(22);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -8406,7 +8407,7 @@ var createMemoryHistory = function createMemoryHistory() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -8414,7 +8415,7 @@ var createMemoryHistory = function createMemoryHistory() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history_PathUtils__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history_PathUtils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_history_PathUtils__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Router__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Router__ = __webpack_require__(20);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -8604,9 +8605,9 @@ StaticRouter.childContextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(21);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -8692,7 +8693,7 @@ Switch.propTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_matchPath__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_matchPath__ = __webpack_require__(21);
 // Written in this round about way for babel-transform-imports
 
 
@@ -8765,7 +8766,7 @@ var withRouter = function withRouter(Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_PropTypes__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warning__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warning__ = __webpack_require__(23);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -9099,7 +9100,7 @@ function shallowEqual(objA, objB) {
 /* unused harmony export whenMapDispatchToPropsIsFunction */
 /* unused harmony export whenMapDispatchToPropsIsMissing */
 /* unused harmony export whenMapDispatchToPropsIsObject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(44);
 
 
@@ -9187,7 +9188,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 /* harmony default export */ __webpack_exports__["a"] = (freeGlobal);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(13)))
 
 /***/ }),
 /* 111 */
@@ -9370,7 +9371,7 @@ if (typeof self !== 'undefined') {
 var result = Object(__WEBPACK_IMPORTED_MODULE_0__ponyfill_js__["a" /* default */])(root);
 /* harmony default export */ __webpack_exports__["a"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(12), __webpack_require__(117)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(13), __webpack_require__(117)(module)))
 
 /***/ }),
 /* 117 */
@@ -9434,7 +9435,7 @@ function symbolObservablePonyfill(root) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = combineReducers;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(42);
 
 
@@ -9873,7 +9874,7 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
 
 "use strict";
 /* unused harmony export default */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(23);
 
 
 function verify(selector, methodName, displayName) {
@@ -9902,7 +9903,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 var utils = __webpack_require__(6);
 var bind = __webpack_require__(46);
 var Axios = __webpack_require__(128);
-var defaults = __webpack_require__(25);
+var defaults = __webpack_require__(26);
 
 /**
  * Create an instance of Axios
@@ -9985,7 +9986,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(25);
+var defaults = __webpack_require__(26);
 var utils = __webpack_require__(6);
 var InterceptorManager = __webpack_require__(138);
 var dispatchRequest = __webpack_require__(139);
@@ -10714,7 +10715,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(6);
 var transformData = __webpack_require__(140);
 var isCancel = __webpack_require__(49);
-var defaults = __webpack_require__(25);
+var defaults = __webpack_require__(26);
 var isAbsoluteURL = __webpack_require__(141);
 var combineURLs = __webpack_require__(142);
 
@@ -11081,15 +11082,15 @@ module.exports = function (encodedURI) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_query_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__playlistSelector_jsx__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__playlistSelector_jsx__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_svg_react_loader_name_Icon_icons_spot_svg__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_svg_react_loader_name_Icon_icons_spot_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_svg_react_loader_name_Icon_icons_spot_svg__);
 var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var parsed=__WEBPACK_IMPORTED_MODULE_2_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var Users=db.collection("Users");var ChoosePlaylist=function(_Component){_inherits(ChoosePlaylist,_Component);function ChoosePlaylist(props){_classCallCheck(this,ChoosePlaylist);var _this=_possibleConstructorReturn(this,(ChoosePlaylist.__proto__||Object.getPrototypeOf(ChoosePlaylist)).call(this,props));_this.handleClick=function(event){event.preventDefault();var view=event.target.name;var setView=_this.props.setView;setView(view);};_this.state={};return _this;}_createClass(ChoosePlaylist,[{key:"render",value:function render(){// console.log('props on choose', this.props)
-var setView=this.props.setView;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-types"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"spotify-logo"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_svg_react_loader_name_Icon_icons_spot_svg__["default"],null)),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"choose-button-wrapper"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"choose-button",onClick:this.handleClick,name:"existingPlaylists"},"Use existing playlist or join a friend's"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"choose-button",onClick:this.handleClick,name:"createPlaylist"},"Create a new playlist")));}}]);return ChoosePlaylist;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);/* harmony default export */ __webpack_exports__["a"] = (ChoosePlaylist);
+var setView=this.props.setView;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-types"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"spotify-logo"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_svg_react_loader_name_Icon_icons_spot_svg__["default"],null)),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"choose-button-wrapper"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"choose-button",onClick:this.handleClick,name:"existingPlaylists"},"Use existing playlist"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"choose-button",onClick:this.handleClick,name:"createPlaylist"},"Create a new playlist")));}}]);return ChoosePlaylist;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);/* harmony default export */ __webpack_exports__["a"] = (ChoosePlaylist);
 
 /***/ }),
 /* 148 */
@@ -11105,14 +11106,13 @@ throw new Error("Module build failed: Error: Non-whitespace before first tag.\nL
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_query_string__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store_votify__ = __webpack_require__(8);
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var CreatePlaylist=function(_Component){_inherits(CreatePlaylist,_Component);function CreatePlaylist(props){_classCallCheck(this,CreatePlaylist);var _this=_possibleConstructorReturn(this,(CreatePlaylist.__proto__||Object.getPrototypeOf(CreatePlaylist)).call(this,props));_this.newPlaylist=function(event){event.preventDefault();var parsed=__WEBPACK_IMPORTED_MODULE_4_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var userId=_this.props.userObj.id;var getVotify=_this.props.getVotify;var _this$state=_this.state,description=_this$state.description,name=_this$state.name;console.log("playlist data: ",userId,accessToken,description,name);__WEBPACK_IMPORTED_MODULE_2_axios___default()({method:"POST",url:"https://api.spotify.com/v1/users/"+userId+"/playlists",headers:{"Content-Type":"application/json",Authorization:"Bearer "+accessToken},data:{name:""+name,description:""+description,collaborative:true,public:false}}).then(function(res){console.log("newPlaylist",res);getVotify(res.data);return res.data;}).then(function(newPlay){console.log("new play: ",newPlay);var playlistName=newPlay.name;var playlistId=newPlay.id;var ownerId=newPlay.owner.id;console.log('info to firebase',playlistId,playlistName,ownerId);db.collection("Playlists").doc(""+playlistId).set({owner:ownerId,//user ID === owner ID here. CAUTION!
-name:playlistName});}).then(function(_){return _this.props.setView("SinglePlaylist");}).catch(function(err){return console.log(err);});};_this.handleChange=function(event){event.preventDefault();var _event$target=event.target,name=_event$target.name,value=_event$target.value;_this.setState(_defineProperty({},name,value));};_this.state={name:"",description:""};return _this;}_createClass(CreatePlaylist,[{key:"componentDidMount",value:function componentDidMount(){}},{key:"componentWillUnmount",value:function componentWillUnmount(){}},{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"CreatePlaylist-root"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form",{id:"create-playlist-form",onSubmit:this.newPlaylist},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label",null,"Playlist Name:",__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input",{name:"name",className:"form-control",value:this.state.name,onChange:this.handleChange,placeholder:"New Votify Playlist"})),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br",null),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label",null,"Description:",__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input",{name:"description",className:"form-control",value:this.state.description,onChange:this.handleChange,placeholder:"My dope new collection of tracks"})),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{type:"submit"},"Submit")));}}]);return CreatePlaylist;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch={getVotify:__WEBPACK_IMPORTED_MODULE_5__store_votify__["d" /* getVotify */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(CreatePlaylist));
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var CreatePlaylist=function(_Component){_inherits(CreatePlaylist,_Component);function CreatePlaylist(props){_classCallCheck(this,CreatePlaylist);var _this=_possibleConstructorReturn(this,(CreatePlaylist.__proto__||Object.getPrototypeOf(CreatePlaylist)).call(this,props));_this.clearRedux=function(){var getVotify=_this.props.getVotify;getVotify([]);};_this.newPlaylist=function(event){event.preventDefault();var parsed=__WEBPACK_IMPORTED_MODULE_4_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var userId=_this.props.userObj.id;var getVotify=_this.props.getVotify;var _this$state=_this.state,password=_this$state.password,name=_this$state.name;__WEBPACK_IMPORTED_MODULE_2_axios___default()({method:"POST",url:"https://api.spotify.com/v1/users/"+userId+"/playlists",headers:{"Content-Type":"application/json",Authorization:"Bearer "+accessToken},data:{name:""+name,collaborative:true,public:false}}).then(function(res){var newResData=Object.assign({},res.data,{password:password});getVotify(newResData);return res.data;}).then(function(newPlay){var playlistName=name;var playlistId=newPlay.id;var ownerId=userId;db.collection("Playlists").doc(""+playlistId).set({owner:ownerId,name:playlistName});}).then(function(_){return _this.props.setView("SinglePlaylist");}).catch(function(err){return console.log(err);});};_this.handleChange=function(event){event.preventDefault();var _event$target=event.target,name=_event$target.name,value=_event$target.value;_this.setState(_defineProperty({},name,value));console.log('state on create Playlist',_this.state);};_this.state={name:"",password:""};return _this;}_createClass(CreatePlaylist,[{key:"componentDidMount",value:function componentDidMount(){this.clearRedux();}},{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"CreatePlaylist-root"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form",{className:"form-playlist",onSubmit:this.newPlaylist},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input",{name:"name",className:"form-control",value:this.state.name,onChange:this.handleChange,placeholder:"Votify Playlist Name"}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input",{name:"password",className:"form-control",value:this.state.password,onChange:this.handleChange,placeholder:"Playlist password"}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"send-it-btn",type:"submit"},"Submit")));}}]);return CreatePlaylist;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch={getVotify:__WEBPACK_IMPORTED_MODULE_5__store_votify__["d" /* getVotify */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(CreatePlaylist));
 
 /***/ }),
 /* 150 */
@@ -11122,53 +11122,86 @@ name:playlistName});}).then(function(_){return _this.props.setView("SinglePlayli
 /* unused harmony export FindPlaylists */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_query_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__playlistSelector_jsx__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store_votify_js__ = __webpack_require__(8);
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var parsed=__WEBPACK_IMPORTED_MODULE_2_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var Users=db.collection("Users");var FindPlaylists=function(_Component){_inherits(FindPlaylists,_Component);function FindPlaylists(props){_classCallCheck(this,FindPlaylists);var _this=_possibleConstructorReturn(this,(FindPlaylists.__proto__||Object.getPrototypeOf(FindPlaylists)).call(this,props));_this.componentDidMount=function(){_this.findUserPlaylists();};_this.handleChange=function(event){event.preventDefault();var _event$target=event.target,name=_event$target.name,value=_event$target.value;_this.setState(_defineProperty({},name,value));};_this.onSubmit=function(event){event.preventDefault();var _this$state=_this.state,ownerId=_this$state.ownerId,playlistName=_this$state.playlistName;var fetchVotify=_this.props.fetchVotify;db.collection("Playlists").where("owner","==",""+ownerId).get().then(function(querySnapshot){querySnapshot.forEach(function(doc){if(doc.data().name===playlistName){fetchVotify(ownerId,doc.id,accessToken);}}).catch(function(error){console.log("Error getting documents: ",error);});});// .then(_ => {
-//   db.collection('Users')
-//   .
-// }) //// set playlists recently used to FB
-_this.props.setView("SinglePlaylist");};_this.state={userPlaylists:[],ownerId:"",playlistId:"",playlistName:""};return _this;}_createClass(FindPlaylists,[{key:"findUserPlaylists",value:function findUserPlaylists(){var _this2=this;Users.where("accessToken","==",accessToken).get().then(function(user){var user_id=user.docs[0].id;return user_id;}).then(function(user_id){__WEBPACK_IMPORTED_MODULE_1_axios___default()({method:"GET",url:"https://api.spotify.com/v1/users/"+user_id+"/playlists",headers:{"Content-Type":"application/json",Authorization:"Bearer "+accessToken}}).then(function(playlists){return playlists.data.items.filter(function(playlist){var userId=_this2.props.userObj.id;if(playlist.collaborative&&playlist.owner.id===userId){return playlist;}});}).then(function(userPlaylists){_this2.setState({userPlaylists:userPlaylists});});}).catch(function(error){return console.log("error: ",error);});}},{key:"render",value:function render(){var _this3=this;var playlists=this.state.userPlaylists;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"playlist-root"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2",null,"Select Existing or Join Playlist!"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"user-playlists"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3",null,"Existing playlists:"),playlists.length>0&&playlists.map(function(playlist){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-item",key:playlist.id},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__playlistSelector_jsx__["a" /* PlaylistSelector */],{id:playlist.id,name:playlist.name,userObj:_this3.props.userObj,fetchVotify:_this3.props.fetchVotify,setView:_this3.props.setView}));})),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"user-playlists"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3",null,"Friend's playlist:"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form",{id:"friends-playlist",onSubmit:this.onSubmit},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input",{name:"ownerId",className:"form-control",value:this.state.ownerId,onChange:this.handleChange,placeholder:"enter friends spotify ID"}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input",{name:"playlistName",className:"form-control",value:this.state.playlistName,onChange:this.handleChange,placeholder:"enter votify playlist name"}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{type:"submit"},"Submit"))));}}]);return FindPlaylists;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch={fetchVotify:__WEBPACK_IMPORTED_MODULE_5__store_votify_js__["b" /* fetchVotify */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(FindPlaylists));// <input
-//               name="playlistId"
-//               className="form-control"
-//               value={this.state.playlistId}
-//               onChange={this.handleChange}
-//               placeholder="enter spotify playlist ID"
-//             />
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__friendsPlaylist__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__existingPlaylists__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__playlistSelector_jsx__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__store_votify_js__ = __webpack_require__(8);
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var parsed=__WEBPACK_IMPORTED_MODULE_2_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var Users=db.collection("Users");var FindPlaylists=function(_Component){_inherits(FindPlaylists,_Component);function FindPlaylists(props){_classCallCheck(this,FindPlaylists);var _this=_possibleConstructorReturn(this,(FindPlaylists.__proto__||Object.getPrototypeOf(FindPlaylists)).call(this,props));_this.setPlaylistView=function(event){event.preventDefault();var view=event.target.value;_this.setState({view:view});};_this.state={view:"Select"};return _this;}_createClass(FindPlaylists,[{key:"selectPlaylistView",value:function selectPlaylistView(){switch(this.state.view){case"Select":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",null);case"Existing":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__existingPlaylists__["a" /* default */],{userObj:this.props.userObj,setView:this.props.setView});case"Friends":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__friendsPlaylist__["a" /* default */],{setView:this.props.setView});}}},{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"playlist-root"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"FindPlaylist-btn-wrapper"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"button-playlist",value:"Existing",onClick:this.setPlaylistView},"My Playlists"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"button-playlist",value:"Friends",onClick:this.setPlaylistView},"Friend's Playlist")),this.selectPlaylistView());}}]);return FindPlaylists;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch={fetchVotify:__WEBPACK_IMPORTED_MODULE_7__store_votify_js__["b" /* fetchVotify */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(FindPlaylists));
 
 /***/ }),
 /* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export FriendsPlaylist */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_query_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_votify_js__ = __webpack_require__(8);
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();//SetTimout
-var parsed=__WEBPACK_IMPORTED_MODULE_2_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var SecondaryHeader=function(_Component){_inherits(SecondaryHeader,_Component);function SecondaryHeader(props){_classCallCheck(this,SecondaryHeader);var _this=_possibleConstructorReturn(this,(SecondaryHeader.__proto__||Object.getPrototypeOf(SecondaryHeader)).call(this,props));_this.addToVotify=function(){var votify=_this.props.Votify;var last=void 0;{votify.votify.tracks.items.length!==0?last=votify.votify.tracks.items[votify.votify.tracks.items.length-1].track.id:"";}var topSongId="";{votify.topSong?topSongId=votify.topSong.songId:"";}var current=void 0;{votify.current.item?current=votify.current.item.id:"";}var ownerId=_this.props.Votify.votify.owner.id;// {
-//   ownerId ? (ownerId = this.props.Votify.votify.owner.id) : "";
-// }
-var fetchVotify=_this.props.fetchVotify;var playlistId=votify.votify.id;// console.log("adding info", current, last, topSongId, ownerId, playlistId);
-try{if(current===last&&topSongId){console.log("on last song shifting queue");__WEBPACK_IMPORTED_MODULE_3_axios___default()({method:"POST",url:"https://api.spotify.com/v1/users/"+ownerId+"/playlists/"+playlistId+"/tracks?uris=spotify%3Atrack%3A"+topSongId,headers:{"Content-Type":"application/json",Authorization:"Bearer "+accessToken}}).then(function(_){db.collection("Playlists").doc(playlistId).collection("Queue").doc(topSongId).delete().then(function(_){return console.log("deleted");});}).then(function(_){console.log("updating redux for addition");fetchVotify(ownerId,playlistId,accessToken);});}else{_this.setState({last:last});}}catch(error){console.log("error: ",error);}};_this.clickBack=function(){var view=_this.props.currentView;_this.props.goToPreviousView();};_this.state={current:{},last:{}};setInterval(function(){__WEBPACK_IMPORTED_MODULE_3_axios___default()({method:"GET",url:"https://api.spotify.com/v1/me/player/currently-playing",headers:{"Content-Type":"application/json",Authorization:"Bearer "+accessToken}}).then(function(current){_this.props.getCurrent(current.data);return current.data;}).then(function(current){_this.setState({current:current},function(){var checkForEmpty=void 0;{_this.props.Votify?checkForEmpty=_this.props.Votify.votify:"";}if(checkForEmpty.length!==0){if(checkForEmpty.tracks.items.length===0){console.log("empty playlist(secondary header)");}else{_this.addToVotify();}}});});},10000);return _this;}_createClass(SecondaryHeader,[{key:"render",value:function render(){var nowPlaying=this.state.current;var lastSong=this.state.last;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"votify-secondary-header"},this.props.userObj.id?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"secondary-top"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p",{className:"votify-back-btn",onClick:this.clickBack},"Back"),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",null,__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p",{className:"App-intro"},"Welcome ",this.props.userObj.id,"!"))):'',__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"secondary-bottom"}),nowPlaying.is_playing?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"secondary-playing"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4",null,"Playing: ",nowPlaying.item.name," by"," ",nowPlaying.item.artists[0].name," ")):"");}}]);return SecondaryHeader;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var MapState=function MapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var MapDispatch={getCurrent:__WEBPACK_IMPORTED_MODULE_4__store_votify_js__["c" /* getCurrent */],fetchVotify:__WEBPACK_IMPORTED_MODULE_4__store_votify_js__["b" /* fetchVotify */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(MapState,MapDispatch)(SecondaryHeader));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__playlistSelector_jsx__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store_votify_js__ = __webpack_require__(8);
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var parsed=__WEBPACK_IMPORTED_MODULE_2_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var Users=db.collection("Users");var FriendsPlaylist=function(_Component){_inherits(FriendsPlaylist,_Component);function FriendsPlaylist(props){_classCallCheck(this,FriendsPlaylist);var _this=_possibleConstructorReturn(this,(FriendsPlaylist.__proto__||Object.getPrototypeOf(FriendsPlaylist)).call(this,props));_this.handleChange=function(event){event.preventDefault();var _event$target=event.target,name=_event$target.name,value=_event$target.value;_this.setState(_defineProperty({},name,value));};_this.onSubmit=function(event){event.preventDefault();var _this$state=_this.state,ownerId=_this$state.ownerId,playlistName=_this$state.playlistName,password=_this$state.password;var _this$props=_this.props,fetchVotify=_this$props.fetchVotify,setView=_this$props.setView,setOwner=_this$props.setOwner;var foundItem=false;console.log('playlistName',playlistName);db.collection("Playlists").get().then(function(querySnapshot){querySnapshot.forEach(function(doc){console.log('all dox',doc.data());if(doc.data().name===playlistName&&doc.data().password===password){foundItem=true;setOwner({accessToken:doc.data().accessToken});fetchVotify(ownerId,doc.id,accessToken);setView('SinglePlaylist');}});}).then(function(_){if(!foundItem){console.log('throw error');_this.setState({error:true});}}).catch(function(error){console.log("error getting docs: ",error);_this.setState({error:true});});};_this.state={ownerId:"",playlistId:"",playlistName:"",password:"",error:false};return _this;}_createClass(FriendsPlaylist,[{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"playlist-root"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"user-playlists"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form",{className:"form-playlist",onSubmit:this.onSubmit},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input",{name:"playlistName",className:"form-control",value:this.state.playlistName,onChange:this.handleChange,placeholder:"Enter Votify Playlist Name"}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input",{name:"playlistPassword",className:"form-control",value:this.state.password,onChange:this.handleChange,placeholder:"Enter Playlist Password"}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"send-it-btn",type:"submit"},"Submit"))),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"search-error"},this.state.error?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",null," incorrect playlist name and password "):""));}}]);return FriendsPlaylist;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch={fetchVotify:__WEBPACK_IMPORTED_MODULE_5__store_votify_js__["b" /* fetchVotify */],setOwner:__WEBPACK_IMPORTED_MODULE_5__store_votify_js__["e" /* setOwner */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(FriendsPlaylist));// <input
+//               name="ownerId"
+//               className="form-control"
+//               value={this.state.ownerId}
+//               onChange={this.handleChange}
+//               placeholder="Enter Friend's Spotify ID"
+//             />
 
 /***/ }),
 /* 152 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export ExistingPlaylists */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_query_string__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__playlistSelector_jsx__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store_votify_js__ = __webpack_require__(8);
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var parsed=__WEBPACK_IMPORTED_MODULE_2_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var Users=db.collection("Users");var ExistingPlaylists=function(_Component){_inherits(ExistingPlaylists,_Component);function ExistingPlaylists(props){_classCallCheck(this,ExistingPlaylists);var _this=_possibleConstructorReturn(this,(ExistingPlaylists.__proto__||Object.getPrototypeOf(ExistingPlaylists)).call(this,props));_this.componentDidMount=function(){_this.findUserPlaylists();};_this.state={userPlaylists:[],loading:false};return _this;}_createClass(ExistingPlaylists,[{key:"findUserPlaylists",value:function findUserPlaylists(){var _this2=this;this.setState({loading:true});Users.where("accessToken","==",accessToken).get().then(function(user){var user_id=user.docs[0].id;return user_id;}).then(function(user_id){__WEBPACK_IMPORTED_MODULE_1_axios___default()({method:"GET",url:"https://api.spotify.com/v1/users/"+user_id+"/playlists",headers:{"Content-Type":"application/json",Authorization:"Bearer "+accessToken}}).then(function(playlists){return playlists.data.items.filter(function(playlist){var userId=_this2.props.userObj.id;if(playlist.collaborative&&playlist.owner.id===userId){return playlist;}});}).then(function(userPlaylists){_this2.setState({userPlaylists:userPlaylists,loading:false});});}).catch(function(error){return console.log("error: ",error);});}},{key:"render",value:function render(){var _this3=this;var playlists=this.state.userPlaylists;var isLoading=this.state.loading;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"playlist-root"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"user-playlists"},playlists.length>0&&playlists.map(function(playlist){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-item",key:playlist.id},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__playlistSelector_jsx__["a" /* PlaylistSelector */],{id:playlist.id,name:playlist.name,userObj:_this3.props.userObj,fetchVotify:_this3.props.fetchVotify,setView:_this3.props.setView,setOwner:_this3.props.setOwner}));}),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"playlist-loading"},isLoading?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3",null,"...loading playlists..."):""),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"playlist-empty"},!isLoading&&!playlists.length?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3",null,"Create a new playlist or use a friend's to continue!"):"")));}}]);return ExistingPlaylists;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch={fetchVotify:__WEBPACK_IMPORTED_MODULE_5__store_votify_js__["b" /* fetchVotify */],setOwner:__WEBPACK_IMPORTED_MODULE_5__store_votify_js__["e" /* setOwner */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(ExistingPlaylists));
+
+/***/ }),
+/* 153 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_query_string__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_votify_js__ = __webpack_require__(8);
+var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();//SetTimeout
+var parsed=__WEBPACK_IMPORTED_MODULE_2_query_string___default.a.parse(window.location.hash);var accessToken=parsed.access_token;var SecondaryHeader=function(_Component){_inherits(SecondaryHeader,_Component);function SecondaryHeader(props){_classCallCheck(this,SecondaryHeader);var _this=_possibleConstructorReturn(this,(SecondaryHeader.__proto__||Object.getPrototypeOf(SecondaryHeader)).call(this,props));_this.addToVotify=function(ownerAccessToken){var votify=_this.props.Votify;var last=void 0;{votify.votify.tracks.items.length!==0?last=votify.votify.tracks.items[votify.votify.tracks.items.length-1].track.id:"";}var topSongId="";{votify.topSong?topSongId=votify.topSong.songId:"";}var current=void 0;{votify.current.item?current=votify.current.item.id:"";}// console.log("in addToVotify", topSongId, current, last, ownerAccessToken, accessToken);
+try{if(current===last&&ownerAccessToken===accessToken&&topSongId){_this.addSong();}else{_this.setState({last:last},function(){_this.updatePlaylist();});}}catch(error){console.log("error: ",error);}};_this.addSong=function(){var votify=_this.props.Votify;var topSongId="";{votify.topSong?topSongId=votify.topSong.songId:"";}var ownerId=_this.props.Votify.votify.owner.id;var fetchVotify=_this.props.fetchVotify;var playlistId=votify.votify.id;var playlistAccessToken=votify.votify.accessToken;__WEBPACK_IMPORTED_MODULE_3_axios___default()({method:"POST",url:"https://api.spotify.com/v1/users/"+ownerId+"/playlists/"+playlistId+"/tracks?uris=spotify%3Atrack%3A"+topSongId,headers:{"Content-Type":"application/json",Authorization:"Bearer "+accessToken}}).then(function(_){db.collection("Playlists").doc(playlistId).collection("Queue").doc(topSongId).delete().then(function(_){return console.log("deleted");});}).then(function(_){return _this.updatePlaylist();});};_this.updatePlaylist=function(){var ownerId=_this.props.Votify.votify.owner.id;var playlistId=_this.props.Votify.votify.id;var fetchVotify=_this.props.fetchVotify;fetchVotify(ownerId,playlistId,accessToken);};_this.clickBack=function(){var view=_this.props.currentView;_this.props.goToPreviousView();};_this.state={current:{},last:{}};//Get top rated song in queue
+//Check to see if playlist is empty, if so, add first song
+//If not empty, call function to check current vs lastSong
+setInterval(function(){var ownerAccessToken=_this.props.Votify.owner.accessToken;// console.log('accessToken new', ownerAccessToken)
+__WEBPACK_IMPORTED_MODULE_3_axios___default()({method:"GET",url:"https://api.spotify.com/v1/me/player/currently-playing",headers:{"Content-Type":"application/json",Authorization:"Bearer "+ownerAccessToken}}).then(function(current){_this.props.getCurrent(current.data);return current.data;}).then(function(current){_this.setState({current:current},function(){var checkForEmpty=void 0;var votifyName=void 0;{_this.props.Votify?checkForEmpty=_this.props.Votify.votify:"";}if(checkForEmpty.length!==0){votifyName=_this.props.Votify.votify.name;if(checkForEmpty.tracks.items.length===0){console.log("signed in & empty playlist...adding first song");_this.addSong();}else{_this.addToVotify(ownerAccessToken);}}});});},10000);return _this;}_createClass(SecondaryHeader,[{key:"render",value:function render(){var nowPlaying=this.state.current;var lastSong=this.state.last;var currentView=this.props.currentView;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"votify-secondary-header"},this.props.userObj.displayName?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"secondary-top"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"secondary-top-wrapper"},currentView!=="choosePlaylist"?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p",{id:"votify-back-btn",onClick:this.clickBack},"Back"):""),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"secondary-top-wrapper"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p",{id:"App-intro"},"Welcome ",this.props.userObj.displayName,"!"))):"",__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"secondary-bottom"}),nowPlaying.is_playing?__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{id:"secondary-playing"},"Now playing: ",nowPlaying.item.name," by"," ",nowPlaying.item.artists[0].name," "):"");}}]);return SecondaryHeader;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var MapState=function MapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var MapDispatch={getCurrent:__WEBPACK_IMPORTED_MODULE_4__store_votify_js__["c" /* getCurrent */],fetchVotify:__WEBPACK_IMPORTED_MODULE_4__store_votify_js__["b" /* fetchVotify */]};/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(MapState,MapDispatch)(SecondaryHeader));
+
+/***/ }),
+/* 154 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__songList_jsx__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__songSearch_jsx__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__playlistQueue_jsx__ = __webpack_require__(52);
@@ -11177,14 +11210,14 @@ var _createClass=function(){function defineProperties(target,props){for(var i=0;
 _createClass(SinglePlaylist,[{key:"selectComponents",value:function selectComponents(){var trackHold=this.props.Votify.votify.tracks;var findHighest=this.props.findHighest;switch(this.state.view){case"Playlist":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__songList_jsx__["a" /* default */],{tracks:trackHold});case"Queue":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__playlistQueue_jsx__["a" /* default */],{userObj:this.props.userObj,findHighest:findHighest});case"Search":return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__songSearch_jsx__["a" /* default */],{changeView:this.changePlaylistView});}}},{key:"render",value:function render(){return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Single-playlist"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-button-wrapper"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-button"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"button-playlist",onClick:this.setPlaylistView,value:"Playlist"},"Playlist")),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-button"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"button-playlist",onClick:this.setPlaylistView,value:"Queue"},"Queue")),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"playlist-button"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button",{className:"button-playlist",onClick:this.setPlaylistView,value:"Search"},"Search"))),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Single-playlist-components"},this.selectComponents()));}}]);return SinglePlaylist;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch=null;/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapState,mapDispatch)(SinglePlaylist));
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(154);
+module.exports = __webpack_require__(156);
 
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -11209,7 +11242,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(155);
+module.exports = __webpack_require__(157);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -11225,7 +11258,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports) {
 
 /**
@@ -11958,62 +11991,62 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_query_string__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_query_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_svg_react_loader_name_Icon_icons_thumbs_up_svg__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_svg_react_loader_name_Icon_icons_thumbs_up_svg__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_svg_react_loader_name_Icon_icons_thumbs_up_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_svg_react_loader_name_Icon_icons_thumbs_up_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_svg_react_loader_name_Icon_icons_thumbs_down_svg__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_svg_react_loader_name_Icon_icons_thumbs_down_svg__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_svg_react_loader_name_Icon_icons_thumbs_down_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_svg_react_loader_name_Icon_icons_thumbs_down_svg__);
 var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var db=firebase.firestore();var Interactive=function(_Component){_inherits(Interactive,_Component);function Interactive(props){_classCallCheck(this,Interactive);var _this=_possibleConstructorReturn(this,(Interactive.__proto__||Object.getPrototypeOf(Interactive)).call(this,props));_this.upVote=function(event){var playlistId=_this.props.Votify.votify.id;var Queue=db.collection("Playlists").doc(playlistId).collection("Queue");var songId=_this.props.song.songId;var userId=_this.props.userObj.id;Queue.doc(songId).get().then(function(song){if(song.data().content.voted[userId]){console.log('user has already voted for this song');}else{var newScore=+song.data().content.score+1;var newUpvote=+song.data().content.upVote+1;return{newScore:newScore,newUpvote:newUpvote};}}).then(function(update){if(update){var newScore=update.newScore,newUpvote=update.newUpvote;Queue.doc(songId).set({content:{upVote:newUpvote,score:newScore,voted:_defineProperty({},userId,true)}},{merge:true});}else{console.log('continuing.....');}}).then(function(_){return _this.props.findHighest();}).catch(function(error){return console.log("error: ",error);});};_this.downVote=function(event){var playlistId=_this.props.Votify.votify.id;var Queue=db.collection("Playlists").doc(playlistId).collection("Queue");var songId=_this.props.song.songId;var userId=_this.props.userObj.id;Queue.doc(songId).get().then(function(song){if(song.data().content.voted[userId]){console.log('user has already voted for this song');}else{var newScore=+song.data().content.score-1;var newUpvote=+song.data().content.upVote-1;return{newScore:newScore,newUpvote:newUpvote};}}).then(function(update){if(update){var newScore=update.newScore,newUpvote=update.newUpvote;Queue.doc(songId).set({content:{upVote:newUpvote,score:newScore,voted:_defineProperty({},userId,true)}},{merge:true});}else{console.log('continuing.....');}}).then(function(_){return _this.props.findHighest();}).catch(function(error){return console.log("error: ",error);});};_this.state={};return _this;}_createClass(Interactive,[{key:"componentDidMount",value:function componentDidMount(){}},{key:"componentWillUnmount",value:function componentWillUnmount(){}},{key:"render",value:function render(){var song=this.props.song;return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"Interactive-root"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"thumbs-up"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_svg_react_loader_name_Icon_icons_thumbs_up_svg__["default"],{disabled:"",className:"vote-button-up",name:song.name,value:song.songId,onClick:this.upVote})),__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div",{className:"thumbs-down"},__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_svg_react_loader_name_Icon_icons_thumbs_down_svg__["default"],{disabled:"",className:"vote-button-down",name:song.name,value:song.songId,onClick:this.downVote})));}}]);return Interactive;}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);var mapState=function mapState(_ref){var Votify=_ref.Votify;return{Votify:Votify};};var mapDispatch=null;/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState,mapDispatch)(Interactive));
 
 /***/ }),
-/* 157 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: Non-whitespace before first tag.\nLine: 0\nColumn: 1\nChar: m\n    at error (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:651:10)\n    at strictFail (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:677:7)\n    at beginWhiteSpace (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:951:7)\n    at SAXParser.write (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:1006:11)\n    at Parser.exports.Parser.Parser.parseString (/Users/alex/Documents/Projects/votify-mobile/node_modules/xml2js/lib/xml2js.js:508:31)\n    at Parser.parseString (/Users/alex/Documents/Projects/votify-mobile/node_modules/xml2js/lib/xml2js.js:7:59)\n    at AnonymousObservable.__subscribe (/Users/alex/Documents/Projects/votify-mobile/node_modules/svg-react-loader/lib/xml/parse.js:16:16)\n    at AnonymousObservable.tryCatcher (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:63:31)\n    at setDisposable (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5845:44)\n    at AnonymousObservable.Rx.AnonymousObservable.AnonymousObservable._subscribe (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5862:9)\n    at AnonymousObservable.Rx.Observable.observableProto.subscribe.observableProto.forEach (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:2034:19)\n    at CatchObserver.error (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:3255:30)\n    at CatchObserver.Rx.internals.AbstractObserver.AbstractObserver.onError (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:1772:14)\n    at CatchObserver.tryCatcher (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:63:31)\n    at AutoDetachObserverPrototype.error (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5891:52)\n    at AutoDetachObserver.Rx.internals.AbstractObserver.AbstractObserver.onError (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:1772:14)");
-
-/***/ }),
-/* 158 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: Non-whitespace before first tag.\nLine: 0\nColumn: 1\nChar: m\n    at error (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:651:10)\n    at strictFail (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:677:7)\n    at beginWhiteSpace (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:951:7)\n    at SAXParser.write (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:1006:11)\n    at Parser.exports.Parser.Parser.parseString (/Users/alex/Documents/Projects/votify-mobile/node_modules/xml2js/lib/xml2js.js:508:31)\n    at Parser.parseString (/Users/alex/Documents/Projects/votify-mobile/node_modules/xml2js/lib/xml2js.js:7:59)\n    at AnonymousObservable.__subscribe (/Users/alex/Documents/Projects/votify-mobile/node_modules/svg-react-loader/lib/xml/parse.js:16:16)\n    at AnonymousObservable.tryCatcher (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:63:31)\n    at setDisposable (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5845:44)\n    at AnonymousObservable.Rx.AnonymousObservable.AnonymousObservable._subscribe (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5862:9)\n    at AnonymousObservable.Rx.Observable.observableProto.subscribe.observableProto.forEach (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:2034:19)\n    at CatchObserver.error (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:3255:30)\n    at CatchObserver.Rx.internals.AbstractObserver.AbstractObserver.onError (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:1772:14)\n    at CatchObserver.tryCatcher (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:63:31)\n    at AutoDetachObserverPrototype.error (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5891:52)\n    at AutoDetachObserver.Rx.internals.AbstractObserver.AbstractObserver.onError (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:1772:14)");
-
-/***/ }),
 /* 159 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: Non-whitespace before first tag.\nLine: 0\nColumn: 1\nChar: m\n    at error (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:651:10)\n    at strictFail (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:677:7)\n    at beginWhiteSpace (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:951:7)\n    at SAXParser.write (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:1006:11)\n    at Parser.exports.Parser.Parser.parseString (/Users/alex/Documents/Projects/votify-mobile/node_modules/xml2js/lib/xml2js.js:508:31)\n    at Parser.parseString (/Users/alex/Documents/Projects/votify-mobile/node_modules/xml2js/lib/xml2js.js:7:59)\n    at AnonymousObservable.__subscribe (/Users/alex/Documents/Projects/votify-mobile/node_modules/svg-react-loader/lib/xml/parse.js:16:16)\n    at AnonymousObservable.tryCatcher (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:63:31)\n    at setDisposable (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5845:44)\n    at AnonymousObservable.Rx.AnonymousObservable.AnonymousObservable._subscribe (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5862:9)\n    at AnonymousObservable.Rx.Observable.observableProto.subscribe.observableProto.forEach (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:2034:19)\n    at CatchObserver.error (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:3255:30)\n    at CatchObserver.Rx.internals.AbstractObserver.AbstractObserver.onError (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:1772:14)\n    at CatchObserver.tryCatcher (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:63:31)\n    at AutoDetachObserverPrototype.error (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5891:52)\n    at AutoDetachObserver.Rx.internals.AbstractObserver.AbstractObserver.onError (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:1772:14)");
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: Non-whitespace before first tag.\nLine: 0\nColumn: 1\nChar: m\n    at error (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:651:10)\n    at strictFail (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:677:7)\n    at beginWhiteSpace (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:951:7)\n    at SAXParser.write (/Users/alex/Documents/Projects/votify-mobile/node_modules/sax/lib/sax.js:1006:11)\n    at Parser.exports.Parser.Parser.parseString (/Users/alex/Documents/Projects/votify-mobile/node_modules/xml2js/lib/xml2js.js:508:31)\n    at Parser.parseString (/Users/alex/Documents/Projects/votify-mobile/node_modules/xml2js/lib/xml2js.js:7:59)\n    at AnonymousObservable.__subscribe (/Users/alex/Documents/Projects/votify-mobile/node_modules/svg-react-loader/lib/xml/parse.js:16:16)\n    at AnonymousObservable.tryCatcher (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:63:31)\n    at setDisposable (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5845:44)\n    at AnonymousObservable.Rx.AnonymousObservable.AnonymousObservable._subscribe (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5862:9)\n    at AnonymousObservable.Rx.Observable.observableProto.subscribe.observableProto.forEach (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:2034:19)\n    at CatchObserver.error (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:3255:30)\n    at CatchObserver.Rx.internals.AbstractObserver.AbstractObserver.onError (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:1772:14)\n    at CatchObserver.tryCatcher (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:63:31)\n    at AutoDetachObserverPrototype.error (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:5891:52)\n    at AutoDetachObserver.Rx.internals.AbstractObserver.AbstractObserver.onError (/Users/alex/Documents/Projects/votify-mobile/node_modules/rx/dist/rx.js:1772:14)");
+
+/***/ }),
+/* 161 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_logger__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_logger__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_logger___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_redux_logger__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_thunk__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_thunk__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_thunk___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_redux_thunk__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_redux_devtools_extension__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_redux_devtools_extension__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_redux_devtools_extension___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_redux_devtools_extension__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__votify__ = __webpack_require__(8);
 /* unused harmony namespace reexport */
 var reducer=Object(__WEBPACK_IMPORTED_MODULE_0_redux__["combineReducers"])({Votify:__WEBPACK_IMPORTED_MODULE_4__votify__["a" /* default */]});var middleware=Object(__WEBPACK_IMPORTED_MODULE_3_redux_devtools_extension__["composeWithDevTools"])(Object(__WEBPACK_IMPORTED_MODULE_0_redux__["applyMiddleware"])(__WEBPACK_IMPORTED_MODULE_2_redux_thunk___default.a,Object(__WEBPACK_IMPORTED_MODULE_1_redux_logger__["createLogger"])({collapsed:true})));var store=Object(__WEBPACK_IMPORTED_MODULE_0_redux__["createStore"])(reducer,middleware);/* harmony default export */ __webpack_exports__["a"] = (store);
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {!function(e,t){ true?t(exports):"function"==typeof define&&define.amd?define(["exports"],t):t(e.reduxLogger=e.reduxLogger||{})}(this,function(e){"use strict";function t(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}function r(e,t){Object.defineProperty(this,"kind",{value:e,enumerable:!0}),t&&t.length&&Object.defineProperty(this,"path",{value:t,enumerable:!0})}function n(e,t,r){n.super_.call(this,"E",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0}),Object.defineProperty(this,"rhs",{value:r,enumerable:!0})}function o(e,t){o.super_.call(this,"N",e),Object.defineProperty(this,"rhs",{value:t,enumerable:!0})}function i(e,t){i.super_.call(this,"D",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0})}function a(e,t,r){a.super_.call(this,"A",e),Object.defineProperty(this,"index",{value:t,enumerable:!0}),Object.defineProperty(this,"item",{value:r,enumerable:!0})}function f(e,t,r){var n=e.slice((r||t)+1||e.length);return e.length=t<0?e.length+t:t,e.push.apply(e,n),e}function u(e){var t="undefined"==typeof e?"undefined":N(e);return"object"!==t?t:e===Math?"math":null===e?"null":Array.isArray(e)?"array":"[object Date]"===Object.prototype.toString.call(e)?"date":"function"==typeof e.toString&&/^\/.*\//.test(e.toString())?"regexp":"object"}function l(e,t,r,c,s,d,p){s=s||[],p=p||[];var g=s.slice(0);if("undefined"!=typeof d){if(c){if("function"==typeof c&&c(g,d))return;if("object"===("undefined"==typeof c?"undefined":N(c))){if(c.prefilter&&c.prefilter(g,d))return;if(c.normalize){var h=c.normalize(g,d,e,t);h&&(e=h[0],t=h[1])}}}g.push(d)}"regexp"===u(e)&&"regexp"===u(t)&&(e=e.toString(),t=t.toString());var y="undefined"==typeof e?"undefined":N(e),v="undefined"==typeof t?"undefined":N(t),b="undefined"!==y||p&&p[p.length-1].lhs&&p[p.length-1].lhs.hasOwnProperty(d),m="undefined"!==v||p&&p[p.length-1].rhs&&p[p.length-1].rhs.hasOwnProperty(d);if(!b&&m)r(new o(g,t));else if(!m&&b)r(new i(g,e));else if(u(e)!==u(t))r(new n(g,e,t));else if("date"===u(e)&&e-t!==0)r(new n(g,e,t));else if("object"===y&&null!==e&&null!==t)if(p.filter(function(t){return t.lhs===e}).length)e!==t&&r(new n(g,e,t));else{if(p.push({lhs:e,rhs:t}),Array.isArray(e)){var w;e.length;for(w=0;w<e.length;w++)w>=t.length?r(new a(g,w,new i(void 0,e[w]))):l(e[w],t[w],r,c,g,w,p);for(;w<t.length;)r(new a(g,w,new o(void 0,t[w++])))}else{var x=Object.keys(e),S=Object.keys(t);x.forEach(function(n,o){var i=S.indexOf(n);i>=0?(l(e[n],t[n],r,c,g,n,p),S=f(S,i)):l(e[n],void 0,r,c,g,n,p)}),S.forEach(function(e){l(void 0,t[e],r,c,g,e,p)})}p.length=p.length-1}else e!==t&&("number"===y&&isNaN(e)&&isNaN(t)||r(new n(g,e,t)))}function c(e,t,r,n){return n=n||[],l(e,t,function(e){e&&n.push(e)},r),n.length?n:void 0}function s(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":s(o[r.path[n]],r.index,r.item);break;case"D":delete o[r.path[n]];break;case"E":case"N":o[r.path[n]]=r.rhs}}else switch(r.kind){case"A":s(e[t],r.index,r.item);break;case"D":e=f(e,t);break;case"E":case"N":e[t]=r.rhs}return e}function d(e,t,r){if(e&&t&&r&&r.kind){for(var n=e,o=-1,i=r.path?r.path.length-1:0;++o<i;)"undefined"==typeof n[r.path[o]]&&(n[r.path[o]]="number"==typeof r.path[o]?[]:{}),n=n[r.path[o]];switch(r.kind){case"A":s(r.path?n[r.path[o]]:n,r.index,r.item);break;case"D":delete n[r.path[o]];break;case"E":case"N":n[r.path[o]]=r.rhs}}}function p(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":p(o[r.path[n]],r.index,r.item);break;case"D":o[r.path[n]]=r.lhs;break;case"E":o[r.path[n]]=r.lhs;break;case"N":delete o[r.path[n]]}}else switch(r.kind){case"A":p(e[t],r.index,r.item);break;case"D":e[t]=r.lhs;break;case"E":e[t]=r.lhs;break;case"N":e=f(e,t)}return e}function g(e,t,r){if(e&&t&&r&&r.kind){var n,o,i=e;for(o=r.path.length-1,n=0;n<o;n++)"undefined"==typeof i[r.path[n]]&&(i[r.path[n]]={}),i=i[r.path[n]];switch(r.kind){case"A":p(i[r.path[n]],r.index,r.item);break;case"D":i[r.path[n]]=r.lhs;break;case"E":i[r.path[n]]=r.lhs;break;case"N":delete i[r.path[n]]}}}function h(e,t,r){if(e&&t){var n=function(n){r&&!r(e,t,n)||d(e,t,n)};l(e,t,n)}}function y(e){return"color: "+F[e].color+"; font-weight: bold"}function v(e){var t=e.kind,r=e.path,n=e.lhs,o=e.rhs,i=e.index,a=e.item;switch(t){case"E":return[r.join("."),n,"→",o];case"N":return[r.join("."),o];case"D":return[r.join(".")];case"A":return[r.join(".")+"["+i+"]",a];default:return[]}}function b(e,t,r,n){var o=c(e,t);try{n?r.groupCollapsed("diff"):r.group("diff")}catch(e){r.log("diff")}o?o.forEach(function(e){var t=e.kind,n=v(e);r.log.apply(r,["%c "+F[t].text,y(t)].concat(P(n)))}):r.log("—— no diff ——");try{r.groupEnd()}catch(e){r.log("—— diff end —— ")}}function m(e,t,r,n){switch("undefined"==typeof e?"undefined":N(e)){case"object":return"function"==typeof e[n]?e[n].apply(e,P(r)):e[n];case"function":return e(t);default:return e}}function w(e){var t=e.timestamp,r=e.duration;return function(e,n,o){var i=["action"];return i.push("%c"+String(e.type)),t&&i.push("%c@ "+n),r&&i.push("%c(in "+o.toFixed(2)+" ms)"),i.join(" ")}}function x(e,t){var r=t.logger,n=t.actionTransformer,o=t.titleFormatter,i=void 0===o?w(t):o,a=t.collapsed,f=t.colors,u=t.level,l=t.diff,c="undefined"==typeof t.titleFormatter;e.forEach(function(o,s){var d=o.started,p=o.startedTime,g=o.action,h=o.prevState,y=o.error,v=o.took,w=o.nextState,x=e[s+1];x&&(w=x.prevState,v=x.started-d);var S=n(g),k="function"==typeof a?a(function(){return w},g,o):a,j=D(p),E=f.title?"color: "+f.title(S)+";":"",A=["color: gray; font-weight: lighter;"];A.push(E),t.timestamp&&A.push("color: gray; font-weight: lighter;"),t.duration&&A.push("color: gray; font-weight: lighter;");var O=i(S,j,v);try{k?f.title&&c?r.groupCollapsed.apply(r,["%c "+O].concat(A)):r.groupCollapsed(O):f.title&&c?r.group.apply(r,["%c "+O].concat(A)):r.group(O)}catch(e){r.log(O)}var N=m(u,S,[h],"prevState"),P=m(u,S,[S],"action"),C=m(u,S,[y,h],"error"),F=m(u,S,[w],"nextState");if(N)if(f.prevState){var L="color: "+f.prevState(h)+"; font-weight: bold";r[N]("%c prev state",L,h)}else r[N]("prev state",h);if(P)if(f.action){var T="color: "+f.action(S)+"; font-weight: bold";r[P]("%c action    ",T,S)}else r[P]("action    ",S);if(y&&C)if(f.error){var M="color: "+f.error(y,h)+"; font-weight: bold;";r[C]("%c error     ",M,y)}else r[C]("error     ",y);if(F)if(f.nextState){var _="color: "+f.nextState(w)+"; font-weight: bold";r[F]("%c next state",_,w)}else r[F]("next state",w);l&&b(h,w,r,k);try{r.groupEnd()}catch(e){r.log("—— log end ——")}})}function S(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=Object.assign({},L,e),r=t.logger,n=t.stateTransformer,o=t.errorTransformer,i=t.predicate,a=t.logErrors,f=t.diffPredicate;if("undefined"==typeof r)return function(){return function(e){return function(t){return e(t)}}};if(e.getState&&e.dispatch)return console.error("[redux-logger] redux-logger not installed. Make sure to pass logger instance as middleware:\n// Logger with default options\nimport { logger } from 'redux-logger'\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n// Or you can create your own logger with custom options http://bit.ly/redux-logger-options\nimport createLogger from 'redux-logger'\nconst logger = createLogger({\n  // ...options\n});\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n"),function(){return function(e){return function(t){return e(t)}}};var u=[];return function(e){var r=e.getState;return function(e){return function(l){if("function"==typeof i&&!i(r,l))return e(l);var c={};u.push(c),c.started=O.now(),c.startedTime=new Date,c.prevState=n(r()),c.action=l;var s=void 0;if(a)try{s=e(l)}catch(e){c.error=o(e)}else s=e(l);c.took=O.now()-c.started,c.nextState=n(r());var d=t.diff&&"function"==typeof f?f(r,l):t.diff;if(x(u,Object.assign({},t,{diff:d})),u.length=0,c.error)throw c.error;return s}}}}var k,j,E=function(e,t){return new Array(t+1).join(e)},A=function(e,t){return E("0",t-e.toString().length)+e},D=function(e){return A(e.getHours(),2)+":"+A(e.getMinutes(),2)+":"+A(e.getSeconds(),2)+"."+A(e.getMilliseconds(),3)},O="undefined"!=typeof performance&&null!==performance&&"function"==typeof performance.now?performance:Date,N="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},P=function(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)},C=[];k="object"===("undefined"==typeof global?"undefined":N(global))&&global?global:"undefined"!=typeof window?window:{},j=k.DeepDiff,j&&C.push(function(){"undefined"!=typeof j&&k.DeepDiff===c&&(k.DeepDiff=j,j=void 0)}),t(n,r),t(o,r),t(i,r),t(a,r),Object.defineProperties(c,{diff:{value:c,enumerable:!0},observableDiff:{value:l,enumerable:!0},applyDiff:{value:h,enumerable:!0},applyChange:{value:d,enumerable:!0},revertChange:{value:g,enumerable:!0},isConflict:{value:function(){return"undefined"!=typeof j},enumerable:!0},noConflict:{value:function(){return C&&(C.forEach(function(e){e()}),C=null),c},enumerable:!0}});var F={E:{color:"#2196F3",text:"CHANGED:"},N:{color:"#4CAF50",text:"ADDED:"},D:{color:"#F44336",text:"DELETED:"},A:{color:"#2196F3",text:"ARRAY:"}},L={level:"log",logger:console,logErrors:!0,collapsed:void 0,predicate:void 0,duration:!1,timestamp:!0,stateTransformer:function(e){return e},actionTransformer:function(e){return e},errorTransformer:function(e){return e},colors:{title:function(){return"inherit"},prevState:function(){return"#9E9E9E"},action:function(){return"#03A9F4"},nextState:function(){return"#4CAF50"},error:function(){return"#F20404"}},diff:!1,diffPredicate:void 0,transformer:void 0},T=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.dispatch,r=e.getState;return"function"==typeof t||"function"==typeof r?S()({dispatch:t,getState:r}):void console.error("\n[redux-logger v3] BREAKING CHANGE\n[redux-logger v3] Since 3.0.0 redux-logger exports by default logger with default settings.\n[redux-logger v3] Change\n[redux-logger v3] import createLogger from 'redux-logger'\n[redux-logger v3] to\n[redux-logger v3] import { createLogger } from 'redux-logger'\n")};e.defaults=L,e.createLogger=S,e.logger=T,e.default=T,Object.defineProperty(e,"__esModule",{value:!0})});
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12042,13 +12075,13 @@ thunk.withExtraArgument = createThunkMiddleware;
 exports['default'] = thunk;
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var compose = __webpack_require__(23).compose;
+var compose = __webpack_require__(24).compose;
 
 exports.__esModule = true;
 exports.composeWithDevTools = (
@@ -12069,7 +12102,7 @@ exports.devToolsEnhancer = (
 
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12107,4 +12140,4 @@ registerValidSW(swUrl);}}).catch(function(){console.log('No internet connection 
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.197c3daa.js.map
+//# sourceMappingURL=main.cbc424fb.js.map

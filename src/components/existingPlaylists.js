@@ -82,6 +82,9 @@ export class ExistingPlaylists extends Component {
           <div id="playlist-loading">
             {isLoading ? <h3>...loading playlists...</h3> : ""}
           </div>
+          <div id="playlist-empty">
+          {!isLoading && !playlists.length ? <h3>Create a new playlist or use a friend's to continue!</h3> : ""}
+          </div>
         </div>
       </div>
     );

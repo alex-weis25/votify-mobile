@@ -20,9 +20,9 @@ export class PlaylistSelector extends Component {
     db
       .collection("Playlists")
       .doc(`${playlistId}`)
-      .set({
-        owner: id, //user ID === owner ID here. CAUTION!
-        name: playlistName,
+      .update({ //set
+        // owner: id, //user ID === owner ID here. CAUTION!
+        // name: playlistName,
         accessToken: accessToken
       })
       .then(_ => {

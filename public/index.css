@@ -63,12 +63,14 @@ img {
   background-color: #1b1b1e;
   height: 10vh;
   padding: 20px;
-  color: white; }
+  color: white;
+  display: flex;
+  justify-content: center; }
 
 .App-title {
   font-size: 2.5rem;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
   font-family: Lato;
   color: white; }
 
@@ -123,10 +125,13 @@ img {
 .choose-button {
   background-color: #6cbd70;
   color: white;
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.25rem;
   padding: 10px 20px 10px 20px;
   margin: 5px 10px 5px 10px;
   text-decoration: none;
+  height: 40px;
   width: 80vw;
   border-radius: 30px; }
 
@@ -280,7 +285,7 @@ img {
 
 .playlist-button {
   width: 30vw;
-  height: 5vh;
+  height: 6vh;
   display: flex;
   justify-content: space-around; }
 
@@ -343,6 +348,10 @@ img {
 
 #playlist-loading {
   margin: 150px 0px 0px 0px;
+  align-self: center; }
+
+#playlist-empty {
+  margin: 0px 0px 0px 0px;
   align-self: center; }
 
 .search-error {

@@ -89,12 +89,14 @@ img {
   height: 10vh;
   padding: 20px;
   color: $spotify-grey-text-light;
+  display: flex;
+  justify-content: center;
 }
 
 .App-title {
   font-size: 2.5rem;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
   font-family: $font-family;
   color: $spotify-grey-text-light
 }
@@ -163,10 +165,13 @@ img {
 .choose-button {
   background-color: $spotify-green;
   color: $spotify-grey-text-light;
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.25rem;
   padding: 10px 20px 10px 20px;
   margin: 5px 10px 5px 10px;
   text-decoration: none;
+  height: 40px;
   width: 80vw;
   border-radius: 30px;
 }
@@ -352,7 +357,7 @@ img {
 
 .playlist-button {
   width: 30vw;
-  height: 5vh;
+  height: 6vh;
   display: flex;
   justify-content: space-around;
 
@@ -432,6 +437,11 @@ img {
 
 #playlist-loading {
   margin: 150px 0px 0px 0px;
+  align-self: center;
+}
+
+#playlist-empty {
+  margin: 0px 0px 0px 0px;
   align-self: center;
 }
 

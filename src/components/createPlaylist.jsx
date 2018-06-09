@@ -12,7 +12,7 @@ class CreatePlaylist extends Component {
     super(props);
     this.state = {
       name: "",
-      description: ""
+      password: ""
     };
   }
 
@@ -31,8 +31,7 @@ class CreatePlaylist extends Component {
     let accessToken = parsed.access_token;
     const userId = this.props.userObj.id;
     const getVotify = this.props.getVotify;
-    const { description, name } = this.state;
-    console.log('name on submit', name, userId)
+    const { password, name } = this.state;
 
     axios({
       method: "POST",
@@ -43,27 +42,29 @@ class CreatePlaylist extends Component {
       },
       data: {
         name: `${name}`,
-        description: `${description}`,
         collaborative: true,
         public: false
       }
     })
       .then(res => {
-        console.log('in chain', res.data);
-        getVotify(res.data);
-        return res.data;
+        let newResData = {...res.data, password: password}
+        getVotify(newResData);
+        return newResData;
       })
       .then(newPlay => {
-        console.log('newPlay', newPlay)
+        console.log('new play: ', newPlay)
         const playlistName = name;
         const playlistId = newPlay.id;
         const ownerId = userId;
+        console.log('creating playlist password:', password)
         db
           .collection("Playlists")
           .doc(`${playlistId}`)
           .set({
             owner: ownerId,
-            name: playlistName
+            accessToken: accessToken,
+            name: playlistName,
+            password: password
           });
       })
       .then(_ => this.props.setView("SinglePlaylist"))
@@ -76,7 +77,6 @@ class CreatePlaylist extends Component {
     this.setState({
       [name]: value
     });
-    console.log('state on create Playlist', this.state);
   };
 
   render() {
@@ -91,11 +91,11 @@ class CreatePlaylist extends Component {
             placeholder="Votify Playlist Name"
           />
           <input
-            name="description"
+            name="password"
             className="form-control"
-            value={this.state.description}
+            value={this.state.password}
             onChange={this.handleChange}
-            placeholder="Playlist Description"
+            placeholder="Playlist password"
           />
           <button className="send-it-btn" type="submit">
             Submit

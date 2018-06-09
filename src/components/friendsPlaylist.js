@@ -17,6 +17,7 @@ export class FriendsPlaylist extends Component {
       ownerId: "",
       playlistId: "",
       playlistName: "",
+      password: "",
       error: false
     };
   }
@@ -31,7 +32,7 @@ export class FriendsPlaylist extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { ownerId, playlistName } = this.state;
+    const { ownerId, playlistName, password } = this.state;
     const { fetchVotify, setView, setOwner } = this.props;
     let foundItem = false;
     console.log('playlistName', playlistName)
@@ -41,7 +42,7 @@ export class FriendsPlaylist extends Component {
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           console.log('all dox', doc.data())
-          if (doc.data().name === playlistName) {
+          if (doc.data().name === playlistName && doc.data().password === password) {
             foundItem = true;
             setOwner({
               accessToken: doc.data().accessToken
@@ -79,13 +80,20 @@ export class FriendsPlaylist extends Component {
               onChange={this.handleChange}
               placeholder="Enter Votify Playlist Name"
             />
+            <input
+              name="password"
+              className="form-control"
+              value={this.state.password}
+              onChange={this.handleChange}
+              placeholder="Enter Playlist Password"
+            />
             <button className="send-it-btn" type="submit">
               Submit
             </button>
           </form>
         </div>
         <div className="search-error">
-          {this.state.error ? <div> incorrect playlist info </div> : ""}
+          {this.state.error ? <div> incorrect playlist name and password </div> : ""}
         </div>
       </div>
     );

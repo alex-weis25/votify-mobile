@@ -42,7 +42,7 @@ export class FindPlaylists extends Component {
       <div id="playlist-root">
         <div id='FindPlaylist-btn-wrapper'>
           <button className='button-playlist' value="Existing" onClick={this.setPlaylistView}>
-            Existing Playlist
+            My Playlists
           </button>
           <button className='button-playlist' value="Friends" onClick={this.setPlaylistView}>
             Friend's Playlist
