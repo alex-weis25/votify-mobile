@@ -1,33 +1,31 @@
 import axios from "axios";
 import queryString from "query-string";
 // import { setTop } from "../store/votify";
+const db = firebase.firestore();
 
+// Look up password
+export async function checkPassword(playlistId) {
+  let password;
+  console.log('id on functions', playlistId)
+  await db
+    .collection('Playlists')
+    .doc(`${playlistId}`)
+    .get()
+    .then(playlist => {
+      password = playlist.data().password;
+    })
+    console.log('password on functions', password)
+  return password
+}
 
-//Set top song on state
-
-
-
-
-//Send to Firestore
-// export const moveFromQueue = (song) => {
-//   const setTop = this.props.setTop
-//   const songId = song.songId
-//   axios({
-//           method: "POST",
-//           url: `https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks?uris=spotify%3Atrack%3A${songUrl}`,
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization:
-//             `Bearer ${accessToken}`
-//           }
-//         })
-//           .then(results => {
-//             console.log("setting top song", results.data);
-
-//           })
-//   }
-// }
-
+export const setPassword = (playlistId, password) => {
+  db
+    .collection('Playlists')
+    .doc(`${playlistId}`)
+    .update({
+      password: password
+    })
+}
 
 //helperFunc
 export const sortByVote = array => {

@@ -17,10 +17,10 @@ export class PlaylistSelector extends Component {
     const playlistName = this.props.name;
     const fetchVotify = this.props.fetchVotify;
     fetchVotify(id, playlistId, accessToken);
-    db
-      .collection("Playlists")
+    db.collection("Playlists")
       .doc(`${playlistId}`)
-      .update({ //set
+      .update({
+        //set
         // owner: id, //user ID === owner ID here. CAUTION!
         // name: playlistName,
         accessToken: accessToken
@@ -28,7 +28,7 @@ export class PlaylistSelector extends Component {
       .then(_ => {
         this.props.setOwner({
           accessToken: accessToken
-        })
+        });
       })
       .then(_ => this.props.setView("SinglePlaylist"));
   }
@@ -54,4 +54,7 @@ export class PlaylistSelector extends Component {
 const mapState = ({ Votify }) => ({ Votify });
 const mapDispatch = null;
 
-export default connect(mapState, mapDispatch)(PlaylistSelector);
+export default connect(
+  mapState,
+  mapDispatch
+)(PlaylistSelector);
